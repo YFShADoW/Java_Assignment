@@ -5,10 +5,11 @@
 package purchaseordermanagementsystem;
 
 public class Supplier {
-    private String supplierID, supplierName, supplierAddress, supplierEmail;
-    private int supplierPhone;
+    private String supplierID, supplierName, supplierAddress, supplierEmail,supplierPhone;
     
-    public Supplier(String supplierID, String supplierName, String supplierAddress, String supplierEmail, int supplierPhone){
+    
+    
+    public Supplier(String supplierID, String supplierName,String supplierPhone,String supplierEmail,String supplierAddress){
         this.supplierID = supplierID;
         this.supplierName = supplierName;
         this.supplierAddress = supplierAddress;
@@ -44,12 +45,17 @@ public class Supplier {
         this.supplierEmail = supplierEmail;
     }
 
-    public int getSupplierPhone() {
+    public String getSupplierPhone() {
         return supplierPhone;
     }
 
-    public void setSupplierPhone(int supplierPhone) {
+    public void setSupplierPhone(String supplierPhone) {
         this.supplierPhone = supplierPhone;
     }  
+    public void addSupplier(){
+        String[] newSupplier = {this.getSupplierID(),this.getSupplierName(),this.getSupplierPhone(),this.getSupplierEmail(),this.getSupplierAddress()};
+        FileManager file = new FileManager("Supplier.txt");
+        file.addToFile(newSupplier);
+    }
     
 }

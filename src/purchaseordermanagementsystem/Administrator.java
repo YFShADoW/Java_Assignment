@@ -53,7 +53,6 @@ public class Administrator extends User{
         ArrayList<String> PMList = new ArrayList<String>();;
         String lastID;
         String newStaffID ="";
-        
 
         for(int i =  0 ; i< userData.size();i++){
             String[] data = userData.get(i).trim().split("\\|");
@@ -120,6 +119,14 @@ public class Administrator extends User{
         
     }
     public static void main(String[] args){
+        Administrator test = new Administrator ("U00001","admin01","admin1234","admin01@gmail.com","0123456789","Admin","A00001");
     }
     
 }
+
+/*
+U00001|admin01|admin1234|admin01@gmail.com|0123456789|Admin|A00001
+U00002|SM01|SM1234|SM01@gmail.com|0134567890|SaleManager|S00001
+U00003|PM01|PM1234|PM01@gmail.com|0124567890|PurchaseManager|P00001
+U00004|YF|YF0322|YF@gmail.com|0189796991|Admin|A00002
+*/

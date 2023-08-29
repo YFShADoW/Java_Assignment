@@ -1,6 +1,7 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -13,15 +14,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Shu Qin
  */
 public class AddSupplier_GUI extends javax.swing.JFrame {
-    private DefaultTableModel suppliertable = new DefaultTableModel();
+    private DefaultTableModel supplierTable = new DefaultTableModel();
     private String [] supplier1 = {"Supplier ID","Supplier Name","Supplier Phone Number","Supplier Email","Supplier Address"};
-    Supplier supplier;
+    SaleManager saleManager;
     /**
      * Creates new form AddSupplier_GUI
      */
-    public AddSupplier_GUI(Supplier supplier) {
-        suppliertable.setColumnIdentifiers(supplier1);
-        this.supplier = supplier;
+    public AddSupplier_GUI(SaleManager saleManager) {
+        supplierTable.setColumnIdentifiers(supplier1);
+        this.saleManager = saleManager;
         initComponents();
         displayTable();
     }
@@ -74,7 +75,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
         jLabel1.setText("Add Supplier");
 
-        Add_SupplierTable.setModel(suppliertable);
+        Add_SupplierTable.setModel(supplierTable);
         jScrollPane1.setViewportView(Add_SupplierTable);
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
@@ -202,27 +203,31 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String supplierID = Text_SupplierID.getText();
-        String supplierName = Text_SupplierName.getText();
-        String supplierPhone = Text_SupplierPhone.getText();
-        String supplierEmail = Text_SupplierEmail.getText();
-        String supplierAddress = Text_SupplierAddress.getText();
-        //
-        String savedsupplierdata[] = {supplierID, supplierName, supplierPhone, supplierEmail, supplierAddress};
-        
-        //Supplier savedsupplierdata = new Supplier (supplierID, supplierName,supplierPhone, supplierEmail,supplierAddress);
-        //supplier.AddSupplier(savedsupplierdata);
-        
-        suppliertable.addRow(savedsupplierdata);
-        
-        Text_SupplierID.setText("");
-        Text_SupplierName.setText("");
-        Text_SupplierPhone.setText("");
-        Text_SupplierEmail.setText("");
-        Text_SupplierAddress.setText("");
-        
-        displayTable();
-        removeTableRow();
+        if(Text_SupplierName.getText().isEmpty()||Text_SupplierPhone.getText().isEmpty()||Text_SupplierEmail.getText().isEmpty()||Text_SupplierAddress.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter all the fields!!");
+        }
+        else{            
+            String supplierID = saleManager.generateSupplierID();
+            String name = Text_SupplierName.getText().trim();
+            String phone = Text_SupplierPhone.getText().trim();
+            String email = Text_SupplierEmail.getText().trim();
+            String address = Text_SupplierAddress.getText().trim();
+            Supplier newSupplier = new Supplier(supplierID,name,phone, email,address);
+            
+            
+            saleManager.manageSupplier("add",newSupplier);
+            
+            // Clean all the text field
+            Text_SupplierName.setText("");
+            Text_SupplierPhone.setText("");
+            Text_SupplierEmail.setText("");
+            Text_SupplierAddress.setText("");
+            
+            // refresh the table
+            removeTableRow();
+            displayTable();   
+        }   
+    
         
        
         
@@ -234,15 +239,16 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
             String[] savedsupplierdata1 = line.split("\\|");
-            suppliertable.addRow(savedsupplierdata1);
+            supplierTable.addRow(savedsupplierdata1);
         }
     }
     public void removeTableRow(){
       //  DefaultTableModel model = (DefaultTableModel) SupplierrTable.getModel();
-        int count = suppliertable.getRowCount();
+        int count = supplierTable.getRowCount();
         for (int i = count - 1; i >= 0; i--) {
-            suppliertable.removeRow(i);
+            supplierTable.removeRow(i);
         }
+    
     
     
     
@@ -257,36 +263,36 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new AddSupplier_GUI().setVisible(true);
-            }
-        });
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                //new AddSupplier_GUI().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,6 +4,8 @@
  */
 package purchaseordermanagementsystem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author YAO FENG PC
@@ -24,19 +26,28 @@ public class SaleManager extends User {
         this.SM_ID = SM_ID;
     }
     
-    public void SaleManager_Menu(){
+    public String generateSupplierID(){
+        FileManager file = new FileManager("Supplier.txt");
+        ArrayList<String> userData = file.readFile();
+        String lastRow = userData.get(userData.size()-1);
+        String[] data = lastRow.trim().split("\\|");
+        String lastUserID = data[0];
+        int newNo = Integer.parseInt(lastUserID.substring(2))+1;
+        String newSupplierID = "SR" + String.format("%05d", newNo);
+        
+        return newSupplierID;
+    }
+    
+    public void generatePurchaseRequisition(){
         
     }
-    public void Generate_PurchaseRequisition(){
+    public void manageItem(){
         
     }
-    public void Manipulated_Item(){
+    public void manageSale(){
         
     }
-    public void Manipulated_Sale(){
-        
-    }
-    public void Maipulated_Supplier(){
-        
+    public void manageSupplier(String mode,Supplier supplier){
+        supplier.addSupplier(); 
     }
 }
