@@ -41,7 +41,9 @@ public class SaleManager extends User {
     public void generatePurchaseRequisition(){
         
     }
-    public void manageItem(){
+    public void manageItem(String mode, Item item){
+        item.addItem();
+        
         
     }
     public void manageSale(){
