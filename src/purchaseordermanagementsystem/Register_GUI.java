@@ -242,11 +242,27 @@ public class Register_GUI extends javax.swing.JFrame {
             String email = Text_Email.getText().trim();
             String phone = Text_Phone.getText().trim();
             int comboBoxIndex = ComboBox_UserType.getSelectedIndex();
+            System.out.println(comboBoxIndex);
             String userType = userTypeSelection[comboBoxIndex];
             String staffID = admin.generatestaffID(userType);
             
-            Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
-            admin.registerUser(newAdmin);
+            
+            if(userType.equals("Admin")){
+                Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
+                admin.registerUser(newAdmin);
+                System.out.println("1");
+            }
+            else if(userType.equals("SaleManager")){
+                SaleManager newSM = new SaleManager(userID,name,password,email,phone,userType,staffID);            
+                admin.registerUser(newSM);
+                System.out.println("2");
+            }
+            else if (userType.equals("PurchaseManager")){
+                PurchaseManager newPM = new PurchaseManager(userID,name,password,email,phone,userType,staffID);            
+                admin.registerUser(newPM);
+                System.out.println("3");
+            }
+            
             
             // Clean all the text field
             Text_Name.setText("");

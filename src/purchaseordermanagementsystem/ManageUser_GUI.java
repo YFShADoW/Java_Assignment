@@ -181,6 +181,8 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         }
         FileManager file = new FileManager("User.txt");
         file.removeLineFromFile(tableData[0]);
+        this.removeTableRow();
+        this.displayTable();
         
 //        System.out.println(Arrays.toString(tableData));
     }//GEN-LAST:event_DeleteButtonActionPerformed

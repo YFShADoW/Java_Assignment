@@ -16,7 +16,9 @@ public class Login_GUI extends javax.swing.JFrame {
      * Creates new form Login_Interface
      */
     public Login_GUI() {
+        setTitle("SSM POMS Login Page");
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -193,6 +195,9 @@ public class Login_GUI extends javax.swing.JFrame {
         });
     }
 
+//U00001|admin01|admin1234|admin01@gmail.com|0123456789|Admin|A00001
+//U00002|YF|YF0322|0189796991|YF@gmail.com|Admin|A00002
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Login;
     private javax.swing.JPasswordField Text_Password;
