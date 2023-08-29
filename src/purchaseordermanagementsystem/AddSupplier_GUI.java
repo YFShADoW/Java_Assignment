@@ -1,5 +1,8 @@
 package purchaseordermanagementsystem;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -10,12 +13,17 @@ package purchaseordermanagementsystem;
  * @author Shu Qin
  */
 public class AddSupplier_GUI extends javax.swing.JFrame {
-
+    private DefaultTableModel suppliertable = new DefaultTableModel();
+    private String [] supplier1 = {"Supplier ID","Supplier Name","Supplier Phone Number","Supplier Email","Supplier Address"};
+    Supplier supplier;
     /**
      * Creates new form AddSupplier_GUI
      */
-    public AddSupplier_GUI() {
+    public AddSupplier_GUI(Supplier supplier) {
+        suppliertable.setColumnIdentifiers(supplier1);
+        this.supplier = supplier;
         initComponents();
+        displayTable();
     }
 
     /**
@@ -32,17 +40,17 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Add_SupplierTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        Text_SupplierID = new javax.swing.JTextField();
+        Text_SupplierName = new javax.swing.JTextField();
+        Text_SupplierPhone = new javax.swing.JTextField();
+        Text_SupplierEmail = new javax.swing.JTextField();
+        Text_SupplierAddress = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
@@ -66,23 +74,8 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
         jLabel1.setText("Add Supplier");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Supplier ID", "Supplier Name", "Supplier Phone Number", "Supplier Email", "Supplier Address"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        Add_SupplierTable.setModel(suppliertable);
+        jScrollPane1.setViewportView(Add_SupplierTable);
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel2.setText("Supplier ID: ");
@@ -99,15 +92,15 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel6.setText("Supplier Address: ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Text_SupplierID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                Text_SupplierIDActionPerformed(evt);
             }
         });
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        Text_SupplierEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                Text_SupplierEmailActionPerformed(evt);
             }
         });
 
@@ -140,11 +133,11 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)))
+                                    .addComponent(Text_SupplierID)
+                                    .addComponent(Text_SupplierName)
+                                    .addComponent(Text_SupplierPhone)
+                                    .addComponent(Text_SupplierEmail)
+                                    .addComponent(Text_SupplierAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(141, 141, 141)
                                 .addComponent(jButton1)))
@@ -168,29 +161,29 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(27, Short.MAX_VALUE))
+                        .addContainerGap(52, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_SupplierID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_SupplierName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_SupplierPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_SupplierEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_SupplierAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(14, 14, 14))))
@@ -199,18 +192,68 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void Text_SupplierIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_SupplierIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_Text_SupplierIDActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void Text_SupplierEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_SupplierEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_Text_SupplierEmailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String supplierID = Text_SupplierID.getText();
+        String supplierName = Text_SupplierName.getText();
+        String supplierPhone = Text_SupplierPhone.getText();
+        String supplierEmail = Text_SupplierEmail.getText();
+        String supplierAddress = Text_SupplierAddress.getText();
+        //
+        String savedsupplierdata[] = {supplierID, supplierName, supplierPhone, supplierEmail, supplierAddress};
+        
+        //Supplier savedsupplierdata = new Supplier (supplierID, supplierName,supplierPhone, supplierEmail,supplierAddress);
+        //supplier.AddSupplier(savedsupplierdata);
+        
+        suppliertable.addRow(savedsupplierdata);
+        
+        Text_SupplierID.setText("");
+        Text_SupplierName.setText("");
+        Text_SupplierPhone.setText("");
+        Text_SupplierEmail.setText("");
+        Text_SupplierAddress.setText("");
+        
+        displayTable();
+        removeTableRow();
+        
+       
+        
     }//GEN-LAST:event_jButton1ActionPerformed
-
+     public void displayTable(){
+       // DefaultTableModel suppliertable = (DefaultTableModel) SupplierTable.getModel;
+        FileManager getrow = new FileManager("Supplier.txt");
+        ArrayList<String> rows =  getrow.readFile();
+        for(int i=0 ; i< rows.size();i++){
+            String line = rows.get(i).toString();
+            String[] savedsupplierdata1 = line.split("\\|");
+            suppliertable.addRow(savedsupplierdata1);
+        }
+    }
+    public void removeTableRow(){
+      //  DefaultTableModel model = (DefaultTableModel) SupplierrTable.getModel();
+        int count = suppliertable.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            suppliertable.removeRow(i);
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -241,12 +284,18 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddSupplier_GUI().setVisible(true);
+                //new AddSupplier_GUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Add_SupplierTable;
+    private javax.swing.JTextField Text_SupplierAddress;
+    private javax.swing.JTextField Text_SupplierEmail;
+    private javax.swing.JTextField Text_SupplierID;
+    private javax.swing.JTextField Text_SupplierName;
+    private javax.swing.JTextField Text_SupplierPhone;
     private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
@@ -259,11 +308,5 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

@@ -89,10 +89,7 @@ public class Administrator extends User{
         return newStaffID;
     }
             
-    public void registerUser(String[] newUser){
-        FileManager file = new FileManager("User.txt");
-        file.addToFile(newUser);
-    }
+    
     // Method Overloading
     public void registerUser(Administrator newAdmin){
         String[] newUser = {newAdmin.getUserID(),newAdmin.getUserName(),newAdmin.getUserPassword(),newAdmin.getUserPhone(),newAdmin.getUserEmail(),newAdmin.getUserType(),newAdmin.getAdmin_ID()};
