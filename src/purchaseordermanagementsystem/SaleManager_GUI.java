@@ -84,6 +84,11 @@ public class SaleManager_GUI extends javax.swing.JFrame {
         jLabel1.setText("Sale Manager -- Menu");
 
         LogOutButton.setText("Log Out");
+        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogOutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,6 +165,12 @@ public class SaleManager_GUI extends javax.swing.JFrame {
         addSupplierGUI.show();
         dispose();
     }//GEN-LAST:event_supplierButtonActionPerformed
+
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
+        Login_GUI loginGUI = new Login_GUI();
+        loginGUI.show();
+        dispose();
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
     /**
      * @param args the command line arguments

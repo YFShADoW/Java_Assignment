@@ -80,6 +80,11 @@ public class Admin_GUI extends javax.swing.JFrame {
         });
 
         LogOutButton.setText("Log Out");
+        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogOutButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Admin -- Menu");
@@ -160,6 +165,14 @@ public class Admin_GUI extends javax.swing.JFrame {
         manageUserGUI.show();
         dispose();
     }//GEN-LAST:event_ManageUserButtonActionPerformed
+
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
+        Login_GUI loginGUI = new Login_GUI();
+        loginGUI.show();
+        dispose();
+    
+        
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
     /**
      * @param args the command line arguments

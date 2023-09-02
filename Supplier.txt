@@ -1,0 +1,2 @@
+SR00001|Supplier01|0345678901|SR01@gmail.com|51,Japan House
+SR00002|dsada|dsadas|dsadsadsa|dsaassa
