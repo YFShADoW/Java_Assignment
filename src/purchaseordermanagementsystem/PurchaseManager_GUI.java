@@ -120,7 +120,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
 
     private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         Login_GUI loginGUI = new Login_GUI();
-        loginGUI.show(true);
+        loginGUI.show();
         dispose();
     }//GEN-LAST:event_LogOutButtonActionPerformed
 

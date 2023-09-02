@@ -108,8 +108,19 @@ public class Administrator extends User{
     }
     
 
-    public void manageUser(String mode){
-
+    public void manageUser(String mode,String[] oldData,String[] newData){
+        switch (mode){                
+            case "Edit":
+                User user = new User();
+                user.editUser(oldData, newData);
+                break;
+                       
+            case "Remove":
+                break;
+            
+            default:
+                break;
+        }
     }
     public void removeUser(){
         

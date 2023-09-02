@@ -300,7 +300,9 @@ public class Register_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Text_EmailActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        Admin_GUI adminGUI = new Admin_GUI(admin);
+        adminGUI.show();
+        dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**

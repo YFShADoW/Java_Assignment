@@ -83,7 +83,10 @@ public class User {
         this.userType = userType;
     }
     
-
+    public void editUser(String[] oldData, String[] newData){
+        FileManager file = new FileManager("User.txt");
+        file.editFile(oldData, newData);
+    }
     // User function
     public String[] loginAccess(String loginUserID,String loginPassword){
         FileManager file = new FileManager("User.txt");

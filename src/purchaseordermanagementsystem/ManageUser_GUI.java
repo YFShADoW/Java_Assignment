@@ -22,6 +22,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
     public ManageUser_GUI(Administrator admin){
         this.admin=admin;
         initComponents();
+        setLocationRelativeTo(null);
         displayTable();
     }
 
@@ -42,7 +43,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         UserTable = new javax.swing.JTable();
         UserTypeComboBox = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
         EditButton = new javax.swing.JButton();
 
@@ -91,7 +92,12 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Manage User");
 
-        jButton2.setText("Back");
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         DeleteButton.setText("Delete User");
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +141,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(backButton)
                                 .addGap(257, 257, 257)
                                 .addComponent(jLabel3)))))
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -146,7 +152,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jButton2))
+                    .addComponent(backButton))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -188,8 +194,23 @@ public class ManageUser_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
-        // TODO add your handling code here:
+        int indexRow = UserTable.getSelectedRow();
+        TableModel model = UserTable.getModel();
+        String[] tableData = new String[UserTable.getColumnCount()];
+        for(int i=0; i<UserTable.getColumnCount();i++){
+            String data = model.getValueAt(indexRow, i).toString();
+            tableData[i]=data;
+        }
+        EditUser_GUI editUserGUI = new EditUser_GUI(admin,tableData);
+        editUserGUI.show();
+        dispose();
     }//GEN-LAST:event_EditButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        Admin_GUI adminGUI = new Admin_GUI(admin);
+        adminGUI.show();
+        dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     public void displayTable(){
         DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
@@ -248,8 +269,8 @@ public class ManageUser_GUI extends javax.swing.JFrame {
     private javax.swing.JButton EditButton;
     private javax.swing.JTable UserTable;
     private javax.swing.JComboBox<String> UserTypeComboBox;
+    private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

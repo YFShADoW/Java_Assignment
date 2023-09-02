@@ -73,7 +73,6 @@ public class FileManager {
         for(int i =0 ; i <dataLines.size();i++){
             if(Arrays.equals(dataLines.get(i) ,targetLine)){
                 dataLines.set(i, newLine);
-                System.out.println("yes");
             }
         }
         
@@ -89,7 +88,7 @@ public class FileManager {
         }
         catch(IOException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
-        }   
+        }
     }
     
     public ArrayList<String> readFile() {
