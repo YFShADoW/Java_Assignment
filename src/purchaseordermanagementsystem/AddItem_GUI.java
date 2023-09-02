@@ -27,9 +27,10 @@ public class AddItem_GUI extends javax.swing.JFrame {
     /**
      * Creates new form AddItem_GUI
      */
-    public AddItem_GUI() {
+    public AddItem_GUI(SaleManager saleManager) {
         itemtable.setColumnIdentifiers(itemtable1);
         initComponents();
+        displayTable();
     }
 
     /**
@@ -248,9 +249,10 @@ public class AddItem_GUI extends javax.swing.JFrame {
              System.out.println(comboBoxIndex);
              //String userType = userTypeSelection[comboBoxIndex];
              
-             Item newitem = {itemCode, itemName, itemCategory, itemUnitPrice, itemStock, supplierID};
-        
+             Item newitem = new Item (itemCode,itemName,itemCategory, itemUnitPrice, itemStock,supplierID);
              
+        
+             saleManager.manageItem("add",newitem);
              Text_ItemCode.setText("");
              Text_ItemName.setText("");
              Text_ItemCategory.setText("");
@@ -268,8 +270,8 @@ public class AddItem_GUI extends javax.swing.JFrame {
         ArrayList<String> rows =  getrow.readFile();
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
-            String[] savedsupplierdata1 = line.split("\\|");
-            itemtable.addRow(savedsupplierdata1);
+            String[] additemdata = line.split("\\|");
+            itemtable.addRow(additemdata);
         }
     }
     public void removeTableRow(){
@@ -336,7 +338,7 @@ public class AddItem_GUI extends javax.swing.JFrame {
        // * Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
           public void run() {
-              new AddItem_GUI().setVisible(true);
+        //      new AddItem_GUI().setVisible(true);
          }
         });
     }

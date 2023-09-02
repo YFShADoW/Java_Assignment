@@ -8,11 +8,11 @@ package purchaseordermanagementsystem;
 public class Item {
     private String itemCode, itemCategory, itemName;
     private String supplierID;
-    private float itemUnitPrice;
-    private int itemStock;
+    private String itemUnitPrice;
+    private String  itemStock;
     
 
-    public Item(String itemCode, String itemName, String itemCategory, float itemUnitPrice, int itemStock, String supplierID) {
+    public Item(String itemCode, String itemName, String itemCategory, String itemUnitPrice, String itemStock, String supplierID) {
         this.itemCode = itemCode;
         this.itemCategory = itemCategory;
         this.itemName = itemName;
@@ -49,31 +49,32 @@ public class Item {
         return supplierID;
     }
 
-
-    public void setSupplier(String supplierID) {
+    public void setSupplierID(String supplierID) {
         this.supplierID = supplierID;
     }
 
-    public float getItemUnitPrice() {
+    public String getItemUnitPrice() {
         return itemUnitPrice;
     }
 
-    public void setItemUnitPrice(float itemUnitPrice) {
+    public void setItemUnitPrice(String itemUnitPrice) {
         this.itemUnitPrice = itemUnitPrice;
     }
 
-    public int getItemStock() {
+    public String getItemStock() {
         return itemStock;
     }
 
-    public void setItemStock(int itemStock) {
+    public void setItemStock(String itemStock) {
         this.itemStock = itemStock;
     }
 
+   
     
     
     public void addItem(){
-        String [] newitem = new Item {this.getItemCode(),this.getItemName(),this.getItemCategory(),this.getItemUnitPrice(),this.getItemStock(),this.getSupplierID()};
+        
+        String [] newitem = {this.getItemCode(),this.getItemName(),this.getItemCategory(),this.getItemUnitPrice(),this.getItemStock(),this.getSupplierID()};
         FileManager file = new FileManager("Item.txt");
         file.addToFile(newitem);
     }
