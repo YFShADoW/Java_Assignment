@@ -52,7 +52,10 @@ public class PurchaseRequisition {
     public void setPurchaseRequisitionStatus(String PurchaseRequisitionStatus) {
         this.PurchaseRequisitionStatus = PurchaseRequisitionStatus;
     }
-
+    
+    public void createPurchaseRequisition(){
+        
+    }
  
     
 }
