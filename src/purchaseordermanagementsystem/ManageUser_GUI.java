@@ -15,6 +15,7 @@ import javax.swing.table.TableModel;
  */
 public class ManageUser_GUI extends javax.swing.JFrame {
     private Administrator admin;
+    String[] userTypeSelection ={"All","Admin","SaleManager","PurchaseManager"};
 
     /**
      * Creates new form ManageUser_GUI
@@ -37,8 +38,8 @@ public class ManageUser_GUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        searchText = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         UserTable = new javax.swing.JTable();
         UserTypeComboBox = new javax.swing.JComboBox<>();
@@ -55,7 +56,12 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Find");
 
-        jButton1.setText("Search");
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         UserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +89,11 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(UserTable);
 
         UserTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Admin", "Sale Manager", "Purchase Manager" }));
+        UserTypeComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                UserTypeComboBoxItemStateChanged(evt);
+            }
+        });
         UserTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UserTypeComboBoxActionPerformed(evt);
@@ -129,9 +140,9 @@ public class ManageUser_GUI extends javax.swing.JFrame {
                         .addGap(72, 72, 72)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(searchButton)
                         .addGap(138, 138, 138)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -156,8 +167,8 @@ public class ManageUser_GUI extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UserTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -212,6 +223,41 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        String filterTarget = userTypeSelection[UserTypeComboBox.getSelectedIndex()];
+        // search with All
+        if (searchText.getText().isBlank() && filterTarget.equals("All")){
+            removeTableRow();
+            displayTable();
+        }
+        else{
+            String searchTarget = searchText.getText();
+            ArrayList<String[]> userRow = admin.searchFilterUser(searchTarget,filterTarget);
+            removeTableRow();
+            displayTable(userRow); 
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void UserTypeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_UserTypeComboBoxItemStateChanged
+        String filterTarget = userTypeSelection[UserTypeComboBox.getSelectedIndex()];
+        if (searchText.getText().isBlank() && filterTarget.equals("All")){
+            removeTableRow();
+            displayTable();
+        }
+        else if (searchText.getText().isBlank() && !filterTarget.equals("All")){
+            String searchTarget = null;
+            ArrayList<String[]> userRow = admin.searchFilterUser(searchTarget,filterTarget);
+            removeTableRow();
+            displayTable(userRow); 
+        }
+        else{
+            String searchTarget = searchText.getText();
+            ArrayList<String[]> userRow = admin.searchFilterUser(searchTarget,filterTarget);
+            removeTableRow();
+            displayTable(userRow); 
+        }
+    }//GEN-LAST:event_UserTypeComboBoxItemStateChanged
+
     public void displayTable(){
         DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
         FileManager getrow = new FileManager("User.txt");
@@ -220,6 +266,12 @@ public class ManageUser_GUI extends javax.swing.JFrame {
             String line = rows.get(i).toString();
             String[] data = line.split("\\|");
             model.addRow(data);
+        }
+    }
+    public void displayTable(ArrayList<String[]> userData){
+        DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
+        for(int i =0;i<userData.size();i++){
+            model.addRow(userData.get(i));
         }
     }
     public void removeTableRow(){
@@ -270,11 +322,11 @@ public class ManageUser_GUI extends javax.swing.JFrame {
     private javax.swing.JTable UserTable;
     private javax.swing.JComboBox<String> UserTypeComboBox;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchText;
     // End of variables declaration//GEN-END:variables
 }

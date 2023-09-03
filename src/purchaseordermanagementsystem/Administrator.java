@@ -122,6 +122,49 @@ public class Administrator extends User{
                 break;
         }
     }
+    public ArrayList<String[]> searchFilterUser(String searchTarget,String filterTarget){
+        FileManager file = new FileManager("User.txt");
+        ArrayList<String[]> result= new ArrayList();
+        ArrayList<String> userLine = file.readFile();
+        // select UserType
+        if(searchTarget == null && !filterTarget.equals("All")){
+            for(int i = 0; i<userLine.size();i++){
+                String[] userData = userLine.get(i).split("\\|");
+                if(userData[5].equals(filterTarget)){
+                    result.add(userData);
+                }
+            }
+            return result;
+        }
+        // search with All
+        else if(searchTarget!=null && filterTarget.equals("All")){
+            for(int i = 0; i<userLine.size();i++){
+                String[] userData = userLine.get(i).split("\\|");
+                for(int j = 0;j< userData.length;j++){
+                    if(userData[j].equals(searchTarget)){
+                        result.add(userData);
+                    }
+                }
+            }
+            return result;
+        }
+        // search with userType
+        else{
+            for(int i = 0; i<userLine.size();i++){
+                String[] userData = userLine.get(i).split("\\|");
+                if(userData[5].equals(filterTarget)){
+                    for(int j = 0;j< userData.length;j++){
+                        if(userData[j].equals(searchTarget)){
+                        result.add(userData);
+                        }
+                    }   
+                }
+            }
+            return result;
+        }
+    }
+    
+    
     public void removeUser(){
         
     }
