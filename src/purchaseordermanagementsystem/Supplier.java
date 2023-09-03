@@ -57,5 +57,9 @@ public class Supplier {
         FileManager file = new FileManager("Supplier.txt");
         file.addToFile(newSupplier);
     }
-    
+    public void removeSupplier(){
+        String removesupplierdata = this.getSupplierID();
+        FileManager file = new FileManager("Supplier.txt");
+        file.removeLineFromFile(removesupplierdata);
+    }
 }

@@ -4,6 +4,11 @@
  */
 package purchaseordermanagementsystem;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -51,5 +56,27 @@ public class SaleManager extends User {
     }
     public void manageSupplier(String mode,Supplier supplier){
         supplier.addSupplier(); 
+        supplier.removeSupplier();
     }
+    
+  //  public void viewsupplier(){
+      //  try{
+      //      File supplierfile = new File("C:\\Users\\Shu Qin\\OneDrive\\Documents\\NetBeansProjects\\JavaApplication32\\src\\javaapplication32\\User.txt");
+       //     FileReader supplierfile = new FileReader(fileName);
+       //     FileReader supplierdata = new FileReader(supplierfile);
+            
+       //     BufferedReader supplierdata1 = new BufferedReader(supplierdata);
+       //     String line;
+        //    while ((line = supplierdata1.readLine()) != null) {
+        //        System.out.println(line);
+         //   }
+        //    supplierdata1.close();
+        //    supplierdata.close();
+     //   }catch(FileNotFoundException ex){
+         //   System.out.println("File does not exist");
+    //    }catch (IOException e) {
+         //   e.printStackTrace(); 
+            
+     //   }
+   // }
 }

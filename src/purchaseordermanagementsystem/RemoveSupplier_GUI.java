@@ -1,5 +1,6 @@
 package purchaseordermanagementsystem;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -15,13 +16,15 @@ public class RemoveSupplier_GUI extends javax.swing.JFrame {
      private DefaultTableModel rsuppliertable = new DefaultTableModel();
      private String [] rsupplier = {"Supplier ID","Supplier Name","Supplier Phone Number","Supplier Email","Supplier Address"};
      private int row = -1;
+     SaleManager saleManager;
 
     /**
      * Creates new form RemoveSupplier_GUI
      */
-    public RemoveSupplier_GUI() {
+    public RemoveSupplier_GUI(SaleManager saleManager) {
         rsuppliertable.setColumnIdentifiers(rsupplier);
         initComponents();
+        displayTable();
         
     }
 
@@ -206,14 +209,41 @@ public class RemoveSupplier_GUI extends javax.swing.JFrame {
         String rsupplierEmail = String.valueOf(rsuppliertable.getValueAt(row,3));
         String rsupplierAddress = String.valueOf(rsuppliertable.getValueAt(row,4));
         
+        Supplier removesupplierdata = new Supplier(rsupplierID,rsupplierName,rsupplierPhone,rsupplierEmail,rsupplierAddress);
+        
+        saleManager.manageSupplier("remove",removesupplierdata);
+        
+        
         Text_rSupplierID.setText(rsupplierID);
         Text_rSupplierName.setText(rsupplierName);
         Text_rSupplierPhone.setText(rsupplierPhone);
         Text_rSupplierEmail.setText(rsupplierEmail);
         Text_rSupplierAddress.setText(rsupplierAddress);
         
+        removeTableRow();
+        displayTable();
+        
     }//GEN-LAST:event_Remove_SupplierTableMouseReleased
-
+    public void displayTable(){
+       // DefaultTableModel suppliertable = (DefaultTableModel) SupplierTable.getModel;
+        FileManager getrow = new FileManager("Supplier.txt");
+        ArrayList<String> rows =  getrow.readFile();
+        for(int i=0 ; i< rows.size();i++){
+            String line = rows.get(i).toString();
+            String[] savedsupplierdata1 = line.split("\\|");
+            rsuppliertable.addRow(savedsupplierdata1);
+            
+        }
+    }
+    public void removeTableRow(){
+      //  DefaultTableModel model = (DefaultTableModel) SupplierrTable.getModel();
+        int count = rsuppliertable.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            rsuppliertable.removeRow(i);
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -244,7 +274,7 @@ public class RemoveSupplier_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RemoveSupplier_GUI().setVisible(true);
+                //new RemoveSupplier_GUI().setVisible(true);
             }
         });
     }
