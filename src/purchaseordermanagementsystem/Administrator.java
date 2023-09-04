@@ -36,12 +36,17 @@ public class Administrator extends User{
     public String generateUserID(){
         FileManager file = new FileManager("User.txt");
         ArrayList<String> userData = file.readFile();
-        String lastRow = userData.get(userData.size()-1);
-        String[] data = lastRow.trim().split("\\|");
-        String lastUserID = data[0];
-        int newNo = Integer.parseInt(lastUserID.substring(1))+1;
-        String newUserID = "U" + String.format("%05d", newNo);
-        
+        int newNo=0;
+        if(userData.size() ==0){
+            newNo=1;
+        }
+        else{
+            String lastRow = userData.get(userData.size()-1);
+            String[] data = lastRow.trim().split("\\|");
+            String lastUserID = data[0];
+            newNo = Integer.parseInt(lastUserID.substring(1))+1;
+        }        
+        String newUserID = "U" + String.format("%05d", newNo);  
         return newUserID;
     }
     
@@ -53,7 +58,7 @@ public class Administrator extends User{
         ArrayList<String> PMList = new ArrayList<String>();;
         String lastID;
         String newStaffID ="";
-
+        
         for(int i =  0 ; i< userData.size();i++){
             String[] data = userData.get(i).trim().split("\\|");
             String staffID = data[data.length-1];
@@ -70,19 +75,36 @@ public class Administrator extends User{
         }
         
         if (userType.equals("Admin")){
-            lastID = adminList.get(adminList.size()-1);
-            int newNo = Integer.parseInt(lastID.substring(1))+1;
+            int newNo=0;
+            if(adminList.size()==0){
+                newNo=1;
+            }
+            else{
+                lastID = adminList.get(adminList.size()-1);
+                newNo = Integer.parseInt(lastID.substring(1))+1;                
+            }
             newStaffID = "A" + String.format("%05d", newNo);
-            
         }
         else if(userType.equals("SaleManager")){
-            lastID = SMList.get(SMList.size()-1);
-            int newNo = Integer.parseInt(lastID.substring(1))+1;
+            int newNo=0;
+            if(SMList.size()==0){
+                newNo=1;
+            }
+            else{
+                lastID = SMList.get(SMList.size()-1);
+                newNo = Integer.parseInt(lastID.substring(1))+1;                
+            }
             newStaffID = "S" + String.format("%05d", newNo);
         }
         else if(userType.equals("PurchaseManager")){
-            lastID = PMList.get(PMList.size()-1);
-            int newNo = Integer.parseInt(lastID.substring(1))+1;
+            int newNo=0;
+            if(PMList.size()==0){
+                newNo=1;
+            }
+            else{
+                lastID = PMList.get(PMList.size()-1);
+                newNo = Integer.parseInt(lastID.substring(1))+1;                
+            }
             newStaffID = "P" + String.format("%05d", newNo);
         }  
         return newStaffID;
@@ -91,10 +113,12 @@ public class Administrator extends User{
     
     // Method Overloading
     public void registerUser(Administrator newAdmin){
+        //Validation
         String[] newUser = {newAdmin.getUserID(),newAdmin.getUserName(),newAdmin.getUserPassword(),newAdmin.getUserPhone(),newAdmin.getUserEmail(),newAdmin.getUserType(),newAdmin.getAdmin_ID()};
         FileManager file = new FileManager("User.txt");
         file.addToFile(newUser);
     }
+    
     public void registerUser(SaleManager newSM){
         String[] newUser = {newSM.getUserID(),newSM.getUserName(),newSM.getUserPassword(),newSM.getUserPhone(),newSM.getUserEmail(),newSM.getUserType(),newSM.getSM_ID()};
         FileManager file = new FileManager("User.txt");
