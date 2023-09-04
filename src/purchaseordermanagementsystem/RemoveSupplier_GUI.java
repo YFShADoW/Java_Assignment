@@ -23,6 +23,7 @@ public class RemoveSupplier_GUI extends javax.swing.JFrame {
      */
     public RemoveSupplier_GUI(SaleManager saleManager) {
         rsuppliertable.setColumnIdentifiers(rsupplier);
+        this.saleManager = saleManager;
         initComponents();
         displayTable();
         
