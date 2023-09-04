@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class RemoveSupplier_GUI extends javax.swing.JFrame {
      private DefaultTableModel rsuppliertable = new DefaultTableModel();
      private String [] rsupplier = {"Supplier ID","Supplier Name","Supplier Phone Number","Supplier Email","Supplier Address"};
-     private int row = -1;
+     private int row;
      SaleManager saleManager;
 
     /**
