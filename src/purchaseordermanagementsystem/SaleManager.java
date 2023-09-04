@@ -56,22 +56,26 @@ public class SaleManager extends User {
     }
     public void manageSupplier(String mode,Supplier supplier){
         supplier.addSupplier(); 
-        supplier.removeSupplier();
+        
+    }
+    
+    public void generateItemID () {
+        
     }
     
   //  public void viewsupplier(){
       //  try{
-      //      File supplierfile = new File("C:\\Users\\Shu Qin\\OneDrive\\Documents\\NetBeansProjects\\JavaApplication32\\src\\javaapplication32\\User.txt");
-       //     FileReader supplierfile = new FileReader(fileName);
-       //     FileReader supplierdata = new FileReader(supplierfile);
+      //      
+       //     FileReader supplierfile = new FileReader("Supplier.txt");
+       //     
             
-       //     BufferedReader supplierdata1 = new BufferedReader(supplierdata);
+       //     BufferedReader supplierdata = new BufferedReader(supplierfile);
        //     String line;
-        //    while ((line = supplierdata1.readLine()) != null) {
+        //    while ((line = supplierdata.readLine()) != null) {
         //        System.out.println(line);
          //   }
-        //    supplierdata1.close();
         //    supplierdata.close();
+        //    supplierfile.close();
      //   }catch(FileNotFoundException ex){
          //   System.out.println("File does not exist");
     //    }catch (IOException e) {

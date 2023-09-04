@@ -207,12 +207,7 @@ public class RemoveSupplier_GUI extends javax.swing.JFrame {
         String rsupplierName = String.valueOf(rsuppliertable.getValueAt(row,1));
         String rsupplierPhone = String.valueOf(rsuppliertable.getValueAt(row,2));
         String rsupplierEmail = String.valueOf(rsuppliertable.getValueAt(row,3));
-        String rsupplierAddress = String.valueOf(rsuppliertable.getValueAt(row,4));
-        
-        Supplier removesupplierdata = new Supplier(rsupplierID,rsupplierName,rsupplierPhone,rsupplierEmail,rsupplierAddress);
-        
-        saleManager.manageSupplier("remove",removesupplierdata);
-        
+        String rsupplierAddress = String.valueOf(rsuppliertable.getValueAt(row,4));     
         
         Text_rSupplierID.setText(rsupplierID);
         Text_rSupplierName.setText(rsupplierName);
@@ -220,8 +215,13 @@ public class RemoveSupplier_GUI extends javax.swing.JFrame {
         Text_rSupplierEmail.setText(rsupplierEmail);
         Text_rSupplierAddress.setText(rsupplierAddress);
         
-        removeTableRow();
-        displayTable();
+        String [] removesupplierdata = {rsupplierID,rsupplierName,rsupplierPhone,rsupplierEmail, rsupplierAddress};
+        
+        FileManager file = new FileManager ("Supplier.txt");
+        file.removeLineFromFile(removesupplierdata[0]);
+        this.removeTableRow();
+        this.displayTable();
+        
         
     }//GEN-LAST:event_Remove_SupplierTableMouseReleased
     public void displayTable(){
