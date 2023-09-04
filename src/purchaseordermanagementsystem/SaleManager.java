@@ -59,9 +59,25 @@ public class SaleManager extends User {
         
     }
     
-    public void generateItemID () {
+    public ArrayList<String[]> searchsupplier(String supplier){
+        FileManager file = new FileManager("Supplier.txt");
+        ArrayList<String[]> searchsupplier1= new ArrayList();
+        ArrayList<String> searchsupplierdata = file.readFile();
         
+        for(int i= 0 ; i<searchsupplierdata.size(); i++){
+            String [] ssupplierdata = searchsupplierdata.get(i).split("\\|");
+            for (int j = 0; i<ssupplierdata.length;i++){
+                if(ssupplierdata[j].equals(supplier)){
+                    searchsupplier1.add(ssupplierdata);
+                } 
+                    
+            }
+        }
+        return searchsupplier1;
     }
+            
+            
+          
     
   //  public void viewsupplier(){
       //  try{
