@@ -16,8 +16,8 @@ public class PurchaseOrderManagementSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String[] array = new String[5];
-        System.out.println(Arrays.toString(array));
+        Login_GUI loginGUI = new Login_GUI();
+        loginGUI.show();
         
     }
     

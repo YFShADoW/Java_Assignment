@@ -28,14 +28,36 @@ public class SaleManager extends User {
     
     public String generateSupplierID(){
         FileManager file = new FileManager("Supplier.txt");
-        ArrayList<String> userData = file.readFile();
-        String lastRow = userData.get(userData.size()-1);
-        String[] data = lastRow.trim().split("\\|");
-        String lastUserID = data[0];
-        int newNo = Integer.parseInt(lastUserID.substring(2))+1;
+        ArrayList<String> lineData = file.readFile();
+        int newNo = 0;
+        if(lineData.size() == 0){
+            newNo=1;
+        }
+        else{
+            String lastRow = lineData.get(lineData.size()-1);
+            String[] data = lastRow.trim().split("\\|");
+            String lastUserID = data[0];
+            newNo = Integer.parseInt(lastUserID.substring(2))+1;    
+        }
         String newSupplierID = "SR" + String.format("%05d", newNo);
-        
         return newSupplierID;
+    }
+    
+    public String generateItemID(){
+        FileManager file = new FileManager("Item.txt");
+        ArrayList<String> lineData = file.readFile();
+        int newNo = 0;
+        if(lineData.size() == 0){
+            newNo=1;
+        }
+        else{
+            String lastRow = lineData.get(lineData.size()-1);
+            String[] data = lastRow.trim().split("\\|");
+            String lastUserID = data[0];
+            newNo = Integer.parseInt(lastUserID.substring(2))+1;    
+        }
+        String newItemID = "I" + String.format("%05d", newNo);
+        return newItemID;
     }
     
     public void generatePurchaseRequisition(){
