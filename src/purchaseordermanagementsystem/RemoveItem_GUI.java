@@ -1,5 +1,8 @@
 package purchaseordermanagementsystem;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -10,12 +13,19 @@ package purchaseordermanagementsystem;
  * @author Shu Qin
  */
 public class RemoveItem_GUI extends javax.swing.JFrame {
+    private DefaultTableModel ritemtable = new DefaultTableModel();
+    private String [] ritem = {"Item ID","Item Name","Item Category","Item Supplier ID"};
+    private int row;
+    SaleManager saleManager;
 
     /**
      * Creates new form RemoveItem_GUI
      */
-    public RemoveItem_GUI() {
+    public RemoveItem_GUI(SaleManager saleManager) {
+        this.saleManager= saleManager;
+        ritemtable.setColumnIdentifiers(ritem);
         initComponents();
+        displayTable();
     }
 
     /**
@@ -30,15 +40,15 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Remove_ItemTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        Text_rItemID = new javax.swing.JTextField();
+        Text_rItemName = new javax.swing.JTextField();
+        Text_rItemCategory = new javax.swing.JTextField();
+        Text_rItemSupplierID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,26 +59,13 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel2.setText("Item Code: ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Item Code", "Item Name", "Item Category", "Item Supplier ID"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        Remove_ItemTable.setModel(ritemtable);
+        Remove_ItemTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Remove_ItemTableMouseReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Remove_ItemTable);
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel3.setText("Item Name:");
@@ -87,15 +84,15 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Text_rItemID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                Text_rItemIDActionPerformed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        Text_rItemCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                Text_rItemCategoryActionPerformed(evt);
             }
         });
 
@@ -123,10 +120,10 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                .addComponent(jTextField3)
-                                .addComponent(jTextField1)
-                                .addComponent(jTextField2)
+                                .addComponent(Text_rItemSupplierID, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                .addComponent(Text_rItemCategory)
+                                .addComponent(Text_rItemID)
+                                .addComponent(Text_rItemName)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(15, 15, 15)
                                     .addComponent(jButton1))))))
@@ -143,25 +140,25 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))
+                        .addContainerGap(62, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel6)
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_rItemID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_rItemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_rItemCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_rItemSupplierID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
@@ -173,16 +170,60 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ritemtable.removeRow(row);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void Text_rItemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_rItemIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_Text_rItemIDActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void Text_rItemCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_rItemCategoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_Text_rItemCategoryActionPerformed
 
+    private void Remove_ItemTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Remove_ItemTableMouseReleased
+        // TODO add your handling code here:
+        row = Remove_ItemTable.getSelectedRow();
+        
+        String ritemID = String.valueOf(ritemtable.getValueAt(row,0));
+        String ritemName = String.valueOf(ritemtable.getValueAt(row,1));
+        String ritemCategory = String.valueOf(ritemtable.getValueAt(row,2));
+        String ritemSupplierID = String.valueOf(ritemtable.getValueAt(row,3));
+           
+        
+        Text_rItemID.setText(ritemID);
+        Text_rItemName.setText(ritemName);
+        Text_rItemCategory.setText(ritemCategory);
+        Text_rItemSupplierID.setText(ritemSupplierID);
+        
+        
+        String [] removeitemdata = {ritemID,ritemName,ritemCategory,ritemSupplierID};
+        
+        FileManager file = new FileManager ("Supplier.txt");
+        file.removeLineFromFile(removeitemdata[0]);
+        this.removeTableRow();
+        this.displayTable();
+    }//GEN-LAST:event_Remove_ItemTableMouseReleased
+    
+    
+    public void displayTable(){
+       // DefaultTableModel suppliertable = (DefaultTableModel) SupplierTable.getModel;
+        FileManager getrow = new FileManager("Supplier.txt");
+        ArrayList<String> rows =  getrow.readFile();
+        for(int i=0 ; i< rows.size();i++){
+            String line = rows.get(i).toString();
+            String[] removeitemdata = line.split("\\|");
+            ritemtable.addRow(removeitemdata);
+            
+        }
+    }
+    public void removeTableRow(){
+      //  DefaultTableModel model = (DefaultTableModel) SupplierrTable.getModel();
+        int count = ritemtable.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            ritemtable.removeRow(i);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -213,12 +254,17 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RemoveItem_GUI().setVisible(true);
+            //    new RemoveItem_GUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Remove_ItemTable;
+    private javax.swing.JTextField Text_rItemCategory;
+    private javax.swing.JTextField Text_rItemID;
+    private javax.swing.JTextField Text_rItemName;
+    private javax.swing.JTextField Text_rItemSupplierID;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -227,10 +273,5 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
