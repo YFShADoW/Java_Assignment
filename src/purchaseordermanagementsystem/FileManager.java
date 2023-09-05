@@ -66,7 +66,32 @@ public class FileManager {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
+
+    public ArrayList<String[]> filterData(int index,String target){
+        ArrayList<String> dataLine = this.readFile();
+        ArrayList<String[]> result = new ArrayList<String[]>();
+        for(int i = 0; i<dataLine.size();i++){
+             String[] arrayData = dataLine.get(i).split("\\|");
+             if(arrayData[index].equals(target)){
+                 result.add(arrayData);
+             }
+         }
+        return result;
+    }
+ 
+    public ArrayList<String[]> searchData(String target){
+        ArrayList<String> dataLine = this.readFile();
+        ArrayList<String[]> result = new ArrayList<String[]>();
+        for(int i = 0; i<dataLine.size();i++){
+             String[] arrayData = dataLine.get(i).split("\\|");
+            for(int j = 0;j< arrayData.length;j++){
+                    if(arrayData[j].equals(target)){
+                        result.add(arrayData);
+                    }
+                }
+         }
+        return result;
+    }
     
     public void editFile(String[] targetLine, String[] newLine) {
         ArrayList<String[]> dataLines = this.saveTo2DArrayList();
