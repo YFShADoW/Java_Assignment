@@ -259,9 +259,13 @@ public class ManageUser_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_UserTypeComboBoxItemStateChanged
 
     public void displayTable(){
+        // read dataline from file
         DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
         FileManager getrow = new FileManager("User.txt");
         ArrayList<String> rows =  getrow.readFile();
+        
+        // Separate line into data
+        // ArrayList with String
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
             String[] data = line.split("\\|");
@@ -269,6 +273,8 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         }
     }
     public void displayTable(ArrayList<String[]> userData){
+        //[{},{},{},....]
+        //ArrayLIst with String Array
         DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
         for(int i =0;i<userData.size();i++){
             model.addRow(userData.get(i));

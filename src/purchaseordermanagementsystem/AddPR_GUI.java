@@ -5,7 +5,9 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,7 +46,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
         addPRButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        ItemListTable = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
@@ -57,17 +59,14 @@ public class AddPR_GUI extends javax.swing.JFrame {
 
         ItemTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Item ID", "Item Name", "Stock", "Unit Price"
+                "Item ID", "Item Name", "Unit Price", "Stock"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -102,7 +101,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        ItemListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -121,7 +120,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(ItemListTable);
 
         jLabel6.setText("Item List in This Purchase Requisition: ");
 
@@ -230,7 +229,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
 
     private void SupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierComboBoxActionPerformed
         String filterTarget = supplierIDList[SupplierComboBox.getSelectedIndex()];
-        if (searchText.getText().isBlank() && filterTarget.equals("All")){
+        if (filterTarget.equals("All")){
             removeTableRow();
             displayTable();
         }
@@ -260,6 +259,26 @@ public class AddPR_GUI extends javax.swing.JFrame {
         String[] supplierIDList = supplierIDlist.split("\\|");
         return supplierIDList;
     }
+    
+    public void displayItemTable(){
+        DefaultTableModel model = (DefaultTableModel) ItemTable.getModel();
+        FileManager getrow = new FileManager("Item.txt");
+        ArrayList<String> rows =  getrow.readFile();
+        for(int i=0 ; i< rows.size();i++){
+            String line = rows.get(i).toString();
+            String[] data = line.split("\\|");
+            String[] selectedData = {data[0],data[1],data[3],data[4]};
+            model.addRow(selectedData);
+        }
+        
+    }
+    
+    public void displayItemTable(ArrayList<String[]> ItemData){
+        DefaultTableModel model = (DefaultTableModel) ItemTable.getModel();
+        for(int i =0;i<ItemData.size();i++){
+            model.addRow(ItemData.get(i));
+        }
+    }   
     
     /**
      * @param args the command line arguments
@@ -297,6 +316,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable ItemListTable;
     private javax.swing.JTable ItemTable;
     private javax.swing.JComboBox<String> SupplierComboBox;
     private javax.swing.JTextField Text_Quantity;
@@ -311,7 +331,6 @@ public class AddPR_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }

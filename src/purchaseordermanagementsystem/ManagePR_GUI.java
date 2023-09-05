@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class ManagePR_GUI extends javax.swing.JFrame {
 
     private SaleManager saleManager;
-    String[] statusSelection = {"All","Approved","Pending","Rejected"};
+    String[] statusSelection = {"All","Pending","Approved","Rejected"};
     
     public ManagePR_GUI(SaleManager saleManager) {
         this.saleManager=saleManager;
