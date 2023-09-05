@@ -9,7 +9,7 @@ public class Item {
     private String itemCode, itemCategory, itemName;
     private String supplierID;
     private String itemUnitPrice;
-    private String  itemStock;
+    private String itemStock;
     
 
     public Item(String itemCode, String itemName, String itemCategory, String itemUnitPrice, String itemStock, String supplierID) {
@@ -67,10 +67,7 @@ public class Item {
 
     public void setItemStock(String itemStock) {
         this.itemStock = itemStock;
-    }
-
-   
-    
+    }   
     
     public void addItem(){
         

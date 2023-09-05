@@ -8,12 +8,11 @@ package purchaseordermanagementsystem;
 public class ItemLine extends Item{
     
     private int quantity;
-    private double unitPrice, totalPrice;
+    private double totalPrice;
 
-    public ItemLine(int quantity, double unitPrice, double totalPrice, String itemCode, String itemCategory, String itemName,Supplier Supplier) {
-        super(itemCode, itemCategory, itemName, Supplier);
+    public ItemLine(int quantity, double totalPrice, String itemCode, String itemName, String itemCategory, String itemUnitPrice, String itemStock, String supplierID) {
+        super(itemCode, itemName, itemCategory, itemUnitPrice, itemStock, supplierID);
         this.quantity = quantity;
-        this.unitPrice = unitPrice;
         this.totalPrice = totalPrice;
     }
 
@@ -23,14 +22,6 @@ public class ItemLine extends Item{
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
     }
 
     public double getTotalPrice() {

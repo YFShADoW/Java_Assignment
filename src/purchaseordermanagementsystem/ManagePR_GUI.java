@@ -4,17 +4,24 @@
  */
 package purchaseordermanagementsystem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author weily
  */
 public class ManagePR_GUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ManagePR_GUI
-     */
-    public ManagePR_GUI() {
+    private SaleManager saleManager;
+    String[] statusSelection = {"All","Approved","Pending","Rejected"};
+    
+    public ManagePR_GUI(SaleManager saleManager) {
+        this.saleManager=saleManager;
         initComponents();
+        setLocationRelativeTo(null);
+        displayTable();
     }
 
     /**
@@ -26,40 +33,53 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        searchText = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1_PR_Table = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        PRTable = new javax.swing.JTable();
+        statusComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Search");
+        searchText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTextActionPerformed(evt);
+            }
+        });
+
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Manage Purchase Requisition");
 
-        jButton2.setText("Back");
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
-        jTable1_PR_Table.setModel(new javax.swing.table.DefaultTableModel(
+        PRTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "PR ID", "Supplier ID", "Request Date", "Grand Total Price", "Status", "SM ID"
+                "PR ID", "SM ID", "Supplier ID", "Request Date", "Grand Total Price", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -73,19 +93,39 @@ public class ManagePR_GUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1_PR_Table);
+        jScrollPane1.setViewportView(PRTable);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Pending", "Approved", "Rejected" }));
+        statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Pending", "Approved", "Rejected" }));
+        statusComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Status");
 
         jLabel2.setText("Find");
 
-        jButton3.setText("Add");
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Edit");
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Remove");
+        removeButton.setText("Remove");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,7 +133,7 @@ public class ManagePR_GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jButton2)
+                .addComponent(backButton)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -104,24 +144,24 @@ public class ManagePR_GUI extends javax.swing.JFrame {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(searchButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addComponent(addButton)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton4)
+                        .addComponent(editButton)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton5)
+                        .addComponent(removeButton)
                         .addGap(85, 85, 85))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,33 +171,150 @@ public class ManagePR_GUI extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jButton2))
+                            .addComponent(backButton))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5)))
+                            .addComponent(addButton)
+                            .addComponent(editButton)
+                            .addComponent(removeButton)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(jButton1))
+                        .addComponent(searchButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(44, 44, 44)
+                        .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        /***
+        AddPR_GUI addPRGUI = new AddPR_GUI(saleManager);
+        addPRGUI.show();
+        dispose();
+        ***/
+        
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void statusComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusComboBoxActionPerformed
+        
+        
+        String filterTarget = statusSelection[statusComboBox.getSelectedIndex()];
+        if (searchText.getText().isBlank() && filterTarget.equals("All")){
+            removeTableRow();
+            displayTable();
+        }
+        else if (searchText.getText().isBlank() && !filterTarget.equals("All")){
+            String searchTarget = null;
+            ArrayList<String[]> PRRow = saleManager.searchFilterPR(searchTarget,filterTarget);
+            removeTableRow();
+            displayTable(PRRow); 
+        }
+        else{
+            String searchTarget = searchText.getText();
+            ArrayList<String[]> PRRow = saleManager.searchFilterPR(searchTarget,filterTarget);
+            removeTableRow();
+            displayTable(PRRow); 
+        }
+        
+    }//GEN-LAST:event_statusComboBoxActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        SaleManager_GUI smGUI = new SaleManager_GUI(saleManager);
+        smGUI.show();
+        dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        
+        String filterTarget = statusSelection[statusComboBox.getSelectedIndex()];
+        // search with All
+        if (searchText.getText().isBlank() && filterTarget.equals("All")){
+            removeTableRow();
+            displayTable();
+        }
+        else{
+            String searchTarget = searchText.getText();
+            ArrayList<String[]> PRRow = saleManager.searchFilterPR(searchTarget,filterTarget);
+            removeTableRow();
+            displayTable(PRRow); 
+        }
+        
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        EditPR_GUI editPRGUI = new EditPR_GUI(saleManager);
+        editPRGUI.show();
+        dispose();
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        RemovePR_GUI removePRGUI = new RemovePR_GUI(saleManager);
+        removePRGUI.show();
+        dispose();
+    }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void searchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTextActionPerformed
+
+    public void displayTable(){
+        
+        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+        FileManager getrow = new FileManager("Purchase_Requisition.txt");
+        ArrayList<String> rows =  getrow.readFile();
+        for(int i=0 ; i< rows.size();i++){
+            String line = rows.get(i).toString();
+            String[] data = line.split("\\|");
+            //model.addRow(data); 
+            // no include item list? 
+            String[] selectedData = Arrays.copyOf(data, 6);
+            model.addRow(selectedData);
+        }
+        
+        
+//        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+//        FileManager getrow = new FileManager("Purchase_Requisition.txt");
+//        ArrayList<String> rows =  getrow.readFile();
+//        
+//        for (int i = 0; i < rows.size(); i++) {
+//            String line = rows.get(i).toString();
+//            String[] data = line.split("\\|");
+//        
+//        // Ensure there are at least 5 columns in the data array
+//            if (data.length >= 5) {
+//            // Add the first 5 columns to the table model
+//            model.addRow(new Object[]{data[0], data[1], data[2], data[3], data[4]});
+//            }
+//        }
+    }
+    
+    public void displayTable(ArrayList<String[]> PRData){
+        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+        for(int i =0;i<PRData.size();i++){
+            model.addRow(PRData.get(i));
+        }
+    }    
+    
+    public void removeTableRow(){
+        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+        int count = model.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -186,25 +343,28 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        SaleManager salem = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagePR_GUI().setVisible(true);
+                new ManagePR_GUI(salem).setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTable PRTable;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1_PR_Table;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton removeButton;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchText;
+    private javax.swing.JComboBox<String> statusComboBox;
     // End of variables declaration//GEN-END:variables
 }

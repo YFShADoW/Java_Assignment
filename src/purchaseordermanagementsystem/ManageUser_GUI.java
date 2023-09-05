@@ -307,11 +307,11 @@ public class ManageUser_GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManageUser_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new ManageUser_GUI().setVisible(true);
+               //new ManageUser_GUI().setVisible(true);
             }
         });
     }
