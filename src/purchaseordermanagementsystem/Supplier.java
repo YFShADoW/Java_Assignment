@@ -57,5 +57,10 @@ public class Supplier {
         FileManager file = new FileManager("Supplier.txt");
         file.addToFile(newSupplier);
     }
+   
+
+   
+        
+    
     
 }
