@@ -67,10 +67,9 @@ public class Item {
 
     public void setItemStock(String itemStock) {
         this.itemStock = itemStock;
-    }   
-    
+    }
+
     public void addItem(){
-        
         String [] newitem = {this.getItemCode(),this.getItemName(),this.getItemCategory(),this.getItemUnitPrice(),this.getItemStock(),this.getSupplierID()};
         FileManager file = new FileManager("Item.txt");
         file.addToFile(newitem);

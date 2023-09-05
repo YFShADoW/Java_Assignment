@@ -4,6 +4,11 @@
  */
 package purchaseordermanagementsystem;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -28,14 +33,36 @@ public class SaleManager extends User {
     
     public String generateSupplierID(){
         FileManager file = new FileManager("Supplier.txt");
-        ArrayList<String> userData = file.readFile();
-        String lastRow = userData.get(userData.size()-1);
-        String[] data = lastRow.trim().split("\\|");
-        String lastUserID = data[0];
-        int newNo = Integer.parseInt(lastUserID.substring(2))+1;
+        ArrayList<String> lineData = file.readFile();
+        int newNo = 0;
+        if(lineData.size() == 0){
+            newNo=1;
+        }
+        else{
+            String lastRow = lineData.get(lineData.size()-1);
+            String[] data = lastRow.trim().split("\\|");
+            String lastUserID = data[0];
+            newNo = Integer.parseInt(lastUserID.substring(2))+1;    
+        }
         String newSupplierID = "SR" + String.format("%05d", newNo);
-        
         return newSupplierID;
+    }
+    
+    public String generateItemID(){
+        FileManager file = new FileManager("Item.txt");
+        ArrayList<String> lineData = file.readFile();
+        int newNo = 0;
+        if(lineData.size() == 0){
+            newNo=1;
+        }
+        else{
+            String lastRow = lineData.get(lineData.size()-1);
+            String[] data = lastRow.trim().split("\\|");
+            String lastUserID = data[0];
+            newNo = Integer.parseInt(lastUserID.substring(2))+1;    
+        }
+        String newItemID = "I" + String.format("%05d", newNo);
+        return newItemID;
     }
     
     public void generatePurchaseRequisition(){
@@ -93,6 +120,59 @@ public class SaleManager extends User {
         
     }
     public void manageSupplier(String mode,Supplier supplier){
-        supplier.addSupplier(); 
+        switch(mode){
+            case "add":
+                supplier.addSupplier(); 
+         
+            default:
+                break;
+        }
     }
+    
+     public void editSupplier(String mode, String[] unedit, String[] edit){
+         switch(mode){
+             case "edit":
+                 FileManager file = new FileManager("Supplier.txt");
+                 file.editFile(unedit, edit);  
+                 
+             default:
+                break;
+             
+         }
+         
+     }
+        
+                
+        
+    
+        
+        
+     
+   
+    
+    public ArrayList<String[]> searchsupplier(String supplier){
+        FileManager file = new FileManager("Supplier.txt");
+        ArrayList<String[]> searchsupplier1= new ArrayList();
+        ArrayList<String> searchsupplierdata = file.readFile();
+        
+        for(int i= 0 ; i<searchsupplierdata.size(); i++){
+            String [] ssupplierdata = searchsupplierdata.get(i).split("\\|");
+            for (int j = 0; i<ssupplierdata.length;i++){
+                if(ssupplierdata[j].equals(supplier)){
+                    searchsupplier1.add(ssupplierdata);
+                } 
+             
+                
+            }
+        }
+        return searchsupplier1;
+    }
+    
+    
+    
+            
+            
+          
+    
+ 
 }

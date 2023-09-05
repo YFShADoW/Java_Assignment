@@ -15,7 +15,7 @@ import javax.swing.table.TableModel;
  */
 public class ManageUser_GUI extends javax.swing.JFrame {
     private Administrator admin;
-    String[] userTypeSelection ={"All","Admin","SaleManager","PurchaseManager"};
+    private String[] userTypeSelection ={"All","Admin","SaleManager","PurchaseManager"};
 
     /**
      * Creates new form ManageUser_GUI

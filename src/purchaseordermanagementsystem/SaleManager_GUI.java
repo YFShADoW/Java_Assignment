@@ -161,8 +161,8 @@ public class SaleManager_GUI extends javax.swing.JFrame {
 
     private void supplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierButtonActionPerformed
         // TODO add your handling code here:
-        AddSupplier_GUI addSupplierGUI = new AddSupplier_GUI(saleManager);
-        addSupplierGUI.show();
+        ViewSupplier_GUI viewSupplierGUI = new ViewSupplier_GUI(saleManager);
+        viewSupplierGUI.show();
         dispose();
     }//GEN-LAST:event_supplierButtonActionPerformed
 

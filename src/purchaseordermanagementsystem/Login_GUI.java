@@ -56,7 +56,7 @@ public class Login_GUI extends javax.swing.JFrame {
         jLabel1.setText("User ID        :");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Passsword   :");
+        jLabel2.setText("Password   :");
 
         Text_UserID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
