@@ -13,10 +13,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EditSupplier_GUI extends javax.swing.JFrame {
     private DefaultTableModel esuppliertable = new DefaultTableModel();
-     private String [] esupplier = {"Supplier ID","Supplier Name","Supplier Phone Number","Supplier Email","Supplier Address"};
-     private int row;
-     SaleManager saleManager;
-     String [] uneditsupplier;
+    private String [] esupplier = {"Supplier ID","Supplier Name","Supplier Phone Number","Supplier Email","Supplier Address"};
+    private int row;
+    SaleManager saleManager;
+    String [] uneditsupplier;
 
     /**
      * Creates new form EditSupplier_GUI
