@@ -1,2 +1,2 @@
-SR00001|Supplier01|0345678901|SR01@gmail.com|51,Japan House
-SR00002|dsada|dsadas|dsadsadsa|dsaassa
+SR00001|Gifi Mugs|0380703828|giftmugs@gmail.com|29, Jalan DU1/2,Taman Damai Utama,Bandar Kinrara,47180 Puchong, Selangor
+SR00002|Velocity|0327863970|velocity@gmail.com|Lingkaran SV2, Sunway Velocity,55100 Kuala Lumpur,Wilayah Persekutuan Kuala Lumpur
