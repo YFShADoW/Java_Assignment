@@ -249,7 +249,7 @@ public class RemoveItem_GUI extends javax.swing.JFrame {
     
     public void displayTable(){
        // DefaultTableModel suppliertable = (DefaultTableModel) SupplierTable.getModel;
-        FileManager getrow = new FileManager("Supplier.txt");
+        FileManager getrow = new FileManager("Item.txt");
         ArrayList<String> rows =  getrow.readFile();
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
