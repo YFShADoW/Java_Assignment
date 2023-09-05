@@ -270,34 +270,16 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchTextActionPerformed
 
     public void displayTable(){
-        
         DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
         FileManager getrow = new FileManager("Purchase_Requisition.txt");
         ArrayList<String> rows =  getrow.readFile();
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
             String[] data = line.split("\\|");
-            //model.addRow(data); 
-            // no include item list? 
             String[] selectedData = Arrays.copyOf(data, 6);
             model.addRow(selectedData);
         }
         
-        
-//        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
-//        FileManager getrow = new FileManager("Purchase_Requisition.txt");
-//        ArrayList<String> rows =  getrow.readFile();
-//        
-//        for (int i = 0; i < rows.size(); i++) {
-//            String line = rows.get(i).toString();
-//            String[] data = line.split("\\|");
-//        
-//        // Ensure there are at least 5 columns in the data array
-//            if (data.length >= 5) {
-//            // Add the first 5 columns to the table model
-//            model.addRow(new Object[]{data[0], data[1], data[2], data[3], data[4]});
-//            }
-//        }
     }
     
     public void displayTable(ArrayList<String[]> PRData){

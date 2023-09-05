@@ -46,7 +46,7 @@ public class SaleManager extends User {
         FileManager file = new FileManager("Purchase_Requisition.txt");
         ArrayList<String[]> result= new ArrayList();
         ArrayList<String> PRLine = file.readFile();
-        // select UserType
+        // select Status
         if(searchTarget == null && !filterTarget.equals("All")){
             for(int i = 0; i<PRLine.size();i++){
                 String[] PRData = PRLine.get(i).split("\\|");
