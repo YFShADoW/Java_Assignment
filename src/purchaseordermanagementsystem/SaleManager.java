@@ -55,9 +55,35 @@ public class SaleManager extends User {
         
     }
     public void manageSupplier(String mode,Supplier supplier){
-        supplier.addSupplier(); 
-        
+        switch(mode){
+            case "add":
+                supplier.addSupplier(); 
+         
+            default:
+                break;
+        }
     }
+    
+     public void editSupplier(String mode, String[] unedit, String[] edit){
+         switch(mode){
+             case "edit":
+                 FileManager file = new FileManager("Supplier.txt");
+                 file.editFile(unedit, edit);  
+                 
+             default:
+                break;
+             
+         }
+         
+     }
+        
+                
+        
+    
+        
+        
+     
+   
     
     public ArrayList<String[]> searchsupplier(String supplier){
         FileManager file = new FileManager("Supplier.txt");
@@ -70,33 +96,18 @@ public class SaleManager extends User {
                 if(ssupplierdata[j].equals(supplier)){
                     searchsupplier1.add(ssupplierdata);
                 } 
-                    
+             
+                
             }
         }
         return searchsupplier1;
     }
+    
+    
+    
             
             
           
     
-  //  public void viewsupplier(){
-      //  try{
-      //      
-       //     FileReader supplierfile = new FileReader("Supplier.txt");
-       //     
-            
-       //     BufferedReader supplierdata = new BufferedReader(supplierfile);
-       //     String line;
-        //    while ((line = supplierdata.readLine()) != null) {
-        //        System.out.println(line);
-         //   }
-        //    supplierdata.close();
-        //    supplierfile.close();
-     //   }catch(FileNotFoundException ex){
-         //   System.out.println("File does not exist");
-    //    }catch (IOException e) {
-         //   e.printStackTrace(); 
-            
-     //   }
-   // }
+ 
 }

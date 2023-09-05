@@ -231,8 +231,8 @@ public class RemoveSupplier_GUI extends javax.swing.JFrame {
         ArrayList<String> rows =  getrow.readFile();
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
-            String[] savedsupplierdata1 = line.split("\\|");
-            rsuppliertable.addRow(savedsupplierdata1);
+            String[] removesupplierdata1 = line.split("\\|");
+            rsuppliertable.addRow(removesupplierdata1 );
             
         }
     }
