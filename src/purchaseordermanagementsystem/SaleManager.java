@@ -68,6 +68,49 @@ public class SaleManager extends User {
     public void generatePurchaseRequisition(){
         
     }
+    
+    public ArrayList<String[]> searchFilterPR(String searchTarget,String filterTarget){
+        FileManager file = new FileManager("Purchase_Requisition.txt");
+        ArrayList<String[]> result= new ArrayList();
+        ArrayList<String> PRLine = file.readFile();
+        // select Status
+        if(searchTarget == null && !filterTarget.equals("All")){
+            for(int i = 0; i<PRLine.size();i++){
+                String[] PRData = PRLine.get(i).split("\\|");
+                if(PRData[5].equals(filterTarget)){
+                    result.add(PRData);
+                }
+            }
+            return result;
+        }
+        // search with All
+        else if(searchTarget!=null && filterTarget.equals("All")){
+            for(int i = 0; i<PRLine.size();i++){
+                String[] PRData = PRLine.get(i).split("\\|");
+                for(int j = 0;j< PRData.length;j++){
+                    if(PRData[j].equals(searchTarget)){
+                        result.add(PRData);
+                    }
+                }
+            }
+            return result;
+        }
+        // search with Status
+        else{
+            for(int i = 0; i<PRLine.size();i++){
+                String[] PRData = PRLine.get(i).split("\\|");
+                if(PRData[5].equals(filterTarget)){
+                    for(int j = 0;j< PRData.length;j++){
+                        if(PRData[j].equals(searchTarget)){
+                        result.add(PRData);
+                        }
+                    }   
+                }
+            }
+            return result;
+        }
+    }    
+    
     public void manageItem(String mode, Item item){
         item.addItem();
         

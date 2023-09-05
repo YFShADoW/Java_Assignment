@@ -14,20 +14,19 @@ public class PurchaseRequisition {
     private SaleManager saleManager;
     private ItemLine itemLine;
 
-    public PurchaseRequisition(String PurchaseRequisitionID, Supplier supplier, Date requestDate, double grandTotalPrice, String PurchaseRequisitionStatus, SaleManager saleManager, ItemLine itemLine) {
+    public PurchaseRequisition(String PurchaseRequisitionID, SaleManager saleManager, Supplier supplier, Date requestDate, double grandTotalPrice, String PurchaseRequisitionStatus, ItemLine itemLine) {
         this.PurchaseRequisitionID = PurchaseRequisitionID;
+        this.saleManager = saleManager;
         this.supplier = supplier;
         this.requestDate = requestDate;
         this.grandTotalPrice = grandTotalPrice;
         this.PurchaseRequisitionStatus = PurchaseRequisitionStatus;
-        this.saleManager = saleManager;
         this.itemLine = itemLine;
     }
 
     public String getPurchaseRequisitionID() {
         return PurchaseRequisitionID;
     }
-
 
     public Date getRequestDate() {
         return requestDate;

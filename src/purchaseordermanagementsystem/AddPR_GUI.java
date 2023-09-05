@@ -4,17 +4,22 @@
  */
 package purchaseordermanagementsystem;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author weily
  */
 public class AddPR_GUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AddPR_GUI
-     */
-    public AddPR_GUI() {
+    private SaleManager saleManager;
+    String[] supplierIDList = getSupplierIDList();
+    
+    public AddPR_GUI(SaleManager saleManager) {
+            
         initComponents();
+        SupplierComboBox.setModel(new DefaultComboBoxModel<>(getSupplierIDList()));
         
     }
 
@@ -31,18 +36,18 @@ public class AddPR_GUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ItemTable = new javax.swing.JTable();
-        SelectComboBox = new javax.swing.JComboBox<>();
+        SupplierComboBox = new javax.swing.JComboBox<>();
         Text_Quantity = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        addPR = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addPRButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        AddPR_Back = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -71,10 +76,10 @@ public class AddPR_GUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ItemTable);
 
-        SelectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        SelectComboBox.addActionListener(new java.awt.event.ActionListener() {
+        SupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelectComboBoxActionPerformed(evt);
+                SupplierComboBoxActionPerformed(evt);
             }
         });
 
@@ -88,12 +93,12 @@ public class AddPR_GUI extends javax.swing.JFrame {
 
         jLabel5.setText("Select Item: ");
 
-        addPR.setText("Add into List");
+        addPRButton.setText("Add into List");
 
-        jButton2.setText("Save");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                saveButtonActionPerformed(evt);
             }
         });
 
@@ -122,10 +127,10 @@ public class AddPR_GUI extends javax.swing.JFrame {
 
         jLabel7.setText("Add Purchase Requisition");
 
-        AddPR_Back.setText("Back");
-        AddPR_Back.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddPR_BackActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -138,7 +143,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddPR_Back)
+                            .addComponent(backButton)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,8 +153,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(SelectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(69, 69, 69))
+                                            .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,7 +162,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Text_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addComponent(addPR, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addPRButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -169,7 +173,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
                         .addContainerGap(41, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(saveButton)
                         .addGap(222, 222, 222))))
         );
         layout.setVerticalGroup(
@@ -182,20 +186,20 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddPR_Back))
+                    .addComponent(backButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SelectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Text_Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(addPR))
+                    .addComponent(addPRButton))
                 .addGap(39, 39, 39))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,7 +207,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(saveButton)
                 .addGap(27, 27, 27))
         );
 
@@ -214,18 +218,49 @@ public class AddPR_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Text_QuantityActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void AddPR_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPR_BackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddPR_BackActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);
+        managePRGUI.show();
+        dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
-    private void SelectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SelectComboBoxActionPerformed
+    private void SupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierComboBoxActionPerformed
+        String filterTarget = supplierIDList[SupplierComboBox.getSelectedIndex()];
+        if (searchText.getText().isBlank() && filterTarget.equals("All")){
+            removeTableRow();
+            displayTable();
+        }
+        else if (searchText.getText().isBlank() && !filterTarget.equals("All")){
+            String searchTarget = null;
+            ArrayList<String[]> PRRow = saleManager.searchFilterPR(searchTarget,filterTarget);
+            removeTableRow();
+            displayTable(PRRow); 
+        }
+        else{
+            String searchTarget = searchText.getText();
+            ArrayList<String[]> PRRow = saleManager.searchFilterPR(searchTarget,filterTarget);
+            removeTableRow();
+            displayTable(PRRow); 
+        }    
+    }//GEN-LAST:event_SupplierComboBoxActionPerformed
 
+    private String[] getSupplierIDList(){
+        FileManager getrow = new FileManager("Supplier.txt");
+        ArrayList<String> rows =  getrow.readFile();
+        String supplierIDlist="";
+        for(int i=0 ; i< rows.size();i++){
+            String line = rows.get(i).toString();
+            String[] data = line.split("\\|");
+            supplierIDlist = data[0] + "|";
+        }
+        String[] supplierIDList = supplierIDlist.split("\\|");
+        return supplierIDList;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -256,18 +291,17 @@ public class AddPR_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPR_GUI().setVisible(true);
+                //new AddPR_GUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddPR_Back;
     private javax.swing.JTable ItemTable;
-    private javax.swing.JComboBox<String> SelectComboBox;
+    private javax.swing.JComboBox<String> SupplierComboBox;
     private javax.swing.JTextField Text_Quantity;
-    private javax.swing.JButton addPR;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addPRButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -278,5 +312,6 @@ public class AddPR_GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }
