@@ -1,0 +1,4 @@
+I0001|Apple|Fruit|1.80|100|SR00001
+I0002|Butter|Dairy|5.60|80|SR00003
+I0003|Potato Chips|Snacks|3.10|80|SR00004
+I0004|Orange|Fruit|2.00|120|SR00001
