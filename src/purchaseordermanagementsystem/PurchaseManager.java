@@ -24,5 +24,9 @@ public class PurchaseManager extends User {
         this.PM_ID = PM_ID;
     }
     
+    public void changePRStatus( String[] unedit, String[] edit){
+            FileManager file = new FileManager("Purchase_Requisition.txt");
+            file.editFile(unedit, edit);  
+    }
     
 }

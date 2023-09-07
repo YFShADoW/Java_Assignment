@@ -36,7 +36,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
-        PurchaseOrderTable = new javax.swing.JTable();
+        POTable = new javax.swing.JTable();
         approveButton = new javax.swing.JButton();
         viewPRItemButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -53,7 +53,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PurchaseOrderTable.setModel(new javax.swing.table.DefaultTableModel(
+        POTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -69,7 +69,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(PurchaseOrderTable);
+        jScrollPane2.setViewportView(POTable);
 
         approveButton.setText("Approve");
         approveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +190,17 @@ public class AddPO_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+        int selectedRowIndex = PRTable.getSelectedRow();
+        String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
+//        System.out.println(SelectedPRID);
+        
+        FileManager searchPR = new FileManager("Purchase_Requisition.txt");
+        ArrayList<String[]> PRList = searchPR.searchData(SelectedPRID); 
+ 
+        String[] SelectedPRData = PRList.get(0);
+        
+        
     }//GEN-LAST:event_approveButtonActionPerformed
 
     private void PRTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PRTableMouseClicked
@@ -211,6 +221,8 @@ public class AddPO_GUI extends javax.swing.JFrame {
             model.addRow(PendingPRData);
         }
     }
+    
+    
     
     /**
      * @param args the command line arguments
@@ -250,8 +262,8 @@ public class AddPO_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable POTable;
     private javax.swing.JTable PRTable;
-    private javax.swing.JTable PurchaseOrderTable;
     private javax.swing.JButton approveButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton deletePOButton;
