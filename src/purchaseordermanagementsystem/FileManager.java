@@ -83,13 +83,13 @@ public class FileManager {
         ArrayList<String> dataLine = this.readFile();
         ArrayList<String[]> result = new ArrayList<String[]>();
         for(int i = 0; i<dataLine.size();i++){
-             String[] arrayData = dataLine.get(i).split("\\|");
+            String[] arrayData = dataLine.get(i).split("\\|");
             for(int j = 0;j< arrayData.length;j++){
                     if(arrayData[j].equals(target)){
                         result.add(arrayData);
                     }
                 }
-         }
+        }
         return result;
     }
     

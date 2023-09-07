@@ -14,8 +14,8 @@ public class Item {
 
     public Item(String itemCode, String itemName, String itemCategory, String itemUnitPrice, String itemStock, String supplierID) {
         this.itemCode = itemCode;
-        this.itemCategory = itemCategory;
         this.itemName = itemName;
+        this.itemCategory = itemCategory;
         this.itemUnitPrice = itemUnitPrice;
         this.itemStock = itemStock;
         this.supplierID = supplierID;

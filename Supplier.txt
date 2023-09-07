@@ -1,2 +1,3 @@
-SR00001|Supplier01|0345678901|SR01@gmail.com|51,Japan House
-SR00002|dsada|dsadas|dsadsadsa|dsaassa
+SR00001|Happy|0345678901|SR01@gmail.com|51,Japan House
+SR00002|Smile|015333859|smile@mail.com|6, Jalan Hello
+SR00003|Lucky|0385338543|lucky@mail.com|8,Jalan Lucky
