@@ -11,6 +11,7 @@ public class Item {
     private String itemUnitPrice;
     private String itemStock;
     
+   
 
     public Item(String itemCode, String itemName, String itemCategory, String itemUnitPrice, String itemStock, String supplierID) {
         this.itemCode = itemCode;
@@ -67,6 +68,9 @@ public class Item {
 
     public void setItemStock(String itemStock) {
         this.itemStock = itemStock;
+    }
+    public void addToItemLine(){
+        
     }
 
     public void addItem(){

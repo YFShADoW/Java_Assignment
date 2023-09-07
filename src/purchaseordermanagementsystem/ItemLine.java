@@ -5,31 +5,40 @@
 package purchaseordermanagementsystem;
 
 
-public class ItemLine extends Item{
+public class ItemLine{
     
-    private String quantity;
-    private String totalPrice;
+    private int quantity;
+    private Item item;
+    
 
-    public ItemLine(String itemCode, String itemName, String quantity, String itemUnitPrice, String totalPrice, String itemCategory, String itemStock, String supplierID) {
-        super(itemCode, itemName, itemCategory, itemUnitPrice, itemStock, supplierID);
+    public ItemLine(int quantity,Item item) {
         this.quantity = quantity;
-        this.totalPrice = totalPrice;
+        this.item=item;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public double getTotalPrice(){
+        return this.quantity*Double.parseDouble(item.getItemUnitPrice());
+        // remember change the data type from String to double
     }
-
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
+    public static double calculateGrandTotalPrice(ItemLine[] itemList) {
+        double grandTotal = 0.0;
+        for (ItemLine itemLine : itemList) {
+            grandTotal += itemLine.getTotalPrice();
+        }
+        return grandTotal;
+    }
+    
+    
+    public String toString(){
+        return item.getItemCode()+"|"+item.getItemName()+"|"+quantity+"|"+item.getItemUnitPrice()+this.getTotalPrice();
     }
     
     public void addItemLine(){

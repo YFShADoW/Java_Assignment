@@ -69,6 +69,12 @@ public class SaleManager extends User {
         
     }
     
+    public Item checkItemInfo(String itemCode){
+        FileManager file = new FileManager("Item.txt");
+        String[] itemData = file.searchByPrimaryKey(itemCode);
+        Item item = new Item(itemData[0],itemData[1],itemData[2],itemData[3],itemData[4],itemData[5]);
+        return item;
+    }
     
     
     public void manageItem(String mode, Item item,Item editItem){

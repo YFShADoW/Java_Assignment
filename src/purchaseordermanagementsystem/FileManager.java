@@ -92,6 +92,24 @@ public class FileManager {
         return result;
     }
     
+    public String[] searchByPrimaryKey(String primaryKey){
+        ArrayList<String> dataLine = this.readFile();
+        String[] result = {};
+        int count = 0;
+        for(int i = 0; i<dataLine.size();i++){
+            String[] arrayData = dataLine.get(i).split("\\|");
+            if(arrayData[0].equals(primaryKey)){
+                count++;
+                result = arrayData;
+            }   
+        }
+        if(count >1){
+            System.out.println("Not a PK");
+            // Change to JOptionPane
+        }
+        return result;
+    }
+    
     public void editFile(String[] targetLine, String[] newLine) {
         ArrayList<String[]> dataLines = this.saveTo2DArrayList();
         for(int i =0 ; i <dataLines.size();i++){

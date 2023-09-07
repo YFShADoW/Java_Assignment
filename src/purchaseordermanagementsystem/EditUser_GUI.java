@@ -30,7 +30,7 @@ public class EditUser_GUI extends javax.swing.JFrame {
         staffIDTextPane.setText(tableData[6]);
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
