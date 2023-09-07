@@ -181,7 +181,7 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new ViewSupplier_GUI().setVisible(true);
+                new ViewSupplier_GUI().setVisible(true);
             }
         });
     }
