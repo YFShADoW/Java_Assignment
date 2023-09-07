@@ -22,7 +22,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
      */
     public ManageUser_GUI(Administrator admin){
         this.admin=admin;
-        initComponents();
+        initComponents();                
         setLocationRelativeTo(null);
         displayTable();
     }
@@ -89,11 +89,6 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(UserTable);
 
         UserTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Admin", "Sale Manager", "Purchase Manager" }));
-        UserTypeComboBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                UserTypeComboBoxItemStateChanged(evt);
-            }
-        });
         UserTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UserTypeComboBoxActionPerformed(evt);
@@ -196,8 +191,8 @@ public class ManageUser_GUI extends javax.swing.JFrame {
             String data = model.getValueAt(indexRow, i).toString();
             tableData[i]=data;
         }
-        FileManager file = new FileManager("User.txt");
-        file.removeLineFromFile(tableData[0]);
+        admin.manageUser("remove",tableData, null);
+        
         this.removeTableRow();
         this.displayTable();
         
@@ -225,38 +220,42 @@ public class ManageUser_GUI extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         String filterTarget = userTypeSelection[UserTypeComboBox.getSelectedIndex()];
+        String searchTarget = searchText.getText();
         // search with All
-        if (searchText.getText().isBlank() && filterTarget.equals("All")){
+        if (searchTarget.isBlank() && filterTarget.equals("All")){
             removeTableRow();
             displayTable();
         }
-        else{
-            String searchTarget = searchText.getText();
-            ArrayList<String[]> userRow = admin.searchFilterUser(searchTarget,filterTarget);
+        else if(searchTarget.isBlank() && UserTypeComboBox.getSelectedIndex()!=0){
+//          filterTarget = statusSelection[UserTypeComboBox.getSelectedIndex()];
+            FileManager file = new FileManager("User.txt");
+            ArrayList<String[]> searchList = file.filterData(5, filterTarget);
             removeTableRow();
-            displayTable(userRow); 
+            displayTable(searchList);  
         }
+        // search & Text
+        else if(searchText !=null && UserTypeComboBox.getSelectedIndex()!=0){
+            FileManager file = new FileManager("User.txt");
+            ArrayList<String[]> searchList = file.searchData(searchTarget);
+            ArrayList<String[]> filterList = file.filterData(5, filterTarget);
+            ArrayList<String[]> resultList = new ArrayList<String[]>(); ;
+            for(int i = 0; i<searchList.size();i++){
+                for(int j = 0; j<filterList.size();j++){
+                    if(Arrays.equals(searchList.get(i),filterList.get(j)) == true){
+                        resultList.add(searchList.get(i));               
+                    }
+                }
+            }
+            removeTableRow();
+            displayTable(resultList);
+        }
+        else{
+            FileManager file = new FileManager("User.txt");
+            ArrayList<String[]> searchList = file.searchData(searchTarget);
+            removeTableRow();
+            displayTable(searchList); 
+        } 
     }//GEN-LAST:event_searchButtonActionPerformed
-
-    private void UserTypeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_UserTypeComboBoxItemStateChanged
-        String filterTarget = userTypeSelection[UserTypeComboBox.getSelectedIndex()];
-        if (searchText.getText().isBlank() && filterTarget.equals("All")){
-            removeTableRow();
-            displayTable();
-        }
-        else if (searchText.getText().isBlank() && !filterTarget.equals("All")){
-            String searchTarget = null;
-            ArrayList<String[]> userRow = admin.searchFilterUser(searchTarget,filterTarget);
-            removeTableRow();
-            displayTable(userRow); 
-        }
-        else{
-            String searchTarget = searchText.getText();
-            ArrayList<String[]> userRow = admin.searchFilterUser(searchTarget,filterTarget);
-            removeTableRow();
-            displayTable(userRow); 
-        }
-    }//GEN-LAST:event_UserTypeComboBoxItemStateChanged
 
     public void displayTable(){
         // read dataline from file
@@ -291,6 +290,9 @@ public class ManageUser_GUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Administrator admin = new Administrator("U00001","admin01","admin1234","admin01@gmail.com","0123456789","Admin","A00001");
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -317,7 +319,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               //new ManageUser_GUI().setVisible(true);
+               new ManageUser_GUI(admin).setVisible(true);
             }
         });
     }

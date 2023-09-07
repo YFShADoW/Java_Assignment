@@ -5,18 +5,20 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author YAO FENG PC
  */
-public class ViewSupplier_GUI extends javax.swing.JFrame {
+public class ManageSupplier_GUI extends javax.swing.JFrame {
     SaleManager saleManager;
     /**
      * Creates new form ViewSupplier_GUI
      */
-    public ViewSupplier_GUI(SaleManager saleManager) {
+    public ManageSupplier_GUI(SaleManager saleManager) {
         initComponents();
         this.saleManager = saleManager;
         displayTable();
@@ -31,6 +33,20 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
             model.addRow(data);
         }
     }
+    public void displayTable(ArrayList<String[]> userData){
+        DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
+        for(int i =0;i<userData.size();i++){
+            model.addRow(userData.get(i));
+        }
+    }
+    
+    public void removeTableRow(){
+        DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
+        int count = model.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +56,7 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         BackButton = new javax.swing.JButton();
         AddButton = new javax.swing.JButton();
         EditButton = new javax.swing.JButton();
@@ -47,6 +64,10 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         supplierTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        searchText = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,8 +86,18 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
         });
 
         EditButton.setText("Edit");
+        EditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditButtonActionPerformed(evt);
+            }
+        });
 
         DeleteButton.setText("Delete");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
 
         supplierTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,6 +126,13 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
 
         jLabel1.setText("Supplier List");
 
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,8 +153,13 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
                                 .addComponent(BackButton)
                                 .addGap(124, 124, 124)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchButton)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,9 +168,13 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton))
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddButton)
                     .addComponent(EditButton)
@@ -151,10 +198,62 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
 
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        // TODO add your handling code here:
+        // get selected index 
+        int indexRow = supplierTable.getSelectedRow();
+        // define a model to modify table
+        TableModel model = supplierTable.getModel();
+        // delcare a table size array
+        String[] tableData = new String[supplierTable.getColumnCount()];
+        // Get each data from specific row
+        for(int i=0; i<supplierTable.getColumnCount();i++){
+            String data = model.getValueAt(indexRow, i).toString();
+            tableData[i]=data;
+        }
+        Supplier supplier = new Supplier(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4]);
+        saleManager.manageSupplier("remove", supplier,null);
+        
+        this.removeTableRow();
+        this.displayTable();
+    }//GEN-LAST:event_DeleteButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        String searchTarget =searchText.getText();
+        if(searchTarget.isBlank()){
+            removeTableRow();
+            displayTable();
+        }
+        else{
+            
+            FileManager file = new FileManager("Supplier.txt");
+            ArrayList<String[]> searchList = file.searchData(searchTarget);
+            removeTableRow();
+            displayTable(searchList); 
+        }
+        
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
+        // TODO add your handling code here:
+        int indexRow = supplierTable.getSelectedRow();
+        TableModel model = supplierTable.getModel();
+        String[] tableData = new String[supplierTable.getColumnCount()];
+        for(int i=0; i<supplierTable.getColumnCount();i++){
+            String data = model.getValueAt(indexRow, i).toString();
+            tableData[i]=data;
+        }
+        System.out.println(Arrays.toString(tableData));
+        EditSupplier_GUI editSupplierGUI = new EditSupplier_GUI(saleManager,tableData);
+        editSupplierGUI.show();
+        dispose();
+    }//GEN-LAST:event_EditButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        SaleManager saleManager = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -168,20 +267,21 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewSupplier_GUI().setVisible(true);
+                new ManageSupplier_GUI(saleManager).setVisible(true);
             }
         });
     }
@@ -192,7 +292,10 @@ public class ViewSupplier_GUI extends javax.swing.JFrame {
     private javax.swing.JButton DeleteButton;
     private javax.swing.JButton EditButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchText;
     private javax.swing.JTable supplierTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,18 +16,16 @@ public class EditPR_GUI extends javax.swing.JFrame {
 
     private SaleManager saleManager;
     private String[] SelectedPRData;
-    String PRID = SelectedPRData[0];
-    String supplierID = SelectedPRData[2];
     //private PurchaseRequisition purchaseRequisition;
     
     public EditPR_GUI(SaleManager saleManager, String[] SelectedPRData) {
         this.saleManager = saleManager;
         this.SelectedPRData = SelectedPRData;
         initComponents();
-        PRIDText.setText(PRID);
-        supplierText.setText(supplierID);
-        System.out.println("Hello");
-        System.out.println(Arrays.toString(SelectedPRData));
+        PRIDText.setText(SelectedPRData[0]);
+        supplierText.setText(SelectedPRData[2]);
+        displayitemListTable();
+
     }
 
     /**
@@ -57,6 +55,7 @@ public class EditPR_GUI extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         DeleteLineButton = new javax.swing.JButton();
+        addItemButton = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -80,9 +79,21 @@ public class EditPR_GUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        itemListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemListTableMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(itemListTable);
@@ -90,6 +101,11 @@ public class EditPR_GUI extends javax.swing.JFrame {
         jLabel6.setText("Item List in This Purchase Requisition: ");
 
         editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         supplierItemTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,6 +169,13 @@ public class EditPR_GUI extends javax.swing.JFrame {
             }
         });
 
+        addItemButton.setText("Add Item");
+        addItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addItemButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,40 +184,40 @@ public class EditPR_GUI extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backButton)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addComponent(DeleteLineButton)
-                                .addGap(115, 115, 115)
-                                .addComponent(saveButton)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PRIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(supplierText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PRIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(66, 66, 66)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(supplierText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(backButton)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(DeleteLineButton)
+                        .addGap(115, 115, 115)
+                        .addComponent(saveButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))))
+                                .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(addItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,9 +226,9 @@ public class EditPR_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
                     .addComponent(jLabel1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(PRIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,22 +237,25 @@ public class EditPR_GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DeleteLineButton)
+                            .addComponent(saveButton))
+                        .addContainerGap(17, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addComponent(jLabel5)
                         .addGap(23, 23, 23)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(editButton))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DeleteLineButton)
-                    .addComponent(saveButton))
-                .addContainerGap(17, Short.MAX_VALUE))
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editButton)
+                            .addComponent(addItemButton))
+                        .addGap(37, 37, 37))))
         );
 
         pack();
@@ -258,10 +284,69 @@ public class EditPR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void DeleteLineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteLineButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+        int selectedRowIndex = itemListTable.getSelectedRow();
+        String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
+        String PRID = SelectedPRData[0];
+        
+        FileManager PRFile = new FileManager("Purchase_Requisition.txt");
+        ArrayList<String[]> PRList = PRFile.searchData(PRID);
+        
+        String[] oldPRData = PRList.get(0);
+        String[] oldItemList = oldPRData[6].split(",");
+        ArrayList<String> newItemList = new ArrayList<String>();
+        for(int i=0; i < oldItemList.length; i++){
+            String PRitemLine = oldItemList[i].toString();
+            String[] PRitemData = PRitemLine.split(";");
+            if (!SelectedItemID.equals(PRitemData[0])){
+                newItemList.add(oldItemList[i]);
+            }
+        }
+        String newItemLine = String.join(",",newItemList);
+        String[] NewPRData = {oldPRData[0],oldPRData[1],oldPRData[2],oldPRData[3],oldPRData[4],oldPRData[5],newItemLine};
+        PRFile.editFile(oldPRData,NewPRData);
+        removeItemListTableRow();
+        displayitemListTable();
     }//GEN-LAST:event_DeleteLineButtonActionPerformed
+
+    private void addItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addItemButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        String newQuantity = quantityText.getText();
+        
+        // ReadFrom File
+        FileManager PRFile = new FileManager("Purchase_Requisition.txt");
+        ArrayList<String[]> PRList = PRFile.searchData(PRID);
+        
+        String[] oldPRData = PRList.get(0);
+        String[] oldItemList = oldPRData[6].split(",");
+        ArrayList<String> newItemList = new ArrayList<String>();
+        
+        for(int i=0; i < oldItemList.length; i++){
+            String PRitemLine = oldItemList[i].toString();
+            String[] PRitemData = PRitemLine.split(";");
+            if (!SelectedItemID.equals(PRitemData[0])){
+                quantityText.setText(PRitemData[1]);
+                break;
+            }
+        }
+        
+        
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void itemListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemListTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+        int selectedRowIndex = itemListTable.getSelectedRow();
+        String SelectedQuantity = model.getValueAt(selectedRowIndex, 2).toString();
+        
+        quantityText.setText(SelectedQuantity);
+    }//GEN-LAST:event_itemListTableMouseClicked
     
     public void displayitemListTable(){
+        String PRID = SelectedPRData[0];
         DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
         FileManager searchPR = new FileManager("Purchase_Requisition.txt");
         ArrayList<String[]> PRList = searchPR.searchData(PRID);
@@ -292,6 +377,13 @@ public class EditPR_GUI extends javax.swing.JFrame {
         
     }
     
+    public void removeItemListTableRow(){
+        DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+        int count = model.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -331,6 +423,7 @@ public class EditPR_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteLineButton;
     private javax.swing.JTextField PRIDText;
+    private javax.swing.JButton addItemButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton editButton;
     private javax.swing.JTable itemListTable;

@@ -74,5 +74,15 @@ public class Item {
         FileManager file = new FileManager("Item.txt");
         file.addToFile(newitem);
     }
-
+    
+    public void removeItem(){
+        FileManager file = new FileManager("Item.txt");
+        file.removeLineFromFile(this.getItemCode());
+    }
+    public void editItem(Item newItem){
+        FileManager file = new FileManager("Item.txt");
+        String[] oldData = {this.getItemCode(),this.getItemName(),this.getItemCategory(),this.getItemUnitPrice(),this.getItemStock(),this.getSupplierID()};
+        String[] newData = {newItem.getItemCode(),newItem.getItemName(),newItem.getItemCategory(),newItem.getItemUnitPrice(),newItem.getItemStock(),newItem.getSupplierID()};
+        file.editFile(oldData, newData);
+    }
 }

@@ -71,68 +71,44 @@ public class SaleManager extends User {
     
     
     
-    public void manageItem(String mode, Item item){
-        item.addItem();
-        
-        
+    public void manageItem(String mode, Item item,Item editItem){
+        switch(mode){
+            case "add":
+                item.addItem();
+                break;
+                
+            case "remove":
+                item.removeItem();
+                break;
+                
+            case "edit":
+                item.editItem(editItem);
+                break;
+            
+            default:
+                break;
+        }
+   
     }
     public void manageSale(){
         
     }
-    public void manageSupplier(String mode,Supplier supplier){
+    public void manageSupplier(String mode,Supplier supplier,Supplier editSupplier){
         switch(mode){
             case "add":
                 supplier.addSupplier(); 
-         
+                break;
+                
+            case "remove":
+                supplier.removeSupplier();
+                break;
+                
+            case "edit":
+                supplier.editSupplier(editSupplier);
+                break;
+            
             default:
                 break;
         }
-    }
-    
-     public void editSupplier(String mode, String[] unedit, String[] edit){
-         switch(mode){
-             case "edit":
-                 FileManager file = new FileManager("Supplier.txt");
-                 file.editFile(unedit, edit);  
-                 
-             default:
-                break;
-             
-         }
-         
-     }
-        
-                
-        
-    
-        
-        
-     
-   
-    
-    public ArrayList<String[]> searchsupplier(String supplier){
-        FileManager file = new FileManager("Supplier.txt");
-        ArrayList<String[]> searchsupplier1= new ArrayList();
-        ArrayList<String> searchsupplierdata = file.readFile();
-        
-        for(int i= 0 ; i<searchsupplierdata.size(); i++){
-            String [] ssupplierdata = searchsupplierdata.get(i).split("\\|");
-            for (int j = 0; i<ssupplierdata.length;i++){
-                if(ssupplierdata[j].equals(supplier)){
-                    searchsupplier1.add(ssupplierdata);
-                } 
-             
-                
-            }
-        }
-        return searchsupplier1;
-    }
-    
-    
-    
-            
-            
-          
-    
- 
+    } 
 }
