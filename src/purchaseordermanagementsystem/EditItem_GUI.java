@@ -4,6 +4,8 @@
  */
 package purchaseordermanagementsystem;
 
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author YAO FENG PC
@@ -11,12 +13,22 @@ package purchaseordermanagementsystem;
 public class EditItem_GUI extends javax.swing.JFrame {
     SaleManager saleManager;
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
+    private String[] tableData;
     /**
      * Creates new form NewJFrame
      */
-    public EditItem_GUI(SaleManager saleManager,S) {
+    public EditItem_GUI(SaleManager saleManager,String[] tableData) {
         this.saleManager=saleManager;
+        this.tableData = tableData;
         initComponents();
+        categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
+        
+        itemIDText.setText(tableData[0]);
+        NameText.setText(tableData[1]);
+        categoryText.setText(tableData[2]);
+        PriceText.setText(tableData[3]);
+        StockText.setText(tableData[4]);
+        SupplierIDText.setText(tableData[5]);
     }
 
     /**
@@ -28,8 +40,6 @@ public class EditItem_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SupplierIDText = new javax.swing.JScrollPane();
-        deptTextPane = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -57,13 +67,9 @@ public class EditItem_GUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         categoryComboBox = new javax.swing.JComboBox<>();
+        SupplierIDText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        SupplierIDText.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-
-        deptTextPane.setEditable(false);
-        SupplierIDText.setViewportView(deptTextPane);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Category:");
@@ -145,6 +151,8 @@ public class EditItem_GUI extends javax.swing.JFrame {
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        SupplierIDText.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,8 +175,7 @@ public class EditItem_GUI extends javax.swing.JFrame {
                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SupplierIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -177,7 +184,8 @@ public class EditItem_GUI extends javax.swing.JFrame {
                                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(161, 161, 161)
-                                .addComponent(jLabel5)))
+                                .addComponent(jLabel5))
+                            .addComponent(SupplierIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -205,22 +213,22 @@ public class EditItem_GUI extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(48, 48, 48)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(59, 59, 59))
-                                .addComponent(SupplierIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(SupplierIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 57, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -229,7 +237,7 @@ public class EditItem_GUI extends javax.swing.JFrame {
                                 .addGap(48, 48, 48)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel5)
@@ -240,8 +248,10 @@ public class EditItem_GUI extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(53, 53, 53)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -251,18 +261,13 @@ public class EditItem_GUI extends javax.swing.JFrame {
                             .addComponent(cancelButton))
                         .addGap(37, 37, 37))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(98, 98, 98))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(newNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(105, 105, 105)
-                                    .addComponent(newPriceText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(newStockText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(105, 105, 105)
+                                .addComponent(newPriceText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(newStockText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -270,33 +275,41 @@ public class EditItem_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-
-        String userID = itemIDText.getText();
-        String department = deptTextPane.getText();
-        String staffID = staffIDTextPane.getText();
-
+        String[] oldTableData = tableData;
+        
+        String itemID = oldTableData[0];
+        String supplierID = oldTableData[5];
+        
         String newName = newNameText.getText();
-        String newPassword = newPriceText.getText();
-        String newEmail = newStockText.getText();
-        String newPhone = newPhoneText.getText();
-
+        String newCategory;
+        if(categoryComboBox.getSelectedIndex()==-1){
+            newCategory =null;
+        }
+        else{
+            newCategory = itemCategories[categoryComboBox.getSelectedIndex()];
+        }
+        String newPrice = newPriceText.getText();
+        String newStock = newStockText.getText();
+        
         if(newName.isBlank()){
             newName = oldTableData[1];
         }
-        if(newPassword.isBlank()){
-            newPassword =oldTableData[2];
+        if(newCategory == null){
+            newCategory =oldTableData[2];
         }
-        if(newEmail.isBlank()){
-            newEmail = oldTableData[3];
+        if(newPrice.isBlank()){
+            newPrice = oldTableData[3];
         }
-        if(newPhone.isBlank()){
-            newPhone =oldTableData[4];
+        if(newStock.isBlank()){
+            newStock =oldTableData[4];
         }
-        String[] newData  = {userID,newName,newPassword,newEmail,newPhone,department,staffID};
-        admin.manageUser("edit", oldTableData, newData);
+        Item oldItem = new Item(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4],tableData[5]);
+        Item newItem = new Item(itemID,newName,newCategory,newPrice,newStock,supplierID);
+        
+        saleManager.manageItem("edit", oldItem, newItem);
 
-        ManageUser_GUI manageUserGUI = new ManageUser_GUI(admin);
-        manageUserGUI.show();
+        ManageItem_GUI manageItemGUI = new ManageItem_GUI(saleManager);
+        manageItemGUI.show();
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
@@ -337,7 +350,7 @@ public class EditItem_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditItem_GUI().setVisible(true);
+                //new EditItem_GUI().setVisible(true);
             }
         });
     }
@@ -346,11 +359,10 @@ public class EditItem_GUI extends javax.swing.JFrame {
     private javax.swing.JTextPane NameText;
     private javax.swing.JTextPane PriceText;
     private javax.swing.JTextPane StockText;
-    private javax.swing.JScrollPane SupplierIDText;
+    private javax.swing.JTextField SupplierIDText;
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> categoryComboBox;
     private javax.swing.JTextPane categoryText;
-    private javax.swing.JTextPane deptTextPane;
     private javax.swing.JTextPane itemIDText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

@@ -30,7 +30,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        viewItemListButton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -45,8 +45,13 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton4.setText("View Supplier List");
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setText("View Item LIst");
+        viewItemListButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewItemListButton.setText("View Item LIst");
+        viewItemListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewItemListButtonActionPerformed(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton7.setText("Purchase Order");
@@ -80,7 +85,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewItemListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(240, 240, 240))
             .addGroup(layout.createSequentialGroup()
@@ -107,7 +112,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(viewItemListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,10 +129,19 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_LogOutButtonActionPerformed
 
+    private void viewItemListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemListButtonActionPerformed
+        // TODO add your handling code here:
+        ManageItem_GUI manageItemGUI = new ManageItem_GUI(purchaseManager);
+        manageItemGUI.show();
+        dispose();
+    }//GEN-LAST:event_viewItemListButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        PurchaseManager purchaseManager = new PurchaseManager("U00003","PM01","PM1234","PM01@gmail.com","0124567890","PurchaseManager","P00001");
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -154,7 +168,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // new PurchaseManager_GUI().setVisible(true);
+                new PurchaseManager_GUI(purchaseManager).setVisible(true);
             }
         });
     }
@@ -163,10 +177,10 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
     private javax.swing.JButton LogOutButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton viewItemListButton;
     // End of variables declaration//GEN-END:variables
 }

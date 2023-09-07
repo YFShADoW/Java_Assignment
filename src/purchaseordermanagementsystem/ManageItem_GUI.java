@@ -20,15 +20,28 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
     private String[] supplierIDList = getSupplierIDFromFile();
     private SaleManager saleManager;
+    private PurchaseManager purchaseManager;
     /**
      * Creates new form ViewItem_GUI
      */
+    //Constructor overloading
     public ManageItem_GUI(SaleManager saleManager) {
         this.saleManager  = saleManager;
         initComponents();
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         supplierList.setListData(supplierIDList);
         displayTable();
+    }
+    public ManageItem_GUI(PurchaseManager purchaseManager) {
+        this.purchaseManager  = purchaseManager;
+        initComponents();
+        categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
+        supplierList.setListData(supplierIDList);
+        displayTable();
+        
+        addButton.setVisible(false);
+        editButton.setVisible(false);
+        removeButton.setVisible(false);
     }
 
     /**

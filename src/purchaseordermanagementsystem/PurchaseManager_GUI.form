@@ -33,7 +33,7 @@
               <EmptySpace pref="111" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton4" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                  <Component id="jButton5" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="viewItemListButton" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                   <Component id="jButton8" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
@@ -68,7 +68,7 @@
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="jButton5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="viewItemListButton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -97,13 +97,16 @@
         <Property name="text" type="java.lang.String" value="View Supplier List"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="viewItemListButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="View Item LIst"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewItemListButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton7">
       <Properties>
