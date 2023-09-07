@@ -4,7 +4,6 @@
  */
 package purchaseordermanagementsystem;
 
-import java.util.Arrays;
 
 public class Supplier {
     private String supplierID, supplierName, supplierAddress, supplierEmail,supplierPhone;
@@ -70,11 +69,5 @@ public class Supplier {
         String[] oldData = {this.supplierID,this.supplierName,this.supplierPhone,this.supplierEmail,this.supplierAddress};
         String[] newData = {newSupplier.supplierID,newSupplier.supplierName,newSupplier.supplierPhone,newSupplier.supplierEmail,newSupplier.supplierAddress};
         file.editFile(oldData, newData);
-    }
-   
-
-   
-        
-    
-    
+    }   
 }

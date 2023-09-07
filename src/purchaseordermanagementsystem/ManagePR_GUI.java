@@ -17,9 +17,9 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     private SaleManager saleManager;
     String[] statusSelection = {"All","Pending","Approved","Rejected"};
     
+    
     public ManagePR_GUI(SaleManager saleManager) {
         this.saleManager=saleManager;
-
         initComponents();
         setLocationRelativeTo(null);
         displayTable();
@@ -210,7 +210,6 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        
         AddPR_GUI addPRGUI = new AddPR_GUI(saleManager);
         addPRGUI.show();
         dispose();
@@ -276,15 +275,10 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
         int selectedRowIndex = PRTable.getSelectedRow();
         String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
-//        System.out.println(SelectedPRID);
-        
+
         FileManager searchPR = new FileManager("Purchase_Requisition.txt");
         ArrayList<String[]> PRList = searchPR.searchData(SelectedPRID); 
- 
         String[] SelectedPRData = PRList.get(0);
-//        System.out.println(Arrays.toString(SelectedPRData));
-//        String hello = SelectedPRData[2];
-//        System.out.println(hello);
         
         EditPR_GUI editPRGUI = new EditPR_GUI(saleManager,SelectedPRData);
         editPRGUI.show();

@@ -5,6 +5,7 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -27,7 +28,6 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         initComponents();
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         supplierList.setListData(supplierIDList);
-        itemtable.setColumnIdentifiers(itemColumn);
         displayTable();
     }
 
@@ -60,7 +60,7 @@ public class ManageItem_GUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ItemID", "Name", "Category", "Price", "Quantity", "SupplierID"
             }
         ));
         jScrollPane1.setViewportView(itemTable);
@@ -195,19 +195,71 @@ public class ManageItem_GUI extends javax.swing.JFrame {
             String data = model.getValueAt(indexRow, i).toString();
             tableData[i]=data;
         }
-        FileManager file = new FileManager("User.txt");
-        file.removeLineFromFile(tableData[0]);
+        Item item = new Item(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4],tableData[5]);
+        saleManager.manageItem("remove", item, item);
         this.removeTableRow();
         this.displayTable();
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
+        int indexRow = itemTable.getSelectedRow();
+        TableModel model = itemTable.getModel();
+        String[] tableData = new String[itemTable.getColumnCount()];
+        for(int i=0; i<itemTable.getColumnCount();i++){
+            String data = model.getValueAt(indexRow, i).toString();
+            tableData[i]=data;
+        }
+        EditItem_GUI editItemGUI = new EditItem_GUI(saleManager,tableData);
+        editItemGUI.show();
+        dispose();
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButtonActionPerformed
-        
+        String filterTarget=null; 
+        if(categoryComboBox.getSelectedIndex()==-1){
+            filterTarget = null;
+        }
+        else{
+            filterTarget = itemCategories[categoryComboBox.getSelectedIndex()];
+        }
+        String searchTarget = searchText.getText();
+        //  All
+        if (searchTarget.isBlank() && filterTarget==null){
+            removeTableRow();
+            displayTable();
+        }
+        // filter
+        else if(searchTarget.isBlank() && filterTarget !=null){
+            FileManager file = new FileManager("Item.txt");
+            ArrayList<String[]> searchList = file.filterData(2, filterTarget);
+            removeTableRow();
+            displayTable(searchList);  
+        }
+        // search & Text
+        else if(searchText !=null &&  filterTarget !=null){
+            FileManager file = new FileManager("Item.txt");
+            ArrayList<String[]> searchList = file.searchData(searchTarget);
+            ArrayList<String[]> filterList = file.filterData(2, filterTarget);
+            ArrayList<String[]> resultList = new ArrayList<String[]>(); ;
+            for(int i = 0; i<searchList.size();i++){
+                for(int j = 0; j<filterList.size();j++){
+                    if(Arrays.equals(searchList.get(i),filterList.get(j)) == true){
+                        resultList.add(searchList.get(i));               
+                    }
+                }
+            }
+            removeTableRow();
+            displayTable(resultList);
+        }
+        else{
+            FileManager file = new FileManager("Item.txt");
+            ArrayList<String[]> searchList = file.searchData(searchTarget);
+            removeTableRow();
+            displayTable(searchList); 
+        } 
     }//GEN-LAST:event_findButtonActionPerformed
+    
     public String[] getSupplierIDFromFile(){
         FileManager file = new FileManager("Supplier.txt");
         ArrayList<String> userLine= file.readFile();
@@ -219,7 +271,14 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         String[] supplierIDList = supplierIDLine.split("\\|");
         return supplierIDList;
     } 
-    
+    public void displayTable(ArrayList<String[]> userData){
+        //[{},{},{},....]
+        //ArrayLIst with String Array
+        DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
+        for(int i =0;i<userData.size();i++){
+            model.addRow(userData.get(i));
+        }
+    }
     public void displayTable(){
         DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
         FileManager getrow = new FileManager("Item.txt");

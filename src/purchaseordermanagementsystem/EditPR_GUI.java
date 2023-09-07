@@ -16,18 +16,15 @@ public class EditPR_GUI extends javax.swing.JFrame {
 
     private SaleManager saleManager;
     private String[] SelectedPRData;
-    String PRID = SelectedPRData[0];
-    String supplierID = SelectedPRData[2];
     //private PurchaseRequisition purchaseRequisition;
     
     public EditPR_GUI(SaleManager saleManager, String[] SelectedPRData) {
         this.saleManager = saleManager;
         this.SelectedPRData = SelectedPRData;
         initComponents();
-        PRIDText.setText(PRID);
-        supplierText.setText(supplierID);
-        System.out.println("Hello");
-        System.out.println(Arrays.toString(SelectedPRData));
+        PRIDText.setText(SelectedPRData[0]);
+        supplierText.setText(SelectedPRData[2]);
+
     }
 
     /**
@@ -262,6 +259,7 @@ public class EditPR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteLineButtonActionPerformed
     
     public void displayitemListTable(){
+        String PRID = SelectedPRData[0];
         DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
         FileManager searchPR = new FileManager("Purchase_Requisition.txt");
         ArrayList<String[]> PRList = searchPR.searchData(PRID);
