@@ -14,20 +14,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddItem_GUI extends javax.swing.JFrame {
     private DefaultTableModel itemtable = new DefaultTableModel();
-    private String [] itemtable1 = {"Item Code","Item Name","Item Category","Item Unit Price","Item Supplier ID"};
+    private String [] itemColumn = {"Item Code","Item Name","Item Category","Item Unit Price","Quantity","Item Supplier ID"};
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
     private String[] supplierIDList = getSupplierIDFromFile();
-    SaleManager saleManager;
+    private SaleManager saleManager;
     
 
     /**
      * Creates new form AddItem_GUI
      */
-    public AddItem_GUI() {
-        itemtable.setColumnIdentifiers(itemtable1);
+    public AddItem_GUI(SaleManager saleManager) {
+        this.saleManager = saleManager;
         initComponents();
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         supplierIDComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
+        itemtable.setColumnIdentifiers(itemColumn);
         displayTable();
     }
 
@@ -42,11 +43,9 @@ public class AddItem_GUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        itemTable = new javax.swing.JTable();
         addButton = new javax.swing.JButton();
-        Text_ItemCode = new javax.swing.JTextField();
         Text_ItemName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -56,7 +55,7 @@ public class AddItem_GUI extends javax.swing.JFrame {
         Text_ItemStock = new javax.swing.JTextField();
         supplierIDComboBox = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
         categoryComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,11 +63,11 @@ public class AddItem_GUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         jLabel1.setText("Add Item ");
 
-        jTable1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        jTable1.setModel(itemtable);
-        jTable1.setDoubleBuffered(true);
-        jTable1.setSelectionBackground(new java.awt.Color(204, 255, 204));
-        jScrollPane1.setViewportView(jTable1);
+        itemTable.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        itemTable.setModel(itemtable);
+        itemTable.setDoubleBuffered(true);
+        itemTable.setSelectionBackground(new java.awt.Color(204, 255, 204));
+        jScrollPane1.setViewportView(itemTable);
 
         addButton.setFont(new java.awt.Font("STHupo", 0, 18)); // NOI18N
         addButton.setText("Add");
@@ -77,21 +76,6 @@ public class AddItem_GUI extends javax.swing.JFrame {
                 addButtonActionPerformed(evt);
             }
         });
-
-        Text_ItemCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_ItemCodeActionPerformed(evt);
-            }
-        });
-
-        Text_ItemName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_ItemNameActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
-        jLabel2.setText("Item Code: ");
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel3.setText("Item Name: ");
@@ -103,35 +87,23 @@ public class AddItem_GUI extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel5.setText("Item Unit Price: ");
 
-        Text_ItemUnitPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_ItemUnitPriceActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel6.setText("Fill in the item information");
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel7.setText("Item Suppiler ID:");
 
-        Text_ItemStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_ItemStockActionPerformed(evt);
-            }
-        });
-
         supplierIDComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        supplierIDComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supplierIDComboBoxActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel8.setText("Item Stock:");
 
-        jButton1.setText("Back");
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -140,39 +112,33 @@ public class AddItem_GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BackButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addButton)
                         .addGap(61, 61, 61))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Text_ItemUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Text_ItemStock)
-                                    .addComponent(Text_ItemCode)
-                                    .addComponent(supplierIDComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Text_ItemName))
-                                .addGap(44, 44, 44)))))
+                            .addComponent(Text_ItemUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_ItemStock)
+                            .addComponent(supplierIDComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Text_ItemName)
+                            .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(492, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))))
@@ -190,11 +156,7 @@ public class AddItem_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text_ItemCode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Text_ItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -214,10 +176,10 @@ public class AddItem_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(supplierIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
+                        .addGap(114, 114, 114)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addButton)
-                            .addComponent(jButton1)))
+                            .addComponent(BackButton)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -225,31 +187,38 @@ public class AddItem_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Text_ItemCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_ItemCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_ItemCodeActionPerformed
-
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        if(Text_ItemCode.getText().isEmpty()||Text_ItemName.getText().isEmpty()||Text_ItemUnitPrice.getText().isEmpty()||Text_ItemStock.getText().isEmpty()){
+        if(Text_ItemName.getText().isEmpty()||Text_ItemUnitPrice.getText().isEmpty()||Text_ItemStock.getText().isEmpty()||categoryComboBox.getSelectedIndex()==-1){
             JOptionPane.showMessageDialog(null, "Please enter all the fields!!");
         }
         else{
              String itemCode = saleManager.generateItemID();
              String itemName = Text_ItemName.getText().trim();
+             String category = itemCategories[categoryComboBox.getSelectedIndex()];
              String itemUnitPrice = Text_ItemUnitPrice.getText().trim();
              String itemStock = Text_ItemStock.getText().trim();
-             int comboBoxIndex = supplierIDComboBox.getSelectedIndex();
-             String supplierID = supplierIDList[comboBoxIndex];
+             String supplierID = supplierIDList[supplierIDComboBox.getSelectedIndex()];
                      
-             Text_ItemCode.setText("");
              Text_ItemName.setText("");
              Text_ItemUnitPrice.setText("");
              Text_ItemStock.setText("");
+             categoryComboBox.setSelectedIndex(0);
              
-            
+             Item newItem  = new Item(itemCode,itemName,category,itemUnitPrice,itemStock,supplierID);
+             newItem.addItem();
+             
+             removeTableRow();
+             displayTable();
         }
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        ManageItem_GUI manageItemGUI = new ManageItem_GUI(saleManager);
+        manageItemGUI.show();
+        dispose();
+    }//GEN-LAST:event_BackButtonActionPerformed
     public String[] getSupplierIDFromFile(){
         FileManager file = new FileManager("Supplier.txt");
         ArrayList<String> userLine= file.readFile();
@@ -263,53 +232,28 @@ public class AddItem_GUI extends javax.swing.JFrame {
     } 
     
     public void displayTable(){
-       // DefaultTableModel suppliertable = (DefaultTableModel) SupplierTable.getModel;
+        DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
         FileManager getrow = new FileManager("Item.txt");
         ArrayList<String> rows =  getrow.readFile();
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
-            String[] additemdata = line.split("\\|");
-            itemtable.addRow(additemdata);
+            String[] data = line.split("\\|");
+            model.addRow(data);
         }
     }
     public void removeTableRow(){
-      //  DefaultTableModel model = (DefaultTableModel) SupplierrTable.getModel();
-        int count = itemtable.getRowCount();
+        DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
+        int count = model.getRowCount();
         for (int i = count - 1; i >= 0; i--) {
-            itemtable .removeRow(i);
+            model.removeRow(i);
         }
     }
         
-      
-        
-        
-        
-        
-    private void Text_ItemNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_ItemNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_ItemNameActionPerformed
-
-    private void Text_ItemUnitPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_ItemUnitPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_ItemUnitPriceActionPerformed
-
-    private void Text_ItemStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_ItemStockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_ItemStockActionPerformed
-
-    private void supplierIDComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierIDComboBoxActionPerformed
-        // TODO add your handling code here:
-        setTitle("Supplier ID");
-        //supplierid = new JComboBox<> (savedsupplierdata);
-        
-    }//GEN-LAST:event_supplierIDComboBoxActionPerformed
-    
-    
-    
     /**
      * @param args the command line arguments
      */
-   public static void main(String args[]) {
+    public static void main(String args[]) {
+        SaleManager saleManager = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -336,21 +280,20 @@ public class AddItem_GUI extends javax.swing.JFrame {
        // * Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
           public void run() {
-              new AddItem_GUI().setVisible(true);
+              new AddItem_GUI(saleManager).setVisible(true);
          }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Text_ItemCode;
+    private javax.swing.JButton BackButton;
     private javax.swing.JTextField Text_ItemName;
     private javax.swing.JTextField Text_ItemStock;
     private javax.swing.JTextField Text_ItemUnitPrice;
     private javax.swing.JButton addButton;
     private javax.swing.JComboBox<String> categoryComboBox;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTable itemTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -358,7 +301,6 @@ public class AddItem_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> supplierIDComboBox;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddSupplier_GUI extends javax.swing.JFrame {
     private DefaultTableModel supplierTable = new DefaultTableModel();
-    private String [] supplier1 = {"Supplier ID","Name","Phone Number","Email","Address"};
+    private String [] supplierColumn = {"Supplier ID","Name","Phone Number","Email","Address"};
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
     SaleManager saleManager;
     /**
      * Creates new form AddSupplier_GUI
      */
     public AddSupplier_GUI(SaleManager saleManager) {
-        supplierTable.setColumnIdentifiers(supplier1);
+        supplierTable.setColumnIdentifiers(supplierColumn);
         this.saleManager = saleManager;
         initComponents();
         displayTable();
@@ -51,7 +51,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         Text_SupplierName = new javax.swing.JTextField();
         Text_SupplierPhone = new javax.swing.JTextField();
         Text_SupplierEmail = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Text_SupplierAddress = new javax.swing.JTextArea();
@@ -92,17 +92,11 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel6.setText("Supplier Address: ");
 
-        Text_SupplierEmail.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setFont(new java.awt.Font("STHupo", 0, 18)); // NOI18N
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_SupplierEmailActionPerformed(evt);
-            }
-        });
-
-        jButton1.setFont(new java.awt.Font("STHupo", 0, 18)); // NOI18N
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
@@ -154,7 +148,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addComponent(BackButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(addButton)
                         .addGap(114, 114, 114)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
@@ -197,7 +191,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(addButton)
                             .addComponent(BackButton))
                         .addGap(36, 36, 36))))
         );
@@ -205,7 +199,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         if(Text_SupplierName.getText().isEmpty()||Text_SupplierPhone.getText().isEmpty()||Text_SupplierEmail.getText().isEmpty()||Text_SupplierAddress.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter all the fields!!");
@@ -218,7 +212,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
             String address = Text_SupplierAddress.getText().replace("\n","");
             
             Supplier newSupplier = new Supplier(supplierID,name,phone, email,address);
-            saleManager.manageSupplier("add",newSupplier);
+            saleManager.manageSupplier("add",newSupplier,null);
             
             // Clean all the text field
             Text_SupplierName.setText("");
@@ -230,14 +224,10 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
             removeTableRow();
             displayTable();   
         }       
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void Text_SupplierEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_SupplierEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_SupplierEmailActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        ViewSupplier_GUI viewSupplierGUI = new ViewSupplier_GUI(saleManager);
+        ManageSupplier_GUI viewSupplierGUI = new ManageSupplier_GUI(saleManager);
         viewSupplierGUI.show();
         dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
@@ -258,7 +248,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
             supplierTable.removeRow(i);
         }
     
-    
+    }
     
     
     
@@ -272,36 +262,37 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                //new AddSupplier_GUI().setVisible(true);
-//            }
-//        });
+    public static void main(String args[]) {
+        SaleManager saleManager = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AddSupplier_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddSupplier_GUI(saleManager).setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -311,7 +302,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField Text_SupplierEmail;
     private javax.swing.JTextField Text_SupplierName;
     private javax.swing.JTextField Text_SupplierPhone;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton addButton;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

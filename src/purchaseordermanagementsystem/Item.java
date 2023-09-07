@@ -74,5 +74,12 @@ public class Item {
         FileManager file = new FileManager("Item.txt");
         file.addToFile(newitem);
     }
-
+    
+    public void removeItem(){
+        FileManager file = new FileManager("Item.txt");
+        file.removeLineFromFile(this.getItemCode());
+    }
+    public void editItem(){
+        
+    }
 }

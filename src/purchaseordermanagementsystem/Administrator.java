@@ -114,88 +114,88 @@ public class Administrator extends User{
     // Method Overloading
     public void registerUser(Administrator newAdmin){
         //Validation
-        String[] newUser = {newAdmin.getUserID(),newAdmin.getUserName(),newAdmin.getUserPassword(),newAdmin.getUserPhone(),newAdmin.getUserEmail(),newAdmin.getUserType(),newAdmin.getAdmin_ID()};
+        String[] newUser = {newAdmin.getUserID(),newAdmin.getUserName(),newAdmin.getUserPassword(),newAdmin.getUserEmail(),newAdmin.getUserPhone(),newAdmin.getUserType(),newAdmin.getAdmin_ID()};
         FileManager file = new FileManager("User.txt");
         file.addToFile(newUser);
     }
     
     public void registerUser(SaleManager newSM){
-        String[] newUser = {newSM.getUserID(),newSM.getUserName(),newSM.getUserPassword(),newSM.getUserPhone(),newSM.getUserEmail(),newSM.getUserType(),newSM.getSM_ID()};
+        String[] newUser = {newSM.getUserID(),newSM.getUserName(),newSM.getUserPassword(),newSM.getUserEmail(),newSM.getUserPhone(),newSM.getUserType(),newSM.getSM_ID()};
         FileManager file = new FileManager("User.txt");
         file.addToFile(newUser);
     }
     
     public void registerUser(PurchaseManager newPM){
-        String[] newUser = {newPM.getUserID(),newPM.getUserName(),newPM.getUserPassword(),newPM.getUserPhone(),newPM.getUserEmail(),newPM.getUserType(),newPM.getPM_ID()};
+        String[] newUser = {newPM.getUserID(),newPM.getUserName(),newPM.getUserPassword(),newPM.getUserEmail(),newPM.getUserPhone(),newPM.getUserType(),newPM.getPM_ID()};
         FileManager file = new FileManager("User.txt");
         file.addToFile(newUser);
     }
     
 
     public void manageUser(String mode,String[] oldData,String[] newData){
+        User user = new User();
         switch (mode){                
-            case "Edit":
-                User user = new User();
+            case "edit":
                 user.editUser(oldData, newData);
                 break;
                        
-            case "Remove":
+            case "remove":
+                user.removeUser(oldData[0]);
                 break;
             
             default:
                 break;
         }
     }
-    public ArrayList<String[]> searchFilterUser(String searchTarget,String filterTarget){
-        FileManager file = new FileManager("User.txt");
-        ArrayList<String[]> result= new ArrayList();
-        ArrayList<String> userLine = file.readFile();
-        // select UserType
-        if(searchTarget == null && !filterTarget.equals("All")){
-            for(int i = 0; i<userLine.size();i++){
-                String[] userData = userLine.get(i).split("\\|");
-                if(userData[5].equals(filterTarget)){
-                    result.add(userData);
-                }
-            }
-            return result;
-        }
-        // search with All
-        else if(searchTarget!=null && filterTarget.equals("All")){
-            for(int i = 0; i<userLine.size();i++){
-                String[] userData = userLine.get(i).split("\\|");
-                for(int j = 0;j< userData.length;j++){
-                    if(userData[j].equals(searchTarget)){
-                        result.add(userData);
-                    }
-                }
-            }
-            return result;
-        }
-        // search with userType
-        else{
-            for(int i = 0; i<userLine.size();i++){
-                String[] userData = userLine.get(i).split("\\|");
-                if(userData[5].equals(filterTarget)){
-                    for(int j = 0;j< userData.length;j++){
-                        if(userData[j].equals(searchTarget)){
-                        result.add(userData);
-                        }
-                    }   
-                }
-            }
-            return result;
-        }
-    }
-    
-    
-    public void removeUser(){
-        
-    }
-    
-    public void View_Sale_Info(){
-        
-    }
+//    public ArrayList<String[]> searchFilterUser(String searchTarget,String filterTarget){
+//        FileManager file = new FileManager("User.txt");
+//        ArrayList<String[]> result= new ArrayList();
+//        ArrayList<String> userLine = file.readFile();
+//        // select UserType
+//        if(searchTarget == null && !filterTarget.equals("All")){
+//            for(int i = 0; i<userLine.size();i++){
+//                String[] userData = userLine.get(i).split("\\|");
+//                if(userData[5].equals(filterTarget)){
+//                    result.add(userData);
+//                }
+//            }
+//            return result;
+//        }
+//        // search with All
+//        else if(searchTarget!=null && filterTarget.equals("All")){
+//            for(int i = 0; i<userLine.size();i++){
+//                String[] userData = userLine.get(i).split("\\|");
+//                for(int j = 0;j< userData.length;j++){
+//                    if(userData[j].equals(searchTarget)){
+//                        result.add(userData);
+//                    }
+//                }
+//            }
+//            return result;
+//        }
+//        // search with userType
+//        else{
+//            for(int i = 0; i<userLine.size();i++){
+//                String[] userData = userLine.get(i).split("\\|");
+//                if(userData[5].equals(filterTarget)){
+//                    for(int j = 0;j< userData.length;j++){
+//                        if(userData[j].equals(searchTarget)){
+//                        result.add(userData);
+//                        }
+//                    }   
+//                }
+//            }
+//            return result;
+//        }
+//    }
+    // redo search function
+//    public void 
+//    
+//    
+//    
+//    public void View_Sale_Info(){
+//        
+//    }
     public static void main(String[] args){
         Administrator test = new Administrator ("U00001","admin01","admin1234","admin01@gmail.com","0123456789","Admin","A00001");
     }

@@ -4,6 +4,8 @@
  */
 package purchaseordermanagementsystem;
 
+import java.util.Arrays;
+
 public class Supplier {
     private String supplierID, supplierName, supplierAddress, supplierEmail,supplierPhone;
     
@@ -56,6 +58,18 @@ public class Supplier {
         String[] newSupplier = {this.getSupplierID(),this.getSupplierName(),this.getSupplierPhone(),this.getSupplierEmail(),this.getSupplierAddress()};
         FileManager file = new FileManager("Supplier.txt");
         file.addToFile(newSupplier);
+    }
+    
+    public void removeSupplier(){
+        FileManager file = new FileManager("Supplier.txt");
+        file.removeLineFromFile(this.getSupplierID());
+    }
+    
+    public void editSupplier(Supplier newSupplier){
+        FileManager file = new FileManager("Supplier.txt");
+        String[] oldData = {this.supplierID,this.supplierName,this.supplierPhone,this.supplierEmail,this.supplierAddress};
+        String[] newData = {newSupplier.supplierID,newSupplier.supplierName,newSupplier.supplierPhone,newSupplier.supplierEmail,newSupplier.supplierAddress};
+        file.editFile(oldData, newData);
     }
    
 

@@ -87,6 +87,12 @@ public class User {
         FileManager file = new FileManager("User.txt");
         file.editFile(oldData, newData);
     }
+    public void removeUser(String userID){
+        FileManager file = new FileManager("User.txt");
+        file.removeLineFromFile(userID);
+    }
+    
+    
     // User function
     public String[] loginAccess(String loginUserID,String loginPassword){
         FileManager file = new FileManager("User.txt");

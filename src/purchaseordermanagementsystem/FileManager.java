@@ -37,8 +37,7 @@ public class FileManager {
             String line = String.join("|", newObject);
             writer.append(line);
             writer.append("\n");
-            writer.close();
-            
+            writer.close();     
         }
         catch(IOException e){
             JOptionPane.showMessageDialog(null, e.getMessage());

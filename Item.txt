@@ -1,0 +1,4 @@
+I00001|watermelon|Fruit|3.0|50|SR00001
+I00002|rice|Dairy|20.0|20|SR00002
+I00003|Potato Chip|Snacks|3.5|100|SR00002
+I00004|mineral water|Beverages|1.5|20|SR00001
