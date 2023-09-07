@@ -15,14 +15,30 @@ import javax.swing.table.TableModel;
  */
 public class ManageSupplier_GUI extends javax.swing.JFrame {
     SaleManager saleManager;
+    PurchaseManager purchaseManager;
     /**
      * Creates new form ViewSupplier_GUI
      */
     public ManageSupplier_GUI(SaleManager saleManager) {
-        initComponents();
         this.saleManager = saleManager;
+        initComponents();
         displayTable();
+        
+        PMBackButton.setVisible(false);
     }
+    
+    public ManageSupplier_GUI(PurchaseManager purchaseManager){
+        this.purchaseManager = purchaseManager;
+        initComponents();                
+        setLocationRelativeTo(null);
+        displayTable();
+        
+        SMBackButton.setVisible(false);
+        AddButton.setVisible(false);
+        EditButton.setVisible(false);
+        DeleteButton.setVisible(false);
+    }
+    
     public void displayTable(){
         DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
         FileManager getrow = new FileManager("Supplier.txt");
@@ -57,7 +73,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        BackButton = new javax.swing.JButton();
+        SMBackButton = new javax.swing.JButton();
         AddButton = new javax.swing.JButton();
         EditButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
@@ -66,15 +82,16 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         searchText = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
+        PMBackButton = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BackButton.setText("Back");
-        BackButton.addActionListener(new java.awt.event.ActionListener() {
+        SMBackButton.setText("Back");
+        SMBackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackButtonActionPerformed(evt);
+                SMBackButtonActionPerformed(evt);
             }
         });
 
@@ -133,6 +150,13 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
             }
         });
 
+        PMBackButton.setText("Back");
+        PMBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PMBackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,12 +174,14 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(BackButton)
-                                .addGap(124, 124, 124)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SMBackButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PMBackButton)
+                                .addGap(101, 101, 101)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(78, 78, 78)
                         .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(searchButton)))
@@ -166,7 +192,9 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SMBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PMBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -192,11 +220,11 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AddButtonActionPerformed
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+    private void SMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMBackButtonActionPerformed
         SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
         saleManagerGUI.show();
         dispose();
-    }//GEN-LAST:event_BackButtonActionPerformed
+    }//GEN-LAST:event_SMBackButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         // TODO add your handling code here:
@@ -249,6 +277,12 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_EditButtonActionPerformed
 
+    private void PMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMBackButtonActionPerformed
+        PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+        purchaseManagerGUI.show();
+        dispose();
+    }//GEN-LAST:event_PMBackButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,9 +322,10 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
-    private javax.swing.JButton BackButton;
     private javax.swing.JButton DeleteButton;
     private javax.swing.JButton EditButton;
+    private javax.swing.JButton PMBackButton;
+    private javax.swing.JButton SMBackButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

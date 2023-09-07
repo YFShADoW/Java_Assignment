@@ -28,20 +28,28 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     public ManageItem_GUI(SaleManager saleManager) {
         this.saleManager  = saleManager;
         initComponents();
+        supplierIDList[0] = "All";
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
-        supplierList.setListData(supplierIDList);
+        SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
         displayTable();
+        
+        PMBackButton.setVisible(false);
+        viewItemLabel.setVisible(false);
     }
     public ManageItem_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager  = purchaseManager;
         initComponents();
+        supplierIDList[0] = "All";
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
-        supplierList.setListData(supplierIDList);
+        SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
         displayTable();
         
         addButton.setVisible(false);
         editButton.setVisible(false);
         removeButton.setVisible(false);
+        SMBackButton.setVisible(false);
+        manageItemLabel.setVisible(false);
+        
     }
 
     /**
@@ -55,15 +63,17 @@ public class ManageItem_GUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         itemTable = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        supplierList = new javax.swing.JList<>();
-        backButton = new javax.swing.JButton();
+        SMBackButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         findButton = new javax.swing.JButton();
         categoryComboBox = new javax.swing.JComboBox<>();
         searchText = new javax.swing.JTextField();
+        viewItemLabel = new javax.swing.JLabel();
+        PMBackButton = new javax.swing.JButton();
+        manageItemLabel = new javax.swing.JLabel();
+        SupplierComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,17 +88,10 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(itemTable);
 
-        supplierList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(supplierList);
-
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        SMBackButton.setText("Back");
+        SMBackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                SMBackButtonActionPerformed(evt);
             }
         });
 
@@ -121,17 +124,50 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         });
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryComboBoxActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Manage Item");
+        viewItemLabel.setText("View Item");
+
+        PMBackButton.setText("Back");
+        PMBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PMBackButtonActionPerformed(evt);
+            }
+        });
+
+        manageItemLabel.setText("Manage Item");
+
+        SupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupplierComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Supplier:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PMBackButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                                .addComponent(viewItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SMBackButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(manageItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)
                         .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,60 +175,70 @@ public class ManageItem_GUI extends javax.swing.JFrame {
                         .addComponent(findButton)
                         .addGap(108, 108, 108))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addButton)
-                        .addGap(40, 40, 40)
-                        .addComponent(removeButton)
-                        .addGap(40, 40, 40)
-                        .addComponent(editButton)
-                        .addGap(127, 127, 127))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(73, 73, 73))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(62, 62, 62)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(addButton)
+                                .addGap(40, 40, 40)
+                                .addComponent(removeButton)
+                                .addGap(40, 40, 40)
+                                .addComponent(editButton)
+                                .addGap(61, 61, 61)))
+                        .addGap(61, 61, 61))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(findButton)
-                    .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(SMBackButton)
+                                    .addComponent(manageItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PMBackButton)
+                                    .addComponent(viewItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(findButton)
+                                    .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editButton)
                     .addComponent(removeButton)
-                    .addComponent(addButton)
-                    .addComponent(backButton))
-                .addContainerGap(54, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183))
+                    .addComponent(addButton))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void SMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMBackButtonActionPerformed
         // TODO add your handling code here:
         SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
         saleManagerGUI.show();
         dispose();
-    }//GEN-LAST:event_backButtonActionPerformed
+    }//GEN-LAST:event_SMBackButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         AddItem_GUI addItemGUI = new AddItem_GUI(saleManager);
@@ -272,24 +318,51 @@ public class ManageItem_GUI extends javax.swing.JFrame {
             displayTable(searchList); 
         } 
     }//GEN-LAST:event_findButtonActionPerformed
+
+    private void PMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMBackButtonActionPerformed
+        PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+        purchaseManagerGUI.show();
+        dispose();
+    }//GEN-LAST:event_PMBackButtonActionPerformed
+
+    private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoryComboBoxActionPerformed
+
+    private void SupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierComboBoxActionPerformed
+        //String filterTarget = supplierIDList[SupplierComboBox.getSelectedIndex()];
+        if(supplierIDList[SupplierComboBox.getSelectedIndex()].equals("All")){
+            removeTableRow();
+            displayTable();
+        }    
+        else{
+            String filterTarget = supplierIDList[SupplierComboBox.getSelectedIndex()];
+            FileManager filterSupplier = new FileManager("Item.txt");
+            ArrayList<String[]> SupplierItem = filterSupplier.filterData(5, filterTarget);
+            removeTableRow();
+            displayTable(SupplierItem);
+        }
+    }//GEN-LAST:event_SupplierComboBoxActionPerformed
     
     public String[] getSupplierIDFromFile(){
-        FileManager file = new FileManager("Supplier.txt");
-        ArrayList<String> userLine= file.readFile();
-        String supplierIDLine="";//S00001|SR00002|.......
-        for(int i=0 ; i<userLine.size();i++){
-            String[] userData = userLine.get(i).split("\\|");
-            supplierIDLine = supplierIDLine+userData[0]+"|";
+        FileManager getrow = new FileManager("Supplier.txt");
+        ArrayList<String> rows =  getrow.readFile();
+        String[] supplierIDList = new String[rows.size()+1];
+        supplierIDList[0] = null;
+        for(int i=0 ; i< rows.size();i++){
+            String line = rows.get(i).toString();
+            String[] data = line.split("\\|");
+            supplierIDList[i+1]=data[0];
         }
-        String[] supplierIDList = supplierIDLine.split("\\|");
         return supplierIDList;
     } 
-    public void displayTable(ArrayList<String[]> userData){
+    
+    public void displayTable(ArrayList<String[]> itemData){
         //[{},{},{},....]
         //ArrayLIst with String Array
         DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
-        for(int i =0;i<userData.size();i++){
-            model.addRow(userData.get(i));
+        for(int i =0;i<itemData.size();i++){
+            model.addRow(itemData.get(i));
         }
     }
     public void displayTable(){
@@ -347,17 +420,19 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PMBackButton;
+    private javax.swing.JButton SMBackButton;
+    private javax.swing.JComboBox<String> SupplierComboBox;
     private javax.swing.JButton addButton;
-    private javax.swing.JButton backButton;
     private javax.swing.JComboBox<String> categoryComboBox;
     private javax.swing.JButton editButton;
     private javax.swing.JButton findButton;
     private javax.swing.JTable itemTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel manageItemLabel;
     private javax.swing.JButton removeButton;
     private javax.swing.JTextField searchText;
-    private javax.swing.JList<String> supplierList;
+    private javax.swing.JLabel viewItemLabel;
     // End of variables declaration//GEN-END:variables
 }

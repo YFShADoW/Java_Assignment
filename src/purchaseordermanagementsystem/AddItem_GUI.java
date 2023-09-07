@@ -220,14 +220,15 @@ public class AddItem_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
     public String[] getSupplierIDFromFile(){
-        FileManager file = new FileManager("Supplier.txt");
-        ArrayList<String> userLine= file.readFile();
-        String supplierIDLine="";//S00001|SR00002|.......
-        for(int i=0 ; i<userLine.size();i++){
-            String[] userData = userLine.get(i).split("\\|");
-            supplierIDLine = supplierIDLine+userData[0]+"|";
+        FileManager getrow = new FileManager("Supplier.txt");
+        ArrayList<String> rows =  getrow.readFile();
+        String[] supplierIDList = new String[rows.size()+1];
+        supplierIDList[0] = null;
+        for(int i=0 ; i< rows.size();i++){
+            String line = rows.get(i).toString();
+            String[] data = line.split("|");
+            supplierIDList[i+1]=data[0];
         }
-        String[] supplierIDList = supplierIDLine.split("\\|");
         return supplierIDList;
     } 
     

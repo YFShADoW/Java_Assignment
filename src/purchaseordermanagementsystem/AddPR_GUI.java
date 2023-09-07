@@ -314,13 +314,13 @@ public class AddPR_GUI extends javax.swing.JFrame {
     private String[] getSupplierIDList(){
         FileManager getrow = new FileManager("Supplier.txt");
         ArrayList<String> rows =  getrow.readFile();
-        String supplierIDlist="";
+        String[] supplierIDList = new String[rows.size()+1];
+        supplierIDList[0] = null;
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
-            String[] data = line.split("\\|");
-            supplierIDlist += data[0] + "|";
+            String[] data = line.split("|");
+            supplierIDList[i+1]=data[0];
         }
-        String[] supplierIDList = supplierIDlist.split("\\|");
         return supplierIDList;
     }
     

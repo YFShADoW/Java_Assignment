@@ -11,6 +11,8 @@ package purchaseordermanagementsystem;
 public class EditUser_GUI extends javax.swing.JFrame {
     String[] oldTableData;
     Administrator admin;
+    SaleManager saleManager;
+    PurchaseManager purchaseManager;
     /**
      * Creates new form EditUser
      */
@@ -29,6 +31,91 @@ public class EditUser_GUI extends javax.swing.JFrame {
         deptTextPane.setText(tableData[5]);
         staffIDTextPane.setText(tableData[6]);
         
+        adminBackButton.setVisible(false);
+        SMBackButton.setVisible(false);
+        PMBackButton.setVisible(false);
+    }
+    
+    public EditUser_GUI(Administrator admin){
+        this.admin =admin;
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        UserIDTextPane.setText(admin.getUserID());
+        nameTextPane.setText(admin.getUserName());
+        passwordTextPane.setText(admin.getUserPassword());
+        emailTextPane.setText(admin.getUserEmail());
+        phoneTextPane.setText(admin.getUserPhone());
+        deptTextPane.setText(admin.getUserType());
+        staffIDTextPane.setText(admin.getAdmin_ID());
+        
+        newNameLabel.setVisible(false);
+        newPasswordLabel.setVisible(false);
+        newEmailLabel.setVisible(false);
+        newPhoneLabel.setVisible(false);
+        newNameText.setVisible(false);
+        newPasswordText.setVisible(false);
+        newEmailText.setVisible(false);
+        newPhoneText.setVisible(false);
+        cancelButton.setVisible(false);
+        saveButton.setVisible(false);
+        SMBackButton.setVisible(false);
+        PMBackButton.setVisible(false);
+        
+    }
+    
+    public EditUser_GUI(SaleManager saleManager){
+        this.saleManager = saleManager;
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        UserIDTextPane.setText(saleManager.getUserID());
+        nameTextPane.setText(saleManager.getUserName());
+        passwordTextPane.setText(saleManager.getUserPassword());
+        emailTextPane.setText(saleManager.getUserEmail());
+        phoneTextPane.setText(saleManager.getUserPhone());
+        deptTextPane.setText(saleManager.getUserType());
+        staffIDTextPane.setText(saleManager.getSM_ID());
+        
+        newNameLabel.setVisible(false);
+        newPasswordLabel.setVisible(false);
+        newEmailLabel.setVisible(false);
+        newPhoneLabel.setVisible(false);
+        newNameText.setVisible(false);
+        newPasswordText.setVisible(false);
+        newEmailText.setVisible(false);
+        newPhoneText.setVisible(false);
+        cancelButton.setVisible(false);
+        saveButton.setVisible(false);
+        adminBackButton.setVisible(false);
+        PMBackButton.setVisible(false);
+    }
+    
+    public EditUser_GUI(PurchaseManager purchaseManager){
+        this.purchaseManager = purchaseManager;
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        UserIDTextPane.setText(purchaseManager.getUserID());
+        nameTextPane.setText(purchaseManager.getUserName());
+        passwordTextPane.setText(purchaseManager.getUserPassword());
+        emailTextPane.setText(purchaseManager.getUserEmail());
+        phoneTextPane.setText(purchaseManager.getUserPhone());
+        deptTextPane.setText(purchaseManager.getUserType());
+        staffIDTextPane.setText(purchaseManager.getPM_ID());
+        
+        newNameLabel.setVisible(false);
+        newPasswordLabel.setVisible(false);
+        newEmailLabel.setVisible(false);
+        newPhoneLabel.setVisible(false);
+        newNameText.setVisible(false);
+        newPasswordText.setVisible(false);
+        newEmailText.setVisible(false);
+        newPhoneText.setVisible(false);
+        cancelButton.setVisible(false);
+        saveButton.setVisible(false);
+        adminBackButton.setVisible(false);
+        SMBackButton.setVisible(false);
     }
 
     /**
@@ -54,8 +141,8 @@ public class EditUser_GUI extends javax.swing.JFrame {
         newEmailText = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        newNameLabel = new javax.swing.JLabel();
+        newPasswordLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         emailTextPane = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -66,13 +153,16 @@ public class EditUser_GUI extends javax.swing.JFrame {
         UserIDTextPane = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         deptTextPane = new javax.swing.JTextPane();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        newPhoneLabel = new javax.swing.JLabel();
+        newEmailLabel = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         staffIDTextPane = new javax.swing.JTextPane();
         cancelButton = new javax.swing.JButton();
+        adminBackButton = new javax.swing.JButton();
+        PMBackButton = new javax.swing.JButton();
+        SMBackButton = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -112,11 +202,11 @@ public class EditUser_GUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Department:");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setText("New Name:");
+        newNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        newNameLabel.setText("New Name:");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setText("New Password:");
+        newPasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        newPasswordLabel.setText("New Password:");
 
         jScrollPane2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
@@ -143,11 +233,11 @@ public class EditUser_GUI extends javax.swing.JFrame {
         deptTextPane.setEditable(false);
         jScrollPane6.setViewportView(deptTextPane);
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setText("New Phone:");
+        newPhoneLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        newPhoneLabel.setText("New Phone:");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setText("New Email:");
+        newEmailLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        newEmailLabel.setText("New Email:");
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -170,16 +260,41 @@ public class EditUser_GUI extends javax.swing.JFrame {
             }
         });
 
+        adminBackButton.setText("Back");
+        adminBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminBackButtonActionPerformed(evt);
+            }
+        });
+
+        PMBackButton.setText("Back");
+        PMBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PMBackButtonActionPerformed(evt);
+            }
+        });
+
+        SMBackButton.setText("Back");
+        SMBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SMBackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(349, 349, 349)
-                .addComponent(jLabel5)
-                .addContainerGap(384, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addComponent(adminBackButton)
+                .addGap(37, 37, 37)
+                .addComponent(SMBackButton)
+                .addGap(33, 33, 33)
+                .addComponent(PMBackButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -197,12 +312,13 @@ public class EditUser_GUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(newNameLabel)
+                            .addComponent(newPasswordLabel)
+                            .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(newPasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,21 +329,25 @@ public class EditUser_GUI extends javax.swing.JFrame {
                         .addComponent(saveButton)
                         .addGap(68, 68, 68))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11)
+                        .addComponent(newEmailLabel)
                         .addGap(18, 18, 18)
                         .addComponent(newEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(newPhoneLabel)
                         .addGap(18, 18, 18)
                         .addComponent(newPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel5)
-                .addGap(36, 36, 36)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adminBackButton)
+                    .addComponent(SMBackButton)
+                    .addComponent(PMBackButton)
+                    .addComponent(jLabel5))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,19 +355,19 @@ public class EditUser_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(newNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(newNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(newPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(newPasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(newEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(newEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(newPhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(newPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
@@ -285,7 +405,6 @@ public class EditUser_GUI extends javax.swing.JFrame {
                             .addComponent(cancelButton))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -332,6 +451,24 @@ public class EditUser_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void adminBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBackButtonActionPerformed
+        Admin_GUI adminGUI = new Admin_GUI(admin);
+        adminGUI.show();
+        dispose();
+    }//GEN-LAST:event_adminBackButtonActionPerformed
+
+    private void SMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMBackButtonActionPerformed
+        SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
+        saleManagerGUI.show();
+        dispose();
+    }//GEN-LAST:event_SMBackButtonActionPerformed
+
+    private void PMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMBackButtonActionPerformed
+        PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+        purchaseManagerGUI.show();
+        dispose();
+    }//GEN-LAST:event_PMBackButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -368,13 +505,14 @@ public class EditUser_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PMBackButton;
+    private javax.swing.JButton SMBackButton;
     private javax.swing.JTextPane UserIDTextPane;
+    private javax.swing.JButton adminBackButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextPane deptTextPane;
     private javax.swing.JTextPane emailTextPane;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -382,8 +520,6 @@ public class EditUser_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -393,9 +529,13 @@ public class EditUser_GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane nameTextPane;
+    private javax.swing.JLabel newEmailLabel;
     private javax.swing.JTextField newEmailText;
+    private javax.swing.JLabel newNameLabel;
     private javax.swing.JTextField newNameText;
+    private javax.swing.JLabel newPasswordLabel;
     private javax.swing.JTextField newPasswordText;
+    private javax.swing.JLabel newPhoneLabel;
     private javax.swing.JTextField newPhoneText;
     private javax.swing.JTextPane passwordTextPane;
     private javax.swing.JTextPane phoneTextPane;

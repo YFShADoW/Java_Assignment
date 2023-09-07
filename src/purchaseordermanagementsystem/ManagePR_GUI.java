@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class ManagePR_GUI extends javax.swing.JFrame {
 
     private SaleManager saleManager;
+    private PurchaseManager purchaseManager;
     String[] statusSelection = {"All","Pending","Approved","Rejected"};
     
     
@@ -23,6 +24,22 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         displayTable();
+        
+        PMBackButton.setVisible(false);
+        viewPRLabel.setVisible(false);
+    }
+    
+    public ManagePR_GUI(PurchaseManager purchaseManager){
+        this.purchaseManager = purchaseManager;
+        initComponents();                
+        setLocationRelativeTo(null);
+        displayTable();
+        
+        SMBackButton.setVisible(false);
+        managePRLabel.setVisible(false);
+        addButton.setVisible(false);
+        editButton.setVisible(false);
+        removeButton.setVisible(false);
     }
 
     /**
@@ -36,8 +53,8 @@ public class ManagePR_GUI extends javax.swing.JFrame {
 
         searchText = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        backButton = new javax.swing.JButton();
+        viewPRLabel = new javax.swing.JLabel();
+        SMBackButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PRTable = new javax.swing.JTable();
         statusComboBox = new javax.swing.JComboBox<>();
@@ -46,6 +63,8 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
+        PMBackButton = new javax.swing.JButton();
+        managePRLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,12 +81,12 @@ public class ManagePR_GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Manage Purchase Requisition");
+        viewPRLabel.setText("View Purchase Requisition");
 
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        SMBackButton.setText("Back");
+        SMBackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                SMBackButtonActionPerformed(evt);
             }
         });
 
@@ -138,18 +157,32 @@ public class ManagePR_GUI extends javax.swing.JFrame {
             }
         });
 
+        PMBackButton.setText("Back");
+        PMBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PMBackButtonActionPerformed(evt);
+            }
+        });
+
+        managePRLabel.setText("Manage Purchase Requisition");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(backButton)
+                .addComponent(PMBackButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SMBackButton)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(managePRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(viewPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,7 +196,7 @@ public class ManagePR_GUI extends javax.swing.JFrame {
                                 .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(38, 38, 38)
                         .addComponent(searchButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addButton)
                         .addGap(30, 30, 30)
                         .addComponent(editButton)
@@ -182,8 +215,10 @@ public class ManagePR_GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(backButton))
+                            .addComponent(SMBackButton)
+                            .addComponent(managePRLabel)
+                            .addComponent(viewPRLabel)
+                            .addComponent(PMBackButton))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -220,11 +255,11 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_statusComboBoxActionPerformed
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void SMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMBackButtonActionPerformed
         SaleManager_GUI smGUI = new SaleManager_GUI(saleManager);
         smGUI.show();
         dispose();
-    }//GEN-LAST:event_backButtonActionPerformed
+    }//GEN-LAST:event_SMBackButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         
@@ -300,16 +335,14 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_statusComboBoxItemStateChanged
 
     private void PRTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PRTableMouseClicked
-//        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
-//        int selectedRowIndex = PRTable.getSelectedRow();
-//        String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
-//        
-//        FileManager searchPR = new FileManager("Purchase_Requisition.txt");
-//        ArrayList<String[]> PRList = searchPR.searchData(SelectedPRID);
-//        SelectedPRData = PRList.get(0);
-//        System.out.print(selectedRowIndex+"\n");
-//        System.out.print(SelectedPRID);
+
     }//GEN-LAST:event_PRTableMouseClicked
+
+    private void PMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMBackButtonActionPerformed
+        PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+        purchaseManagerGUI.show();
+        dispose();
+    }//GEN-LAST:event_PMBackButtonActionPerformed
 
     public void displayTable(){
         DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
@@ -379,17 +412,19 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PMBackButton;
     private javax.swing.JTable PRTable;
+    private javax.swing.JButton SMBackButton;
     private javax.swing.JButton addButton;
-    private javax.swing.JButton backButton;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel managePRLabel;
     private javax.swing.JButton removeButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchText;
     private javax.swing.JComboBox<String> statusComboBox;
+    private javax.swing.JLabel viewPRLabel;
     // End of variables declaration//GEN-END:variables
 }

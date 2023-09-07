@@ -26,7 +26,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         displayTable();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +44,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         UserTable = new javax.swing.JTable();
         UserTypeComboBox = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        backButton = new javax.swing.JButton();
+        adminBackButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
         EditButton = new javax.swing.JButton();
 
@@ -98,10 +98,10 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Manage User");
 
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        adminBackButton.setText("Back");
+        adminBackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                adminBackButtonActionPerformed(evt);
             }
         });
 
@@ -147,19 +147,19 @@ public class ManageUser_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(backButton)
-                                .addGap(257, 257, 257)
+                                .addComponent(adminBackButton)
+                                .addGap(291, 291, 291)
                                 .addComponent(jLabel3)))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(backButton))
-                .addGap(30, 30, 30)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adminBackButton)
+                    .addComponent(jLabel3))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,11 +212,11 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_EditButtonActionPerformed
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void adminBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBackButtonActionPerformed
         Admin_GUI adminGUI = new Admin_GUI(admin);
         adminGUI.show();
         dispose();
-    }//GEN-LAST:event_backButtonActionPerformed
+    }//GEN-LAST:event_adminBackButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         String filterTarget = userTypeSelection[UserTypeComboBox.getSelectedIndex()];
@@ -329,7 +329,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
     private javax.swing.JButton EditButton;
     private javax.swing.JTable UserTable;
     private javax.swing.JComboBox<String> UserTypeComboBox;
-    private javax.swing.JButton backButton;
+    private javax.swing.JButton adminBackButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
