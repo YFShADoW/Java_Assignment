@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,7 +26,8 @@ public class AddPR_GUI extends javax.swing.JFrame {
         this.saleManager=saleManager;
         initComponents();
         setLocationRelativeTo(null);
-        SupplierComboBox.setModel(new DefaultComboBoxModel<>(getSupplierIDList()));
+        supplierIDList[0] = "All";
+        SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
     }
 
     /**
@@ -92,12 +94,6 @@ public class AddPR_GUI extends javax.swing.JFrame {
             }
         });
 
-        QuantityText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QuantityTextActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Enter Item Quantity: ");
 
         jLabel5.setText("Select Item: ");
@@ -146,11 +142,6 @@ public class AddPR_GUI extends javax.swing.JFrame {
         });
 
         SelectedItemIDText.setEditable(false);
-        SelectedItemIDText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelectedItemIDTextActionPerformed(evt);
-            }
-        });
 
         jLabel8.setText("Selected Item ID: ");
 
@@ -243,31 +234,26 @@ public class AddPR_GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void QuantityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuantityTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_QuantityTextActionPerformed
-
+    //
+    
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();
-        String supplierID = supplierIDList[SupplierComboBox.getSelectedIndex()];
-
-        Double grandTotalPrice = .0;
-        String status = "Pending";
-        int rowNum = ItemListTable.getRowCount();
-        String[] itemArray = new String[rowNum];
-        for(int i=0; i< rowNum;i++){
-            String ItemID = model.getValueAt(i, 0).toString();
-            String itemQuantity = model.getValueAt(i, 2).toString();
-            String itemData = String.join(";",ItemID, itemQuantity);
-            itemArray[i] = itemData;  
-            Double totalPrice = Double.parseDouble(model.getValueAt(i, 4).toString());
-            grandTotalPrice += totalPrice;
+        if(ItemListTable.getRowCount()>0){
+            DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();
+            ItemLine[] itemList = new ItemLine[ItemListTable.getRowCount()];
+            
+            for(int i=0; i< ItemListTable.getRowCount();i++){
+                String ItemID = model.getValueAt(i, 0).toString();
+                Item item = saleManager.checkItemInfo(ItemID);
+                String itemQuantity = model.getValueAt(i, 2).toString();
+                ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                itemList[i]=itemLine;
+            }
+            PurchaseRequisition newPR = new PurchaseRequisition("PR00005",saleManager.getSM_ID(),supplierID,"10-9-2023",GrandTotalPrice,status,itemLine);
+            newPR.addPurchaseRequisition();    
         }
-        String itemLine = String.join(",", itemArray);
-        String GrandTotalPrice = Double.toString(grandTotalPrice);
-        PurchaseRequisition newPR = new PurchaseRequisition("PR00005",saleManager.getSM_ID(),supplierID,"10-9-2023",GrandTotalPrice,status,itemLine);
-        newPR.addPurchaseRequisition();
+        else{
+            JOptionPane.showMessageDialog(null, "Please Add Item First");
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -277,11 +263,17 @@ public class AddPR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void SupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierComboBoxActionPerformed
-        String filterTarget = supplierIDList[SupplierComboBox.getSelectedIndex()];
-        FileManager filterSupplier = new FileManager("Item.txt");
-        ArrayList<String[]> SupplierItem = filterSupplier.filterData(5, filterTarget);
-        removeItemTableRow();
-        displayItemTable(SupplierItem);
+        if(supplierIDList[SupplierComboBox.getSelectedIndex()].equals("All")){
+            removeItemTableRow();
+            displayItemTable();
+        }    
+        else{
+            String filterTarget = supplierIDList[SupplierComboBox.getSelectedIndex()];
+            FileManager filterSupplier = new FileManager("Item.txt");
+            ArrayList<String[]> SupplierItem = filterSupplier.filterData(5, filterTarget);
+            removeItemTableRow();
+            displayItemTable(SupplierItem);
+        }
     }//GEN-LAST:event_SupplierComboBoxActionPerformed
 
     private void ItemTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemTableMouseClicked
@@ -291,24 +283,18 @@ public class AddPR_GUI extends javax.swing.JFrame {
         SelectedItemIDText.setText(SelectedItemID);
     }//GEN-LAST:event_ItemTableMouseClicked
 
-    private void SelectedItemIDTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectedItemIDTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SelectedItemIDTextActionPerformed
-
     private void addToPRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToPRButtonActionPerformed
+        SupplierComboBox.setEnabled(false);
         
-        String SelectedItemID = SelectedItemIDText.getText();
-        int itemQuantity = Integer.parseInt(QuantityText.getText());
-        FileManager searchItem = new FileManager("Item.txt");
-        ArrayList<String[]> itemList = searchItem.searchData(SelectedItemID);
-        String[] ItemData = itemList.get(0);
-        String ItemUnitPrice = ItemData[3];
-        double unitPrice = Double.parseDouble(ItemUnitPrice);
-        double totalPrice = unitPrice*itemQuantity;
-        String totalPriceString = Double.toString(totalPrice);
-        String[] ItemLine = {ItemData[0],ItemData[1],Integer.toString(itemQuantity),ItemData[3],totalPriceString};
-        DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();
-        model.addRow(ItemLine);
+        String SelectedItemID = SelectedItemIDText.getText();// GUI input
+        Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
+        int itemQuantity = Integer.parseInt(QuantityText.getText()); //GUI input
+        
+        ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
+        String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
+
+        DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();//GUI control
+        model.addRow(itemRow); // GUI output
     }//GEN-LAST:event_addToPRButtonActionPerformed
 
     private String[] getSupplierIDList(){
@@ -318,7 +304,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
         supplierIDList[0] = null;
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
-            String[] data = line.split("|");
+            String[] data = line.split("\\|");
             supplierIDList[i+1]=data[0];
         }
         return supplierIDList;
