@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddItem_GUI extends javax.swing.JFrame {
     private DefaultTableModel itemtable = new DefaultTableModel();
-    private String [] itemColumn = {"Item Code","Item Name","Item Category","Item Unit Price","Quantity","Item Supplier ID"};
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
     private String[] supplierIDList = getSupplierIDFromFile();
     private SaleManager saleManager;
@@ -28,7 +27,6 @@ public class AddItem_GUI extends javax.swing.JFrame {
         initComponents();
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         supplierIDComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
-        itemtable.setColumnIdentifiers(itemColumn);
         displayTable();
     }
 
@@ -64,7 +62,29 @@ public class AddItem_GUI extends javax.swing.JFrame {
         jLabel1.setText("Add Item ");
 
         itemTable.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        itemTable.setModel(itemtable);
+        itemTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item Code", "Item Name", "Item Category", "Unit Price", "Stock", "Supplier ID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         itemTable.setDoubleBuffered(true);
         itemTable.setSelectionBackground(new java.awt.Color(204, 255, 204));
         jScrollPane1.setViewportView(itemTable);
