@@ -5,6 +5,7 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class PurchaseRequisition {
@@ -142,5 +143,27 @@ public class PurchaseRequisition {
         FileManager PRFile = new FileManager("Purchase_Requisition.txt");
         PRFile.addToFile(newPR);
     }
-    
+    public void editPurchaseRequisition(PurchaseRequisition newPR){
+        // Get old itemList
+        String oldLine="";
+        for(ItemLine item: this.itemList){
+            String ItemIDQuantity = String.join(";",item.getItem().getItemCode(),Integer.toString(item.getQuantity()));
+            oldLine = String.join(",", oldLine,ItemIDQuantity);
+        }
+        oldLine = oldLine.substring(1);
+        String[] oldPR = {this.getPurchaseRequisitionID(),this.getSaleManager(),this.getSupplier().getSupplierID(),this.getRequestDate(),Double.toString(this.getGrandTotalPrice()),this.getPurchaseRequisitionStatus(),oldLine};
+        
+        // Get new itemList
+        String newLine="";
+        for(ItemLine item: newPR.itemList){
+            String ItemIDQuantity = String.join(";",item.getItem().getItemCode(),Integer.toString(item.getQuantity()));
+            newLine = String.join(",", newLine,ItemIDQuantity);
+        }
+        newLine = newLine.substring(1);
+        String[] editPR = {newPR.getPurchaseRequisitionID(),newPR.getSaleManager(),newPR.getSupplier().getSupplierID(),newPR.getRequestDate(),Double.toString(newPR.getGrandTotalPrice()),newPR.getPurchaseRequisitionStatus(),newLine};
+        
+        // Write to File
+        FileManager PRFile = new FileManager("Purchase_Requisition.txt");
+        PRFile.editFile(oldPR, editPR);
+    }
 }

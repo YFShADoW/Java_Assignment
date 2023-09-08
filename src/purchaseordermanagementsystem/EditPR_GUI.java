@@ -6,6 +6,7 @@ package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +24,9 @@ public class EditPR_GUI extends javax.swing.JFrame {
         initComponents();
         supplierText.setText(PR.getSupplier().getSupplierID());
         PRIDText.setText(PR.getPurchaseRequisitionID());
+        requestDateText.setText(PR.getRequestDate());
+        displayItemListTable();
+        displaySupplierItemTable(PR.getSupplier().getSupplierID());
     }
 
     /**
@@ -175,6 +179,8 @@ public class EditPR_GUI extends javax.swing.JFrame {
             }
         });
 
+        requestDateText.setEditable(false);
+
         jLabel9.setText("Request Date: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -229,12 +235,13 @@ public class EditPR_GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(backButton)
+                        .addComponent(jLabel1)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -271,7 +278,29 @@ public class EditPR_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
+        // Get table data
+        if(itemListTable.getRowCount()>0){
+            DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+            ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
+            for(int i=0; i< itemListTable.getRowCount();i++){
+                String ItemID = model.getValueAt(i, 0).toString();
+                Item item = saleManager.checkItemInfo(ItemID);
+                String itemQuantity = model.getValueAt(i, 2).toString();
+                ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                itemList[i]=itemLine;
+            }
+            double grandTotalPrice = ItemLine.calculateGrandTotalPrice(itemList);
+
+            PurchaseRequisition newPR = new PurchaseRequisition(PR.getPurchaseRequisitionID(),PR.getSaleManager(),PR.getSupplier(),PR.getRequestDate(),grandTotalPrice,PR.getPurchaseRequisitionStatus(),itemList);
+            PR.editPurchaseRequisition(newPR);
+
+            ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);
+            managePRGUI.show();
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Edit item list cannot be empty");
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void quantityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTextActionPerformed
@@ -293,56 +322,94 @@ public class EditPR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void DeleteLineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteLineButtonActionPerformed
-        DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
-        int selectedRowIndex = itemListTable.getSelectedRow();
-        String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
-        String PRID = SelectedPRData[0];
-        
-        FileManager PRFile = new FileManager("Purchase_Requisition.txt");
-        ArrayList<String[]> PRList = PRFile.searchData(PRID);
-        
-        String[] oldPRData = PRList.get(0);
-        String[] oldItemList = oldPRData[6].split(",");
-        ArrayList<String> newItemList = new ArrayList<String>();
-        for(int i=0; i < oldItemList.length; i++){
-            String PRitemLine = oldItemList[i].toString();
-            String[] PRitemData = PRitemLine.split(";");
-            if (!SelectedItemID.equals(PRitemData[0])){
-                newItemList.add(oldItemList[i]);
+        if(itemListTable.getSelectedRow()!=-1){
+            DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+            int selectedRowIndex = itemListTable.getSelectedRow();
+            String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
+            ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
+
+            // Get table Data
+            for(int i=0; i< itemListTable.getRowCount();i++){
+                String ItemID = model.getValueAt(i, 0).toString();
+                Item item = saleManager.checkItemInfo(ItemID);
+                String itemQuantity = model.getValueAt(i, 2).toString();
+                ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                itemList[i]=itemLine;
+            }
+            // Remove from the itemListTable
+            removeItemListTableRow();
+            for(ItemLine itemData:itemList){
+                if(!itemData.getItem().getItemCode().equals(SelectedItemID)){
+                    String[] tableRow = itemData.toString().split("\\|");
+                    model.addRow(tableRow);
+                }
             }
         }
-        String newItemLine = String.join(",",newItemList);
-        String[] NewPRData = {oldPRData[0],oldPRData[1],oldPRData[2],oldPRData[3],oldPRData[4],oldPRData[5],newItemLine};
-        PRFile.editFile(oldPRData,NewPRData);
-        removeItemListTableRow();
-        displayitemListTable();
+        else{
+            JOptionPane.showMessageDialog(null, "Please Select and Remove");
+        }
     }//GEN-LAST:event_DeleteLineButtonActionPerformed
 
     private void addItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemButtonActionPerformed
-        // TODO add your handling code here:
+        if(!quantityText.getText().isBlank()){
+            DefaultTableModel SITmodel = (DefaultTableModel) supplierItemTable.getModel();
+            String SelectedItemID = SITmodel.getValueAt(supplierItemTable.getSelectedRow(), 0).toString();// GUI input
+            Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
+            int itemQuantity = Integer.parseInt(quantityText.getText()); //GUI input
+
+            if(checkDuplicate(SelectedItemID)){
+                JOptionPane.showMessageDialog(null, "Item already add");
+            }
+            else{
+                ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
+                String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
+
+                DefaultTableModel ILTmodel = (DefaultTableModel) itemListTable.getModel();//GUI control
+                ILTmodel.addRow(itemRow); // GUI output    
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please Enter Quantity");
+        }
     }//GEN-LAST:event_addItemButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        String newQuantity = quantityText.getText();
+        if(itemListTable.getSelectedRow()!=-1){
+            if(!quantityText.getText().isBlank()){
+                String newQuantity  = quantityText.getText();
+
+                DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+                int selectedRowIndex = itemListTable.getSelectedRow();
+                String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
+                ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
+
+                // Get table Data & edit
+                for(int i=0; i< itemListTable.getRowCount();i++){
+                    String ItemID = model.getValueAt(i, 0).toString();
+                    Item item = saleManager.checkItemInfo(ItemID);
+                    String itemQuantity = model.getValueAt(i, 2).toString();
+                    if(item.getItemCode().equals(SelectedItemID)){
+                        itemQuantity = newQuantity;
+                    }
+                    ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                    itemList[i]=itemLine;
+                }
+
+                // Remove from the itemListTable
+                removeItemListTableRow();
+                for(ItemLine itemData:itemList){
+                    String[] tableRow = itemData.toString().split("\\|");
+                    model.addRow(tableRow);
+                }
         
-        // ReadFrom File
-        FileManager PRFile = new FileManager("Purchase_Requisition.txt");
-        ArrayList<String[]> PRList = PRFile.searchData(PRID);
-        
-        String[] oldPRData = PRList.get(0);
-        String[] oldItemList = oldPRData[6].split(",");
-        ArrayList<String> newItemList = new ArrayList<String>();
-        
-        for(int i=0; i < oldItemList.length; i++){
-            String PRitemLine = oldItemList[i].toString();
-            String[] PRitemData = PRitemLine.split(";");
-            if (!SelectedItemID.equals(PRitemData[0])){
-                quantityText.setText(PRitemData[1]);
-                break;
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Enter valid Quantity");
             }
         }
-        
-        
+        else{
+            JOptionPane.showMessageDialog(null, "Please Select item to edit");
+        }
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void itemListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemListTableMouseClicked
@@ -353,37 +420,53 @@ public class EditPR_GUI extends javax.swing.JFrame {
         
         quantityText.setText(SelectedQuantity);
     }//GEN-LAST:event_itemListTableMouseClicked
-    
-    public void displayitemListTable(){
-        String PRID = SelectedPRData[0];
+
+    // custom code
+    private boolean checkDuplicate(String itemIDTarget){
         DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
-        FileManager searchPR = new FileManager("Purchase_Requisition.txt");
-        ArrayList<String[]> PRList = searchPR.searchData(PRID);
-        String[] PRData = PRList.get(0);
-        String[] PRitemList = PRData[6].split(",");
-        for(int i=0; i < PRitemList.length; i++){
-            String PRitemLine = PRitemList[i].toString();
-            String[] PRitemData = PRitemLine.split(";");
-            String PRitemID = PRitemData[0];
-            String itemQuantity = PRitemData[1];
-            FileManager searchItem = new FileManager("Item.txt");
-            ArrayList<String[]> itemList = searchItem.searchData(PRitemID);
-            String[] ItemData = itemList.get(0);
-            double unitPrice = Double.parseDouble(ItemData[3]);
-            double totalPrice = unitPrice*Integer.parseInt(itemQuantity);
-            String totalPriceString = Double.toString(totalPrice);
-            String[] showItemLine = {ItemData[0],ItemData[1],itemQuantity,ItemData[3],totalPriceString};
-            model.addRow(showItemLine);
-        }
-        // Pre condition: Get PRID
-        // Get PR data from PR.txt
-        // Get the itemLine. split into array
-        
-        // Get item data from item.txt
-        // Use the PR 's itemID to get detail information from item data (Save to Array)
-        // add to table
+        ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
             
+        // Get table Data
+        for(int i=0; i< itemListTable.getRowCount();i++){
+            String ItemID = model.getValueAt(i, 0).toString();
+            Item item = saleManager.checkItemInfo(ItemID);
+            String itemQuantity = model.getValueAt(i, 2).toString();
+            ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+            itemList[i]=itemLine;
+        }
         
+        for(ItemLine item:itemList){
+            if(item.getItem().getItemCode().equals(itemIDTarget)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public void displayItemListTable(){
+        DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+        ItemLine[] itemList = PR.getItemList();
+        for(ItemLine itemData:itemList){
+            String[] tableRow = itemData.toString().split("\\|");
+            model.addRow(tableRow);
+        }
+    }
+    
+    public void displaySupplierItemTable(String SupplierID){
+        DefaultTableModel model = (DefaultTableModel) supplierItemTable.getModel();
+        FileManager file = new FileManager("Item.txt");
+        ArrayList<String[]> rows =  file.filterData(5, SupplierID);
+        removeSupplierListTableRow();
+        for(int i =0;i<rows.size();i++){
+            String[] selectedData = Arrays.copyOf(rows.get(i), 5);
+            model.addRow(selectedData);
+        }
+    }
+    public void removeSupplierListTableRow(){
+        DefaultTableModel model = (DefaultTableModel) supplierItemTable.getModel();
+        int count = model.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
     }
     
     public void removeItemListTableRow(){
@@ -392,7 +475,7 @@ public class EditPR_GUI extends javax.swing.JFrame {
         for (int i = count - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-    }
+    }  
     
     /**
      * @param args the command line arguments

@@ -76,9 +76,16 @@ public class AddPR_GUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         ItemTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -124,9 +131,16 @@ public class AddPR_GUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(ItemListTable);
@@ -259,6 +273,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 itemList[i]=itemLine;
             }
             
+            
             // Get PR info
             double grandTotalPrice = ItemLine.calculateGrandTotalPrice(itemList);
             String supplierID = supplierIDList[SupplierComboBox.getSelectedIndex()];
@@ -306,14 +321,44 @@ public class AddPR_GUI extends javax.swing.JFrame {
         String SelectedItemID = SelectedItemIDText.getText();// GUI input
         Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
         int itemQuantity = Integer.parseInt(QuantityText.getText()); //GUI input
-                
-        ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
-        String[] itemRow = itemLine.toString().split("\\|"); // converter & calculation
+        
+        if(checkDuplicate(SelectedItemID)){
+            JOptionPane.showMessageDialog(null, "Item already add");
+        }
+        else{
+            ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
+            String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
 
-        DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();//GUI control
-        model.addRow(itemRow); // GUI output
+            DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();//GUI control
+            model.addRow(itemRow); // GUI output    
+        }
     }//GEN-LAST:event_addToPRButtonActionPerformed
 
+    ///// Custom Code
+    // return true if duplicate
+    private boolean checkDuplicate(String itemIDTarget){
+        DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();
+        ItemLine[] itemList = new ItemLine[ItemListTable.getRowCount()];
+            
+        // Get table Data
+        for(int i=0; i< ItemListTable.getRowCount();i++){
+            String ItemID = model.getValueAt(i, 0).toString();
+            Item item = saleManager.checkItemInfo(ItemID);
+            String itemQuantity = model.getValueAt(i, 2).toString();
+            ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+            itemList[i]=itemLine;
+        }
+        
+        for(ItemLine item:itemList){
+            if(item.getItem().getItemCode().equals(itemIDTarget)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    
     private String[] getSupplierIDList(){
         FileManager getrow = new FileManager("Supplier.txt");
         ArrayList<String> rows =  getrow.readFile();
@@ -336,8 +381,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
             String[] data = line.split("\\|");
             String[] selectedData = Arrays.copyOf(data, 5);
             model.addRow(selectedData);
-        }
-        
+        } 
     }
     
     public void displayItemTable(ArrayList<String[]> ItemData){
