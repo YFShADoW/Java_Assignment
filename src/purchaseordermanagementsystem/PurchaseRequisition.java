@@ -11,12 +11,13 @@ public class PurchaseRequisition {
     private String PurchaseRequisitionID;
     private String PurchaseRequisitionStatus;
     private String requestDate;
-    private String grandTotalPrice;
+    private double grandTotalPrice;
     private String saleManager;
     private ItemLine[] itemList;
     private Supplier supplier;
 
-    public PurchaseRequisition(String PurchaseRequisitionID, String saleManager, Supplier supplier, String requestDate, String grandTotalPrice, String PurchaseRequisitionStatus, ItemLine[] itemList) {
+    //Normal Constructor
+    public PurchaseRequisition(String PurchaseRequisitionID, String saleManager, Supplier supplier, String requestDate, double grandTotalPrice, String PurchaseRequisitionStatus, ItemLine[] itemList) {
         this.PurchaseRequisitionID = PurchaseRequisitionID;
         this.saleManager = saleManager;
         this.supplier = supplier;
@@ -25,18 +26,44 @@ public class PurchaseRequisition {
         this.PurchaseRequisitionStatus = PurchaseRequisitionStatus;
         this.itemList = itemList;
     }
-    public PurchaseRequisition(String PurchaseRequisitionID, String saleManager, String supplierID, String requestDate, String grandTotalPrice, String PurchaseRequisitionStatus, ItemLine[] itemList) {
+    
+    // Construct with String supplierID
+    public PurchaseRequisition(String PurchaseRequisitionID, String saleManager, String supplierID, String requestDate, double grandTotalPrice, String PurchaseRequisitionStatus, ItemLine[] itemList) {
+        this.PurchaseRequisitionID = PurchaseRequisitionID;
+        this.saleManager = saleManager;
+        FileManager file = new FileManager("Supplier.txt");
+        String[] supplierData =file.searchByPrimaryKey(supplierID);        
+        this.supplier = new Supplier(supplierData[0],supplierData[1],supplierData[2],supplierData[3],supplierData[4]);
+        
+        this.requestDate = requestDate;
+        this.grandTotalPrice = grandTotalPrice; // Redo
+        this.PurchaseRequisitionStatus = PurchaseRequisitionStatus;
+        this.itemList = itemList;
+    }
+
+    // Construct with String SupplierID and String ItemLine
+    public PurchaseRequisition(String PurchaseRequisitionID, String saleManager, String supplierID, String requestDate, String grandTotalPrice, String PurchaseRequisitionStatus, String itemLines) {
         this.PurchaseRequisitionID = PurchaseRequisitionID;
         this.saleManager = saleManager;
         
         FileManager file = new FileManager("Supplier.txt");
-        String[] supplierData =file.searchByPrimaryKey(supplierID);
-        
+        String[] supplierData =file.searchByPrimaryKey(supplierID);        
         this.supplier = new Supplier(supplierData[0],supplierData[1],supplierData[2],supplierData[3],supplierData[4]);
+        
         this.requestDate = requestDate;
-        this.grandTotalPrice = grandTotalPrice;
+        this.grandTotalPrice = Double.parseDouble(grandTotalPrice);
         this.PurchaseRequisitionStatus = PurchaseRequisitionStatus;
-        this.itemList = itemList;
+        
+        // Convert ItemLine
+        String[] itemData = itemLines.split(",");
+        // ["I00001;20"  ,"I00002;60"]
+        ItemLine[] newItemList = new ItemLine[itemData.length];
+        for(int i = 0 ; i< itemData.length;i++){
+            String[] ItemIDQuantity = itemData[i].split(";");
+            ItemLine itemLine = new ItemLine(Integer.parseInt(ItemIDQuantity[1]),ItemIDQuantity[0]);
+            newItemList[i]=itemLine;
+        }
+        this.itemList=newItemList;
     }
 
     public String getPurchaseRequisitionID() {
@@ -63,11 +90,11 @@ public class PurchaseRequisition {
         this.requestDate = requestDate;
     }
 
-    public String getGrandTotalPrice() {
+    public double getGrandTotalPrice() {
         return grandTotalPrice;
     }
 
-    public void setGrandTotalPrice(String grandTotalPrice) {
+    public void setGrandTotalPrice(double grandTotalPrice) {
         this.grandTotalPrice = grandTotalPrice;
     }
 
@@ -99,6 +126,10 @@ public class PurchaseRequisition {
     public void createPurchaseRequisition(){
         
     }
+    public void removePurchaseRequisition(){
+        FileManager file = new FileManager("Purchase_Requisition.txt");
+        file.removeLineFromFile(this.getPurchaseRequisitionID());
+    }
     
     public void addPurchaseRequisition(){
         String line = "";
@@ -107,7 +138,7 @@ public class PurchaseRequisition {
             line = String.join(",", line,ItemIDQuantity);
         }
         line = line.substring(1);
-        String[] newPR = {this.getPurchaseRequisitionID(),this.getSaleManager(),this.getSupplier().getSupplierID(),this.getRequestDate(),this.getGrandTotalPrice(),this.getPurchaseRequisitionStatus(),line};
+        String[] newPR = {this.getPurchaseRequisitionID(),this.getSaleManager(),this.getSupplier().getSupplierID(),this.getRequestDate(),Double.toString(this.getGrandTotalPrice()),this.getPurchaseRequisitionStatus(),line};
         FileManager PRFile = new FileManager("Purchase_Requisition.txt");
         PRFile.addToFile(newPR);
     }

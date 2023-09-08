@@ -254,7 +254,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
             String supplierID = supplierIDList[SupplierComboBox.getSelectedIndex()];
             String newPurchaseRequisitionID = saleManager.generatePRID();
             
-            PurchaseRequisition newPR = new PurchaseRequisition(newPurchaseRequisitionID,saleManager.getSM_ID(),supplierID,"10-9-2023",Double.toString(grandTotalPrice),"Pending",itemList);
+            PurchaseRequisition newPR = new PurchaseRequisition(newPurchaseRequisitionID,saleManager.getSM_ID(),supplierID,"10-9-2023",grandTotalPrice,"Pending",itemList);
             newPR.addPurchaseRequisition();    
             
             removeItemListTableRow();

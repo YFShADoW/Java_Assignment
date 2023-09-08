@@ -4,6 +4,9 @@
  */
 package purchaseordermanagementsystem;
 
+import java.util.Arrays;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author weily
@@ -11,8 +14,13 @@ package purchaseordermanagementsystem;
 public class RemovePR_GUI extends javax.swing.JFrame {
 
     private SaleManager saleManager;
-    public RemovePR_GUI(SaleManager saleManager,) {
+    private PurchaseRequisition PR;
+    public RemovePR_GUI(SaleManager saleManager,PurchaseRequisition PR) {
+        this.saleManager=saleManager;
+        this.PR = PR;
         initComponents();
+        displayTable();
+        supplierText.setText(PR.getSupplier().getSupplierID());
     }
 
     /**
@@ -39,11 +47,6 @@ public class RemovePR_GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         supplierText.setEditable(false);
-        supplierText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supplierTextActionPerformed(evt);
-            }
-        });
 
         confirmButton.setText("Confirm Delete");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -56,21 +59,25 @@ public class RemovePR_GUI extends javax.swing.JFrame {
 
         itemListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Item ID", "Item Name", "Quantity", "Unit Price", "Total Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(itemListTable);
@@ -135,12 +142,12 @@ public class RemovePR_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void supplierTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supplierTextActionPerformed
-
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        // TODO add your handling code here:
+        PR.removePurchaseRequisition();
+        ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);
+        managePRGUI.show();
+        dispose();
+        
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -149,6 +156,16 @@ public class RemovePR_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    public void displayTable(){
+        DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+        ItemLine[] itemList = PR.getItemList();
+        for(ItemLine itemData:itemList){
+            String[] tableRow = itemData.toString().split("\\|");
+            model.addRow(tableRow);
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

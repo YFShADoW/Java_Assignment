@@ -15,17 +15,14 @@ import javax.swing.table.DefaultTableModel;
 public class EditPR_GUI extends javax.swing.JFrame {
 
     private SaleManager saleManager;
-    private String[] SelectedPRData;
-    //private PurchaseRequisition purchaseRequisition;
+    private PurchaseRequisition PR;
     
-    public EditPR_GUI(SaleManager saleManager, String[] SelectedPRData) {
-        this.saleManager = saleManager;
-        this.SelectedPRData = SelectedPRData;
+    public EditPR_GUI(SaleManager saleManager, PurchaseRequisition PR) {
+        this.saleManager=saleManager;
+        this.PR = PR;
         initComponents();
-        PRIDText.setText(SelectedPRData[0]);
-        supplierText.setText(SelectedPRData[2]);
-        displayitemListTable();
-
+        supplierText.setText(PR.getSupplier().getSupplierID());
+        PRIDText.setText(PR.getPurchaseRequisitionID());
     }
 
     /**
