@@ -263,23 +263,28 @@ public class EditPR_GUI extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // Get table data
-        DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
-        ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
-        for(int i=0; i< itemListTable.getRowCount();i++){
-            String ItemID = model.getValueAt(i, 0).toString();
-            Item item = saleManager.checkItemInfo(ItemID);
-            String itemQuantity = model.getValueAt(i, 2).toString();
-            ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
-            itemList[i]=itemLine;
-        }
-        double grandTotalPrice = ItemLine.calculateGrandTotalPrice(itemList);
+        if(itemListTable.getRowCount()>0){
+            DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+            ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
+            for(int i=0; i< itemListTable.getRowCount();i++){
+                String ItemID = model.getValueAt(i, 0).toString();
+                Item item = saleManager.checkItemInfo(ItemID);
+                String itemQuantity = model.getValueAt(i, 2).toString();
+                ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                itemList[i]=itemLine;
+            }
+            double grandTotalPrice = ItemLine.calculateGrandTotalPrice(itemList);
 
-        PurchaseRequisition newPR = new PurchaseRequisition(PR.getPurchaseRequisitionID(),PR.getSaleManager(),PR.getSupplier(),PR.getRequestDate(),grandTotalPrice,PR.getPurchaseRequisitionStatus(),itemList);
-        PR.editPurchaseRequisition(newPR);
-        
-        ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);
-        managePRGUI.show();
-        dispose();
+            PurchaseRequisition newPR = new PurchaseRequisition(PR.getPurchaseRequisitionID(),PR.getSaleManager(),PR.getSupplier(),PR.getRequestDate(),grandTotalPrice,PR.getPurchaseRequisitionStatus(),itemList);
+            PR.editPurchaseRequisition(newPR);
+
+            ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);
+            managePRGUI.show();
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Edit item list cannot be empty");
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void quantityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTextActionPerformed
@@ -353,35 +358,41 @@ public class EditPR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_addItemButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if(!quantityText.getText().isBlank()){
-            String newQuantity  = quantityText.getText();
+        if(itemListTable.getSelectedRow()!=-1){
+            if(!quantityText.getText().isBlank()){
+                String newQuantity  = quantityText.getText();
 
-            DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
-            int selectedRowIndex = itemListTable.getSelectedRow();
-            String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
-            ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
+                DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+                int selectedRowIndex = itemListTable.getSelectedRow();
+                String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
+                ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
 
-            // Get table Data & edit
-            for(int i=0; i< itemListTable.getRowCount();i++){
-                String ItemID = model.getValueAt(i, 0).toString();
-                Item item = saleManager.checkItemInfo(ItemID);
-                String itemQuantity = model.getValueAt(i, 2).toString();
-                if(item.getItemCode().equals(SelectedItemID)){
-                    itemQuantity = newQuantity;
+                // Get table Data & edit
+                for(int i=0; i< itemListTable.getRowCount();i++){
+                    String ItemID = model.getValueAt(i, 0).toString();
+                    Item item = saleManager.checkItemInfo(ItemID);
+                    String itemQuantity = model.getValueAt(i, 2).toString();
+                    if(item.getItemCode().equals(SelectedItemID)){
+                        itemQuantity = newQuantity;
+                    }
+                    ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                    itemList[i]=itemLine;
                 }
-                ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
-                itemList[i]=itemLine;
-            }
 
-            // Remove from the itemListTable
-            removeItemListTableRow();
-            for(ItemLine itemData:itemList){
-                String[] tableRow = itemData.toString().split("\\|");
-                model.addRow(tableRow);
+                // Remove from the itemListTable
+                removeItemListTableRow();
+                for(ItemLine itemData:itemList){
+                    String[] tableRow = itemData.toString().split("\\|");
+                    model.addRow(tableRow);
+                }
+        
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Enter valid Quantity");
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Enter valid Quantity");
+            JOptionPane.showMessageDialog(null, "Please Select item to edit");
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
