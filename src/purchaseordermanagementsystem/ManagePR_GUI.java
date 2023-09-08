@@ -63,12 +63,6 @@ public class ManagePR_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        searchText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextActionPerformed(evt);
-            }
-        });
-
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,24 +93,9 @@ public class ManagePR_GUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        PRTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PRTableMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(PRTable);
 
         statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Pending", "Approved", "Rejected" }));
-        statusComboBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                statusComboBoxItemStateChanged(evt);
-            }
-        });
-        statusComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statusComboBoxActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Status");
 
@@ -159,7 +138,6 @@ public class ManagePR_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(BackButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -209,10 +187,9 @@ public class ManagePR_GUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(addButton)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(editButton)
-                                            .addComponent(removeButton)))
+                                        .addComponent(editButton)
+                                        .addComponent(removeButton))
+                                    .addComponent(addButton)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(5, 5, 5)
                                         .addComponent(jLabel1))
@@ -234,10 +211,6 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_addButtonActionPerformed
-
-    private void statusComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusComboBoxActionPerformed
-        
-    }//GEN-LAST:event_statusComboBoxActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         
@@ -289,37 +262,25 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         int selectedRowIndex = PRTable.getSelectedRow();
         String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
 
-        FileManager searchPR = new FileManager("Purchase_Requisition.txt");
-        ArrayList<String[]> PRList = searchPR.searchData(SelectedPRID); 
-        String[] SelectedPRData = PRList.get(0);
+        PurchaseRequisition PR = saleManager.checkPRInfo(SelectedPRID);
         
-        EditPR_GUI editPRGUI = new EditPR_GUI(saleManager,SelectedPRData);
+        EditPR_GUI editPRGUI = new EditPR_GUI(saleManager,PR);
         editPRGUI.show();
         dispose();
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
-        int selectedRowIndex = PRTable.getSelectedRow();
-        String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
-        
-        
-        RemovePR_GUI removePRGUI = new RemovePR_GUI(saleManager);
-        removePRGUI.show();
-        dispose();
+        if(PRTable.getSelectedRow()!=-1){
+            DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+            int selectedRowIndex = PRTable.getSelectedRow();
+            String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
+            PurchaseRequisition PR = saleManager.checkPRInfo(SelectedPRID);
+
+            RemovePR_GUI removePRGUI = new RemovePR_GUI(saleManager,PR);
+            removePRGUI.show();
+            dispose();    
+        }
     }//GEN-LAST:event_removeButtonActionPerformed
-
-    private void searchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchTextActionPerformed
-
-    private void statusComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_statusComboBoxItemStateChanged
-    
-    }//GEN-LAST:event_statusComboBoxItemStateChanged
-
-    private void PRTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PRTableMouseClicked
-
-    }//GEN-LAST:event_PRTableMouseClicked
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         if (purchaseManager !=null && saleManager == null){
