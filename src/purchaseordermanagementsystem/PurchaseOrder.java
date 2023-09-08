@@ -4,15 +4,13 @@
  */
 package purchaseordermanagementsystem;
 
-import java.util.Date;
-
 public class PurchaseOrder {
     private String purchaseOrderID;
-    private Date orderDate;
+    private String orderDate;
     private PurchaseRequisition purchaseRequisition;
     private PurchaseManager purchaseManager;
 
-    public PurchaseOrder(String purchaseOrderID, Date orderDate, PurchaseRequisition purchaseRequisition, PurchaseManager purchaseManager) {
+    public PurchaseOrder(String purchaseOrderID, String orderDate, PurchaseRequisition purchaseRequisition, PurchaseManager purchaseManager) {
         this.purchaseOrderID = purchaseOrderID;
         this.orderDate = orderDate;
         this.purchaseRequisition = purchaseRequisition;
@@ -23,11 +21,11 @@ public class PurchaseOrder {
         return purchaseOrderID;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 

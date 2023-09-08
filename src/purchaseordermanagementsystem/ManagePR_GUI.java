@@ -322,6 +322,11 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+        int selectedRowIndex = PRTable.getSelectedRow();
+        String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
+        
+        
         RemovePR_GUI removePRGUI = new RemovePR_GUI(saleManager);
         removePRGUI.show();
         dispose();

@@ -20,7 +20,7 @@ public class ItemLine{
         this.quantity = quantity;
         FileManager file = new FileManager("Item.txt");
         String[] itemData = file.searchByPrimaryKey(itemID);
-        this.item = new Item(itemData[0],itemData[1],itemData[2],itemData[3],itemData[4],itemData[5]);
+        this.item = new Item(itemData[0],itemData[1],itemData[2],Double.parseDouble(itemData[3]),Integer.parseInt(itemData[4]),itemData[5]);
     }
 
     public Item getItem() {
