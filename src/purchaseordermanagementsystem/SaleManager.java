@@ -99,6 +99,22 @@ public class SaleManager extends User {
     public void manageSale(){
         
     }
+    public String generatePRID(){
+        FileManager file = new FileManager("Purchase_Requisition.txt");
+        ArrayList<String> PRData = file.readFile();
+        int newNo=0;
+        if(PRData.size() ==0){
+            newNo=1;
+        }
+        else{
+            String lastRow = PRData.get(PRData.size()-1);
+            String[] data = lastRow.trim().split("\\|");
+            String lastPRID = data[0];
+            newNo = Integer.parseInt(lastPRID.substring(2))+1;
+        }        
+        String newPRID = "PR" + String.format("%05d", newNo);  
+        return newPRID;
+    }
     public void manageSupplier(String mode,Supplier supplier,Supplier editSupplier){
         switch(mode){
             case "add":

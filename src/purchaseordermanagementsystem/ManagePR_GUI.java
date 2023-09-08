@@ -27,6 +27,7 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         
         PMBackButton.setVisible(false);
         viewPRLabel.setVisible(false);
+        managePRLabel.setText("hello");
     }
     
     public ManagePR_GUI(PurchaseManager purchaseManager){
@@ -339,9 +340,16 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_PRTableMouseClicked
 
     private void PMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMBackButtonActionPerformed
-        PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
-        purchaseManagerGUI.show();
-        dispose();
+        if (purchaseManager !=null && saleManager == null){
+            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+            purchaseManagerGUI.show();
+            dispose();
+        }
+        else if (purchaseManager ==null && saleManager != null){
+            SaleManager_GUI smGUI = new SaleManager_GUI(saleManager);
+            smGUI.show();
+            dispose();
+        }
     }//GEN-LAST:event_PMBackButtonActionPerformed
 
     public void displayTable(){

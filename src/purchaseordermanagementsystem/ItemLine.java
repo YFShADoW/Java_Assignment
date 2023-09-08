@@ -15,6 +15,21 @@ public class ItemLine{
         this.quantity = quantity;
         this.item=item;
     }
+    
+    public ItemLine(int quantity,String itemID){
+        this.quantity = quantity;
+        FileManager file = new FileManager("Item.txt");
+        String[] itemData = file.searchByPrimaryKey(itemID);
+        this.item = new Item(itemData[0],itemData[1],itemData[2],itemData[3],itemData[4],itemData[5]);
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -38,7 +53,7 @@ public class ItemLine{
     
     
     public String toString(){
-        return item.getItemCode()+"|"+item.getItemName()+"|"+quantity+"|"+item.getItemUnitPrice()+this.getTotalPrice();
+        return item.getItemCode()+"|"+item.getItemName()+"|"+quantity+"|"+item.getItemUnitPrice()+"|"+this.getTotalPrice();
     }
     
     public void addItemLine(){
