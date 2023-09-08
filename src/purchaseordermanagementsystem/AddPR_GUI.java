@@ -56,6 +56,8 @@ public class AddPR_GUI extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         SelectedItemIDText = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        requestDateText = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -144,6 +146,8 @@ public class AddPR_GUI extends javax.swing.JFrame {
 
         jLabel8.setText("Selected Item ID: ");
 
+        jLabel9.setText("Request Date: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,7 +189,11 @@ public class AddPR_GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(41, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -202,7 +210,9 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backButton))
+                    .addComponent(backButton)
+                    .addComponent(jLabel9)
+                    .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,8 +263,9 @@ public class AddPR_GUI extends javax.swing.JFrame {
             double grandTotalPrice = ItemLine.calculateGrandTotalPrice(itemList);
             String supplierID = supplierIDList[SupplierComboBox.getSelectedIndex()];
             String newPurchaseRequisitionID = saleManager.generatePRID();
+            String requestDate = requestDateText.getText();
             
-            PurchaseRequisition newPR = new PurchaseRequisition(newPurchaseRequisitionID,saleManager.getSM_ID(),supplierID,"10-9-2023",grandTotalPrice,"Pending",itemList);
+            PurchaseRequisition newPR = new PurchaseRequisition(newPurchaseRequisitionID,saleManager.getSM_ID(),supplierID,requestDate,grandTotalPrice,"Pending",itemList);
             newPR.addPurchaseRequisition();    
             
             removeItemListTableRow();
@@ -295,9 +306,9 @@ public class AddPR_GUI extends javax.swing.JFrame {
         String SelectedItemID = SelectedItemIDText.getText();// GUI input
         Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
         int itemQuantity = Integer.parseInt(QuantityText.getText()); //GUI input
-        
+                
         ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
-        String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
+        String[] itemRow = itemLine.toString().split("\\|"); // converter & calculation
 
         DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();//GUI control
         model.addRow(itemRow); // GUI output
@@ -405,8 +416,10 @@ public class AddPR_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField requestDateText;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }

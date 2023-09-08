@@ -47,7 +47,7 @@ public class PurchaseRequisition {
         this.saleManager = saleManager;
         
         FileManager file = new FileManager("Supplier.txt");
-        String[] supplierData =file.searchByPrimaryKey(supplierID);        
+        String[] supplierData = file.searchByPrimaryKey(supplierID);        
         this.supplier = new Supplier(supplierData[0],supplierData[1],supplierData[2],supplierData[3],supplierData[4]);
         
         this.requestDate = requestDate;

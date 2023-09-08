@@ -14,10 +14,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManagePR_GUI extends javax.swing.JFrame {
 
+    private Administrator admin;
     private SaleManager saleManager;
     private PurchaseManager purchaseManager;
     String[] statusSelection = {"All","Pending","Approved","Rejected"};
     
+
     
     public ManagePR_GUI(SaleManager saleManager) {
         this.saleManager=saleManager;
@@ -38,7 +40,19 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         editButton.setVisible(false);
         removeButton.setVisible(false);
     }
-
+    
+    public ManagePR_GUI(Administrator admin){
+        this.admin = admin;
+        initComponents();                
+        setLocationRelativeTo(null);
+        displayTable();
+        
+        managePRLabel.setText( "View Purchase Requisition");
+        addButton.setVisible(false);
+        editButton.setVisible(false);
+        removeButton.setVisible(false);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -283,14 +297,19 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        if (purchaseManager !=null && saleManager == null){
-            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
-            purchaseManagerGUI.show();
+        if (admin != null && saleManager == null && purchaseManager == null){
+            Admin_GUI adminGUI = new Admin_GUI(admin);
+            adminGUI.show();
             dispose();
         }
-        else if (purchaseManager ==null && saleManager != null){
-            SaleManager_GUI smGUI = new SaleManager_GUI(saleManager);
-            smGUI.show();
+        else if (admin == null && saleManager != null && purchaseManager == null){
+            SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
+            saleManagerGUI.show();
+            dispose();
+        }
+        else if (admin == null && saleManager == null && purchaseManager != null){
+            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+            purchaseManagerGUI.show();
             dispose();
         }
     }//GEN-LAST:event_BackButtonActionPerformed
