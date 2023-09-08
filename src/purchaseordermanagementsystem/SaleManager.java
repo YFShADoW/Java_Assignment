@@ -72,7 +72,7 @@ public class SaleManager extends User {
     public Item checkItemInfo(String itemCode){
         FileManager file = new FileManager("Item.txt");
         String[] itemData = file.searchByPrimaryKey(itemCode);
-        Item item = new Item(itemData[0],itemData[1],itemData[2],Double.parseDouble(itemData[3]),Integer.parseInt(itemData[4]),itemData[5]);
+        Item item = new Item(itemData[0],itemData[1],itemData[2],Double.parseDouble(itemData[3]), Integer.parseInt(itemData[4]),itemData[5]);
         return item;
     }
     
@@ -106,6 +106,22 @@ public class SaleManager extends User {
     public void manageSale(){
         
     }
+    public String generatePRID(){
+        FileManager file = new FileManager("Purchase_Requisition.txt");
+        ArrayList<String> PRData = file.readFile();
+        int newNo=0;
+        if(PRData.size() ==0){
+            newNo=1;
+        }
+        else{
+            String lastRow = PRData.get(PRData.size()-1);
+            String[] data = lastRow.trim().split("\\|");
+            String lastPRID = data[0];
+            newNo = Integer.parseInt(lastPRID.substring(2))+1;
+        }        
+        String newPRID = "PR" + String.format("%05d", newNo);  
+        return newPRID;
+    }
     public void manageSupplier(String mode,Supplier supplier,Supplier editSupplier){
         switch(mode){
             case "add":
@@ -124,4 +140,8 @@ public class SaleManager extends User {
                 break;
         }
     } 
+    
+    public String toString(){
+        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType()+"|"+this.getSM_ID();
+    }
 }

@@ -134,7 +134,7 @@
               <Table columnCount="5" rowCount="0">
                 <Column editable="false" title="SupplierID" type="java.lang.String"/>
                 <Column editable="false" title="Name" type="java.lang.String"/>
-                <Column editable="false" title="PhoneNo" type="java.lang.String"/>
+                <Column editable="false" title="Phone Number" type="java.lang.String"/>
                 <Column editable="false" title="Email" type="java.lang.String"/>
                 <Column editable="false" title="Address" type="java.lang.String"/>
               </Table>

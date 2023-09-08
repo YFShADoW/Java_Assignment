@@ -11,7 +11,7 @@ package purchaseordermanagementsystem;
 public class RemovePR_GUI extends javax.swing.JFrame {
 
     private SaleManager saleManager;
-    public RemovePR_GUI(SaleManager saleManager) {
+    public RemovePR_GUI(SaleManager saleManager,) {
         initComponents();
     }
 

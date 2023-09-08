@@ -26,7 +26,6 @@ public class AddPR_GUI extends javax.swing.JFrame {
         this.saleManager=saleManager;
         initComponents();
         setLocationRelativeTo(null);
-        supplierIDList[0] = "All";
         SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
     }
 
@@ -241,6 +240,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();
             ItemLine[] itemList = new ItemLine[ItemListTable.getRowCount()];
             
+            // Get table Data
             for(int i=0; i< ItemListTable.getRowCount();i++){
                 String ItemID = model.getValueAt(i, 0).toString();
                 Item item = saleManager.checkItemInfo(ItemID);
@@ -248,8 +248,18 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
                 itemList[i]=itemLine;
             }
-            PurchaseRequisition newPR = new PurchaseRequisition("PR00005",saleManager.getSM_ID(),supplierID,"10-9-2023",GrandTotalPrice,status,itemLine);
+            
+            // Get PR info
+            double grandTotalPrice = ItemLine.calculateGrandTotalPrice(itemList);
+            String supplierID = supplierIDList[SupplierComboBox.getSelectedIndex()];
+            String newPurchaseRequisitionID = saleManager.generatePRID();
+            
+            PurchaseRequisition newPR = new PurchaseRequisition(newPurchaseRequisitionID,saleManager.getSM_ID(),supplierID,"10-9-2023",Double.toString(grandTotalPrice),"Pending",itemList);
             newPR.addPurchaseRequisition();    
+            
+            removeItemListTableRow();
+            SupplierComboBox.setEnabled(true);
+            
         }
         else{
             JOptionPane.showMessageDialog(null, "Please Add Item First");
@@ -263,17 +273,13 @@ public class AddPR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void SupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierComboBoxActionPerformed
-        if(supplierIDList[SupplierComboBox.getSelectedIndex()].equals("All")){
-            removeItemTableRow();
-            displayItemTable();
-        }    
-        else{
+        if (SupplierComboBox.getSelectedIndex()!=-1){
             String filterTarget = supplierIDList[SupplierComboBox.getSelectedIndex()];
             FileManager filterSupplier = new FileManager("Item.txt");
             ArrayList<String[]> SupplierItem = filterSupplier.filterData(5, filterTarget);
             removeItemTableRow();
-            displayItemTable(SupplierItem);
-        }
+            displayItemTable(SupplierItem);     
+        }       
     }//GEN-LAST:event_SupplierComboBoxActionPerformed
 
     private void ItemTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemTableMouseClicked
@@ -333,6 +339,14 @@ public class AddPR_GUI extends javax.swing.JFrame {
     
     public void removeItemTableRow(){
         DefaultTableModel model = (DefaultTableModel) ItemTable.getModel();
+        int count = model.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
+    
+    public void removeItemListTableRow(){
+        DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();
         int count = model.getRowCount();
         for (int i = count - 1; i >= 0; i--) {
             model.removeRow(i);

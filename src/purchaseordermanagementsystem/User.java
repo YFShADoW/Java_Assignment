@@ -98,6 +98,7 @@ public class User {
         FileManager file = new FileManager("User.txt");
         ArrayList<String> userData = file.readFile();
         String[] savedData = new String[7];
+        int count = 0; 
           
         for(int i=0 ; i< userData.size();i++){
             String line = userData.get(i);
@@ -105,10 +106,23 @@ public class User {
             
             if (loginUserID.equals(data[0]) && loginPassword.equals(data[2])){
                 savedData = data;
-                break;
+                count++;
             }
         }
-        return savedData;
+        
+        if (count == 0){
+            savedData[5] = "fail";
+            return savedData;
+        }
+        else if (count == 1){
+            return savedData;
+        }
+        else{
+            savedData[5] = "fail";
+            return savedData;
+        }
+        
+
     }
     
     public void viewItemInfo(){
@@ -126,8 +140,9 @@ public class User {
     public void viewPurchaseOrder(){
         
     }
-
     
-    
+    public String toString(){
+        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType();
+    }
     
 }

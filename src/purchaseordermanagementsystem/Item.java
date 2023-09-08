@@ -110,4 +110,8 @@ public class Item {
         String[] newData = {newItem.getItemCode(),newItem.getItemName(),newItem.getItemCategory(),newItemUnitPrice,newItemStock,newSupplierID};
         file.editFile(oldData, newData);
     }
+    
+    public String toString(){
+        return this.getItemCode()+"|"+this.getItemName()+"|"+this.getItemCategory()+"|"+this.getItemUnitPrice()+"|"+this.getItemStock()+"|"+this.getSupplier().getSupplierID();
+    }
 }

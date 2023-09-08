@@ -155,8 +155,13 @@ public class Login_GUI extends javax.swing.JFrame {
                 dispose();
                 break;
                 
+            case "fail":
+                JOptionPane.showMessageDialog(null, "Login Failed");
+                break;
+            
             default:
                 JOptionPane.showMessageDialog(null,"User Not Found");
+                break;
         }
     }//GEN-LAST:event_Button_LoginActionPerformed
 

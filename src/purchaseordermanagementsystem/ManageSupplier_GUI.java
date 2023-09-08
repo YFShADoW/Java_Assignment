@@ -119,7 +119,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SupplierID", "Name", "PhoneNo", "Email", "Address"
+                "SupplierID", "Name", "Phone Number", "Email", "Address"
             }
         ) {
             Class[] types = new Class [] {

@@ -67,13 +67,20 @@ public class InputValidation {
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
     }
-
+    
     public static boolean checkValidEmail(String input) {
-        // Use an email validation library or regular expression as shown in the previous answers.
-        // Apache Commons Validator can also be used for email validation.
-        // Email validation is typically separate from phone number validation.
-        return false; // Placeholder
+        String emailRegex = "^[A-Za-z]+@(.+)$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.matches();
     }
+
+//    public static boolean checkValidEmail(String input) {
+//        // Use an email validation library or regular expression as shown in the previous answers.
+//        // Apache Commons Validator can also be used for email validation.
+//        // Email validation is typically separate from phone number validation.
+//        return false; // Placeholder
+//    }
 
 }
 

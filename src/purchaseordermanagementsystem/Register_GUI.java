@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Register_GUI extends javax.swing.JFrame {
     Administrator admin;
+    InputValidation inputValidation;
     /**
      * Creates new form Register_GUI
      */
@@ -26,6 +27,7 @@ public class Register_GUI extends javax.swing.JFrame {
     
     public Register_GUI(Administrator admin) {
         this.admin = admin;
+        InputValidation inputValidation = new InputValidation();
         initComponents();
         displayTable();
     }
@@ -235,34 +237,39 @@ public class Register_GUI extends javax.swing.JFrame {
         if(Text_Name.getText().isEmpty()||Text_Password.getText().isEmpty()||Text_Email.getText().isEmpty()||Text_Phone.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter all the fields!!");
         }
-        else{            
+        else{     
+            //Get input
             String userID = admin.generateUserID();
             String name = Text_Name.getText().trim();
             String password = Text_Password.getText().trim();
-            String email = Text_Email.getText().trim();
+            String email = Text_Email.getText().trim(); 
             String phone = Text_Phone.getText().trim();
             int comboBoxIndex = ComboBox_UserType.getSelectedIndex();
             System.out.println(comboBoxIndex);
             String userType = userTypeSelection[comboBoxIndex];
             String staffID = admin.generatestaffID(userType);
-            
-            
-            if(userType.equals("Admin")){
-                Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
-                admin.registerUser(newAdmin);
-                System.out.println("1");
+            //||!inputValidation.checkValidPhoneNumber(phone)
+            if(inputValidation.checkValidEmail(email)){
+                JOptionPane.showMessageDialog(null, "Invalid Input");
             }
-            else if(userType.equals("SaleManager")){
-                SaleManager newSM = new SaleManager(userID,name,password,email,phone,userType,staffID);            
-                admin.registerUser(newSM);
-                System.out.println("2");
+            else{
+            //Save 
+                if(userType.equals("Admin")){
+                    Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
+                    admin.registerUser(newAdmin);
+                    System.out.println("1");
+                }
+                else if(userType.equals("SaleManager")){
+                    SaleManager newSM = new SaleManager(userID,name,password,email,phone,userType,staffID);            
+                    admin.registerUser(newSM);
+                    System.out.println("2");
+                }
+                else if (userType.equals("PurchaseManager")){
+                    PurchaseManager newPM = new PurchaseManager(userID,name,password,email,phone,userType,staffID);            
+                    admin.registerUser(newPM);
+                    System.out.println("3");
+                }
             }
-            else if (userType.equals("PurchaseManager")){
-                PurchaseManager newPM = new PurchaseManager(userID,name,password,email,phone,userType,staffID);            
-                admin.registerUser(newPM);
-                System.out.println("3");
-            }
-            
             
             // Clean all the text field
             Text_Name.setText("");
