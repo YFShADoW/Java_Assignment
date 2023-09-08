@@ -79,7 +79,15 @@ public class ManageItem_GUI extends javax.swing.JFrame {
             new String [] {
                 "ItemID", "Name", "Category", "Price", "Quantity", "SupplierID"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(itemTable);
 
         backButton.setText("Back");

@@ -15,15 +15,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Shu Qin
  */
 public class AddSupplier_GUI extends javax.swing.JFrame {
-    private DefaultTableModel supplierTable = new DefaultTableModel();
-    private String [] supplierColumn = {"Supplier ID","Name","Phone Number","Email","Address"};
+    private DefaultTableModel model = new DefaultTableModel();
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
     SaleManager saleManager;
     /**
      * Creates new form AddSupplier_GUI
      */
     public AddSupplier_GUI(SaleManager saleManager) {
-        supplierTable.setColumnIdentifiers(supplierColumn);
         this.saleManager = saleManager;
         initComponents();
         displayTable();
@@ -43,7 +41,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Add_SupplierTable = new javax.swing.JTable();
+        supplierTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -77,8 +75,30 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
         jLabel1.setText("Add Supplier");
 
-        Add_SupplierTable.setModel(supplierTable);
-        jScrollPane1.setViewportView(Add_SupplierTable);
+        supplierTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Supplier ID", "Name", "Phone Number", "Email", "Address"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(supplierTable);
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel3.setText("Supplier Name:");
@@ -121,7 +141,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addComponent(jLabel7)
-                .addGap(129, 129, 129)
+                .addGap(120, 120, 120)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -143,15 +163,15 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(BackButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addButton)
-                        .addGap(114, 114, 114)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,33 +252,24 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
      public void displayTable(){
-       // DefaultTableModel suppliertable = (DefaultTableModel) SupplierTable.getModel;
+        DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
         FileManager getrow = new FileManager("Supplier.txt");
         ArrayList<String> rows =  getrow.readFile();
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
             String[] savedsupplierdata1 = line.split("\\|");
-            supplierTable.addRow(savedsupplierdata1);
+            model.addRow(savedsupplierdata1);
         }
     }
     public void removeTableRow(){
-      //  DefaultTableModel model = (DefaultTableModel) SupplierrTable.getModel();
-        int count = supplierTable.getRowCount();
+        DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
+        int count = model.getRowCount();
         for (int i = count - 1; i >= 0; i--) {
-            supplierTable.removeRow(i);
+            model.removeRow(i);
         }
     
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -296,7 +307,6 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Add_SupplierTable;
     private javax.swing.JButton BackButton;
     private javax.swing.JTextArea Text_SupplierAddress;
     private javax.swing.JTextField Text_SupplierEmail;
@@ -314,5 +324,6 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable supplierTable;
     // End of variables declaration//GEN-END:variables
 }
