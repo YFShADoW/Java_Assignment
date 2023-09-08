@@ -7,19 +7,29 @@ package purchaseordermanagementsystem;
 
 public class Item {
     private String itemCode, itemCategory, itemName;
-    private String supplierID;
-    private String itemUnitPrice;
-    private String itemStock;
-    
-   
+    private Supplier supplier;
+    private double itemUnitPrice;
+    private int itemStock;
 
-    public Item(String itemCode, String itemName, String itemCategory, String itemUnitPrice, String itemStock, String supplierID) {
+    public Item(String itemCode, String itemName, String itemCategory, double itemUnitPrice, int itemStock, Supplier supplier) {
         this.itemCode = itemCode;
         this.itemName = itemName;
         this.itemCategory = itemCategory;
         this.itemUnitPrice = itemUnitPrice;
         this.itemStock = itemStock;
-        this.supplierID = supplierID;
+        this.supplier = supplier;
+    }
+    
+    public Item(String itemCode, String itemName, String itemCategory, double itemUnitPrice, int itemStock, String supplierID) {
+        this.itemCode = itemCode;
+        this.itemName = itemName;
+        this.itemCategory = itemCategory;
+        this.itemUnitPrice = itemUnitPrice;
+        this.itemStock = itemStock;
+        FileManager file = new FileManager("Supplier.txt");
+        String[] supplierData = file.searchByPrimaryKey(supplierID);
+        this.supplier = new Supplier(supplierData[0], supplierData[1], supplierData[2], supplierData[3], supplierData[4]);
+            
     }
 
     public String getItemCode() {
@@ -46,27 +56,27 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public String getSupplierID() {
-        return supplierID;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public void setSupplierID(String supplierID) {
-        this.supplierID = supplierID;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
-    public String getItemUnitPrice() {
+    public double getItemUnitPrice() {
         return itemUnitPrice;
     }
 
-    public void setItemUnitPrice(String itemUnitPrice) {
+    public void setItemUnitPrice(double itemUnitPrice) {
         this.itemUnitPrice = itemUnitPrice;
     }
 
-    public String getItemStock() {
+    public int getItemStock() {
         return itemStock;
     }
 
-    public void setItemStock(String itemStock) {
+    public void setItemStock(int itemStock) {
         this.itemStock = itemStock;
     }
     public void addToItemLine(){
@@ -74,7 +84,11 @@ public class Item {
     }
 
     public void addItem(){
-        String [] newitem = {this.getItemCode(),this.getItemName(),this.getItemCategory(),this.getItemUnitPrice(),this.getItemStock(),this.getSupplierID()};
+        String itemUnitPrice = Double.toString(this.getItemUnitPrice());
+        String itemStock = Integer.toString(this.getItemStock());
+        String supplierID = this.getSupplier().getSupplierID();
+        
+        String[] newitem = {this.getItemCode(),this.getItemName(),this.getItemCategory(),itemUnitPrice,itemStock,supplierID};
         FileManager file = new FileManager("Item.txt");
         file.addToFile(newitem);
     }
@@ -84,9 +98,16 @@ public class Item {
         file.removeLineFromFile(this.getItemCode());
     }
     public void editItem(Item newItem){
+        String itemUnitPrice = Double.toString(this.getItemUnitPrice());
+        String itemStock = Integer.toString(this.getItemStock());
+        String supplierID = this.getSupplier().getSupplierID();
+        String newItemUnitPrice = Double.toString(newItem.getItemUnitPrice());
+        String newItemStock = Integer.toString(newItem.getItemStock());
+        String newSupplierID = newItem.getSupplier().getSupplierID();
+        
         FileManager file = new FileManager("Item.txt");
-        String[] oldData = {this.getItemCode(),this.getItemName(),this.getItemCategory(),this.getItemUnitPrice(),this.getItemStock(),this.getSupplierID()};
-        String[] newData = {newItem.getItemCode(),newItem.getItemName(),newItem.getItemCategory(),newItem.getItemUnitPrice(),newItem.getItemStock(),newItem.getSupplierID()};
+        String[] oldData = {this.getItemCode(),this.getItemName(),this.getItemCategory(),itemUnitPrice,itemStock,supplierID};
+        String[] newData = {newItem.getItemCode(),newItem.getItemName(),newItem.getItemCategory(),newItemUnitPrice,newItemStock,newSupplierID};
         file.editFile(oldData, newData);
     }
 }

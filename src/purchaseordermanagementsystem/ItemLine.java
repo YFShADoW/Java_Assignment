@@ -40,7 +40,8 @@ public class ItemLine{
     }
 
     public double getTotalPrice(){
-        return this.quantity*Double.parseDouble(item.getItemUnitPrice());
+        
+        return this.quantity*item.getItemUnitPrice();
         // remember change the data type from String to double
     }
     public static double calculateGrandTotalPrice(ItemLine[] itemList) {

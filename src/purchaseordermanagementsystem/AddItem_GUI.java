@@ -196,14 +196,17 @@ public class AddItem_GUI extends javax.swing.JFrame {
              String itemCode = saleManager.generateItemID();
              String itemName = Text_ItemName.getText().trim();
              String category = itemCategories[categoryComboBox.getSelectedIndex()];
-             String itemUnitPrice = Text_ItemUnitPrice.getText().trim();
-             String itemStock = Text_ItemStock.getText().trim();
+             String ItemUnitPrice = Text_ItemUnitPrice.getText().trim();
+             String ItemStock = Text_ItemStock.getText().trim();
              String supplierID = supplierIDList[supplierIDComboBox.getSelectedIndex()];
                      
              Text_ItemName.setText("");
              Text_ItemUnitPrice.setText("");
              Text_ItemStock.setText("");
              categoryComboBox.setSelectedIndex(0);
+             
+             double itemUnitPrice = Double.valueOf(ItemUnitPrice);
+             int itemStock = Integer.valueOf(ItemStock);
              
              Item newItem  = new Item(itemCode,itemName,category,itemUnitPrice,itemStock,supplierID);
              newItem.addItem();

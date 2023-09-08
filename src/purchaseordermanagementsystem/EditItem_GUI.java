@@ -288,22 +288,26 @@ public class EditItem_GUI extends javax.swing.JFrame {
         else{
             newCategory = itemCategories[categoryComboBox.getSelectedIndex()];
         }
-        String newPrice = newPriceText.getText();
-        String newStock = newStockText.getText();
+        double newPrice = Double.valueOf(newPriceText.getText());
+        int newStock = Integer.valueOf(newStockText.getText());
         
         if(newName.isBlank()){
             newName = oldTableData[1];
         }
         if(newCategory == null){
-            newCategory =oldTableData[2];
+            newCategory = oldTableData[2];
         }
-        if(newPrice.isBlank()){
-            newPrice = oldTableData[3];
+        if(newPriceText.getText().isBlank()){
+            newPrice = Double.valueOf(oldTableData[3]);
         }
-        if(newStock.isBlank()){
-            newStock =oldTableData[4];
+        if(newStockText.getText().isBlank()){
+            newStock = Integer.valueOf(oldTableData[4]);
         }
-        Item oldItem = new Item(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4],tableData[5]);
+        
+        double itemUnitPrice = Double.valueOf(tableData[3]);
+        int itemStock = Integer.valueOf(tableData[4]);
+        
+        Item oldItem = new Item(tableData[0],tableData[1],tableData[2],itemUnitPrice,itemStock,supplierID);
         Item newItem = new Item(itemID,newName,newCategory,newPrice,newStock,supplierID);
         
         saleManager.manageItem("edit", oldItem, newItem);
