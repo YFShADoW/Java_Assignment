@@ -1,6 +1,7 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /*
@@ -213,26 +214,42 @@ public class AddItem_GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please enter all the fields!!");
         }
         else{
-             String itemCode = saleManager.generateItemID();
-             String itemName = Text_ItemName.getText().trim();
-             String category = itemCategories[categoryComboBox.getSelectedIndex()];
-             String ItemUnitPrice = Text_ItemUnitPrice.getText().trim();
-             String ItemStock = Text_ItemStock.getText().trim();
-             String supplierID = supplierIDList[supplierIDComboBox.getSelectedIndex()];
-                     
-             Text_ItemName.setText("");
-             Text_ItemUnitPrice.setText("");
-             Text_ItemStock.setText("");
-             categoryComboBox.setSelectedIndex(0);
-             
-             double itemUnitPrice = Double.valueOf(ItemUnitPrice);
-             int itemStock = Integer.valueOf(ItemStock);
-             
-             Item newItem  = new Item(itemCode,itemName,category,itemUnitPrice,itemStock,supplierID);
-             newItem.addItem();
-             
-             removeTableRow();
-             displayTable();
+            String itemCode = saleManager.generateItemID();
+            String itemName = Text_ItemName.getText().trim();
+            String category = itemCategories[categoryComboBox.getSelectedIndex()];
+            String ItemUnitPrice = Text_ItemUnitPrice.getText().trim();
+            String ItemStock = Text_ItemStock.getText().trim();
+            String supplierID = supplierIDList[supplierIDComboBox.getSelectedIndex()];
+
+            if(!InputValidation.checkValidPrice(ItemUnitPrice)){
+                JOptionPane.showMessageDialog(null, "Invalid Price");
+            }
+            else if(!InputValidation.checkValidQuantity(ItemStock)){
+                JOptionPane.showMessageDialog(null, "Invalid Quantity");
+            }
+            else{
+                Text_ItemName.setText("");
+                Text_ItemUnitPrice.setText("");
+                Text_ItemStock.setText("");
+                categoryComboBox.setSelectedIndex(0);
+
+                double itemUnitPrice = Double.valueOf(ItemUnitPrice);
+                int itemStock = Integer.valueOf(ItemStock);
+
+                Item newItem  = new Item(itemCode,itemName,category,itemUnitPrice,itemStock,supplierID);
+                if(InputValidation.checkItemExistInFile(newItem)){
+                    JOptionPane.showMessageDialog(null, "Item already exists");
+                }
+                else{
+                    newItem.addItem();
+                    removeTableRow();
+                    displayTable();
+                }  
+            }
+
+            
+
+            
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -249,7 +266,8 @@ public class AddItem_GUI extends javax.swing.JFrame {
         supplierIDList[0] = null;
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
-            String[] data = line.split("|");
+            System.out.println(line);
+            String[] data = line.split("\\|");
             supplierIDList[i+1]=data[0];
         }
         return supplierIDList;

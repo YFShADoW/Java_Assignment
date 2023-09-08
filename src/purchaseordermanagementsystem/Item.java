@@ -4,6 +4,8 @@
  */
 package purchaseordermanagementsystem;
 
+import java.util.Arrays;
+
 
 public class Item {
     private String itemCode, itemCategory, itemName;
@@ -100,14 +102,19 @@ public class Item {
     public void editItem(Item newItem){
         String itemUnitPrice = Double.toString(this.getItemUnitPrice());
         String itemStock = Integer.toString(this.getItemStock());
-        String supplierID = this.getSupplier().getSupplierID();
+
         String newItemUnitPrice = Double.toString(newItem.getItemUnitPrice());
         String newItemStock = Integer.toString(newItem.getItemStock());
-        String newSupplierID = newItem.getSupplier().getSupplierID();
+
         
         FileManager file = new FileManager("Item.txt");
-        String[] oldData = {this.getItemCode(),this.getItemName(),this.getItemCategory(),itemUnitPrice,itemStock,supplierID};
-        String[] newData = {newItem.getItemCode(),newItem.getItemName(),newItem.getItemCategory(),newItemUnitPrice,newItemStock,newSupplierID};
+        String[] oldData = {this.getItemCode(),this.getItemName(),this.getItemCategory(),itemUnitPrice,itemStock,this.getSupplier().getSupplierID()};
+        String[] newData = {newItem.getItemCode(),newItem.getItemName(),newItem.getItemCategory(),newItemUnitPrice,newItemStock,newItem.getSupplier().getSupplierID()};
+//        System.out.println(Arrays.toString(oldData));
+//        System.out.println(Arrays.toString(newData));
         file.editFile(oldData, newData);
+    }
+    public String toString(){
+        return this.itemCode+"|"+this.itemName+"|"+this.itemCategory+"|"+this.itemUnitPrice+"|"+this.itemStock+"|"+this.supplier.getSupplierID();
     }
 }

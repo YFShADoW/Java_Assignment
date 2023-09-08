@@ -5,6 +5,7 @@
 package purchaseordermanagementsystem;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -288,33 +289,38 @@ public class EditItem_GUI extends javax.swing.JFrame {
         else{
             newCategory = itemCategories[categoryComboBox.getSelectedIndex()];
         }
-        double newPrice = Double.valueOf(newPriceText.getText());
-        int newStock = Integer.valueOf(newStockText.getText());
-        
-        if(newName.isBlank()){
-            newName = oldTableData[1];
+        if(!InputValidation.checkValidPrice(newPriceText.getText())){
+            JOptionPane.showMessageDialog(null, "Invalid Price");
         }
-        if(newCategory == null){
-            newCategory = oldTableData[2];
-        }
-        if(newPriceText.getText().isBlank()){
-            newPrice = Double.valueOf(oldTableData[3]);
-        }
-        if(newStockText.getText().isBlank()){
-            newStock = Integer.valueOf(oldTableData[4]);
-        }
-        
-        double itemUnitPrice = Double.valueOf(tableData[3]);
-        int itemStock = Integer.valueOf(tableData[4]);
-        
-        Item oldItem = new Item(tableData[0],tableData[1],tableData[2],itemUnitPrice,itemStock,supplierID);
-        Item newItem = new Item(itemID,newName,newCategory,newPrice,newStock,supplierID);
-        
-        saleManager.manageItem("edit", oldItem, newItem);
+        else if(!InputValidation.checkValidQuantity(newStockText.getText())){
+            JOptionPane.showMessageDialog(null, "Invalid Quantity");
 
-        ManageItem_GUI manageItemGUI = new ManageItem_GUI(saleManager);
-        manageItemGUI.show();
-        dispose();
+        }
+        else{
+            double newPrice = Double.parseDouble(newPriceText.getText());
+            int newStock = Integer.parseInt(newStockText.getText());
+            if(newName.isBlank()){
+            newName = oldTableData[1];
+            }
+            if(newCategory == null){
+                newCategory = oldTableData[2];
+            }
+            if(newPriceText.getText().isBlank()){
+                newPrice = Double.parseDouble(oldTableData[3]);
+            }
+            if(newStockText.getText().isBlank()){
+                newStock = Integer.parseInt(oldTableData[4]);
+            }
+            Item oldItem = new Item(tableData[0],tableData[1],tableData[2],Double.parseDouble(tableData[3]),Integer.parseInt(tableData[4]),supplierID);
+            Item newItem = new Item(itemID,newName,newCategory,newPrice,newStock,supplierID);
+        
+            
+            saleManager.manageItem("edit", oldItem, newItem);
+
+            ManageItem_GUI manageItemGUI = new ManageItem_GUI(saleManager);
+            manageItemGUI.show();
+            dispose();
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

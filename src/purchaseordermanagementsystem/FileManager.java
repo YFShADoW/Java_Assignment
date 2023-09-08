@@ -111,6 +111,8 @@ public class FileManager {
     }
     
     public void editFile(String[] targetLine, String[] newLine) {
+        System.out.println(Arrays.toString(targetLine));
+        System.out.println(Arrays.toString(newLine));
         ArrayList<String[]> dataLines = this.saveTo2DArrayList();
         for(int i =0 ; i <dataLines.size();i++){
             if(Arrays.equals(dataLines.get(i) ,targetLine)){
