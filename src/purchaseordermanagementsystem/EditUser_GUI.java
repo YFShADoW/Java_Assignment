@@ -30,10 +30,8 @@ public class EditUser_GUI extends javax.swing.JFrame {
         phoneTextPane.setText(tableData[4]);
         deptTextPane.setText(tableData[5]);
         staffIDTextPane.setText(tableData[6]);
+        backButton.setVisible(false);
         
-        adminBackButton.setVisible(false);
-        SMBackButton.setVisible(false);
-        PMBackButton.setVisible(false);
     }
     
     public EditUser_GUI(Administrator admin){
@@ -59,8 +57,7 @@ public class EditUser_GUI extends javax.swing.JFrame {
         newPhoneText.setVisible(false);
         cancelButton.setVisible(false);
         saveButton.setVisible(false);
-        SMBackButton.setVisible(false);
-        PMBackButton.setVisible(false);
+        editUserLabel.setText("User Information");
         
     }
     
@@ -87,8 +84,8 @@ public class EditUser_GUI extends javax.swing.JFrame {
         newPhoneText.setVisible(false);
         cancelButton.setVisible(false);
         saveButton.setVisible(false);
-        adminBackButton.setVisible(false);
-        PMBackButton.setVisible(false);
+        editUserLabel.setText("User Information");
+
     }
     
     public EditUser_GUI(PurchaseManager purchaseManager){
@@ -114,8 +111,8 @@ public class EditUser_GUI extends javax.swing.JFrame {
         newPhoneText.setVisible(false);
         cancelButton.setVisible(false);
         saveButton.setVisible(false);
-        adminBackButton.setVisible(false);
-        SMBackButton.setVisible(false);
+        editUserLabel.setText("User Information");
+
     }
     
     /**
@@ -132,7 +129,7 @@ public class EditUser_GUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        editUserLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         phoneTextPane = new javax.swing.JTextPane();
         newNameText = new javax.swing.JTextField();
@@ -160,9 +157,7 @@ public class EditUser_GUI extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         staffIDTextPane = new javax.swing.JTextPane();
         cancelButton = new javax.swing.JButton();
-        adminBackButton = new javax.swing.JButton();
-        PMBackButton = new javax.swing.JButton();
-        SMBackButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -180,8 +175,8 @@ public class EditUser_GUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Email:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Edit User Information");
+        editUserLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        editUserLabel.setText("Edit User Information");
 
         jScrollPane1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
@@ -260,24 +255,10 @@ public class EditUser_GUI extends javax.swing.JFrame {
             }
         });
 
-        adminBackButton.setText("Back");
-        adminBackButton.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminBackButtonActionPerformed(evt);
-            }
-        });
-
-        PMBackButton.setText("Back");
-        PMBackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PMBackButtonActionPerformed(evt);
-            }
-        });
-
-        SMBackButton.setText("Back");
-        SMBackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SMBackButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -287,11 +268,9 @@ public class EditUser_GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(adminBackButton)
-                .addGap(37, 37, 37)
-                .addComponent(SMBackButton)
-                .addGap(33, 33, 33)
-                .addComponent(PMBackButton)
+                .addComponent(backButton)
+                .addGap(80, 80, 80)
+                .addComponent(editUserLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(44, Short.MAX_VALUE)
@@ -312,13 +291,12 @@ public class EditUser_GUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(newNameLabel)
-                            .addComponent(newPasswordLabel)
-                            .addComponent(jLabel5))
+                            .addComponent(newPasswordLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(newPasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,13 +319,11 @@ public class EditUser_GUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adminBackButton)
-                    .addComponent(SMBackButton)
-                    .addComponent(PMBackButton)
-                    .addComponent(jLabel5))
-                .addGap(41, 41, 41)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backButton)
+                    .addComponent(editUserLabel))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -451,23 +427,23 @@ public class EditUser_GUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void adminBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBackButtonActionPerformed
-        Admin_GUI adminGUI = new Admin_GUI(admin);
-        adminGUI.show();
-        dispose();
-    }//GEN-LAST:event_adminBackButtonActionPerformed
-
-    private void SMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMBackButtonActionPerformed
-        SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
-        saleManagerGUI.show();
-        dispose();
-    }//GEN-LAST:event_SMBackButtonActionPerformed
-
-    private void PMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMBackButtonActionPerformed
-        PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
-        purchaseManagerGUI.show();
-        dispose();
-    }//GEN-LAST:event_PMBackButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        if (admin != null && saleManager == null && purchaseManager == null){
+            Admin_GUI adminGUI = new Admin_GUI(admin);
+            adminGUI.show();
+            dispose();
+        }
+        else if (admin == null && saleManager != null && purchaseManager == null){
+            SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
+            saleManagerGUI.show();
+            dispose();
+        }
+        else if (admin == null && saleManager == null && purchaseManager != null){
+            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+            purchaseManagerGUI.show();
+            dispose();
+        }
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -505,19 +481,17 @@ public class EditUser_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton PMBackButton;
-    private javax.swing.JButton SMBackButton;
     private javax.swing.JTextPane UserIDTextPane;
-    private javax.swing.JButton adminBackButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextPane deptTextPane;
+    private javax.swing.JLabel editUserLabel;
     private javax.swing.JTextPane emailTextPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;

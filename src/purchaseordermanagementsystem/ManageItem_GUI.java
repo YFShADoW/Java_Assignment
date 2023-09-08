@@ -32,9 +32,6 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
         displayTable();
-        
-        PMBackButton.setVisible(false);
-        viewItemLabel.setVisible(false);
     }
     public ManageItem_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager  = purchaseManager;
@@ -47,8 +44,7 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         addButton.setVisible(false);
         editButton.setVisible(false);
         removeButton.setVisible(false);
-        SMBackButton.setVisible(false);
-        manageItemLabel.setVisible(false);
+        manageItemLabel.setText("View Item");
         
     }
 
@@ -63,15 +59,13 @@ public class ManageItem_GUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         itemTable = new javax.swing.JTable();
-        SMBackButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         findButton = new javax.swing.JButton();
         categoryComboBox = new javax.swing.JComboBox<>();
         searchText = new javax.swing.JTextField();
-        viewItemLabel = new javax.swing.JLabel();
-        PMBackButton = new javax.swing.JButton();
         manageItemLabel = new javax.swing.JLabel();
         SupplierComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -88,10 +82,10 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(itemTable);
 
-        SMBackButton.setText("Back");
-        SMBackButton.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SMBackButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -130,15 +124,6 @@ public class ManageItem_GUI extends javax.swing.JFrame {
             }
         });
 
-        viewItemLabel.setText("View Item");
-
-        PMBackButton.setText("Back");
-        PMBackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PMBackButtonActionPerformed(evt);
-            }
-        });
-
         manageItemLabel.setText("Manage Item");
 
         SupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -158,15 +143,9 @@ public class ManageItem_GUI extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(PMBackButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                                .addComponent(viewItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(SMBackButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(manageItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(backButton)
+                        .addGap(21, 21, 21)
+                        .addComponent(manageItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -203,12 +182,8 @@ public class ManageItem_GUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(SMBackButton)
-                                    .addComponent(manageItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(PMBackButton)
-                                    .addComponent(viewItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(backButton)
+                                    .addComponent(manageItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -233,12 +208,18 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMBackButtonActionPerformed
-        // TODO add your handling code here:
-        SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
-        saleManagerGUI.show();
-        dispose();
-    }//GEN-LAST:event_SMBackButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        if (purchaseManager !=null && saleManager == null){
+            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+            purchaseManagerGUI.show();
+            dispose();
+        }
+        else if (purchaseManager ==null && saleManager != null){
+            SaleManager_GUI smGUI = new SaleManager_GUI(saleManager);
+            smGUI.show();
+            dispose();
+        }
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         AddItem_GUI addItemGUI = new AddItem_GUI(saleManager);
@@ -321,12 +302,6 @@ public class ManageItem_GUI extends javax.swing.JFrame {
             displayTable(searchList); 
         } 
     }//GEN-LAST:event_findButtonActionPerformed
-
-    private void PMBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMBackButtonActionPerformed
-        PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
-        purchaseManagerGUI.show();
-        dispose();
-    }//GEN-LAST:event_PMBackButtonActionPerformed
 
     private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
         // TODO add your handling code here:
@@ -423,10 +398,9 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton PMBackButton;
-    private javax.swing.JButton SMBackButton;
     private javax.swing.JComboBox<String> SupplierComboBox;
     private javax.swing.JButton addButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JComboBox<String> categoryComboBox;
     private javax.swing.JButton editButton;
     private javax.swing.JButton findButton;
@@ -436,6 +410,5 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel manageItemLabel;
     private javax.swing.JButton removeButton;
     private javax.swing.JTextField searchText;
-    private javax.swing.JLabel viewItemLabel;
     // End of variables declaration//GEN-END:variables
 }
