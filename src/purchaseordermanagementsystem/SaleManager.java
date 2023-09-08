@@ -73,7 +73,7 @@ public class SaleManager extends User {
     public PurchaseRequisition checkPRInfo(String PRID){
         FileManager file = new FileManager("Purchase_Requisition.txt");
         String[] PRData = file.searchByPrimaryKey(PRID);
-        System.out.println(Arrays.toString(PRData));
+//        System.out.println(Arrays.toString(PRData));
         PurchaseRequisition PR  = new PurchaseRequisition(PRData[0],PRData[1],PRData[2],PRData[3],PRData[4],PRData[5],PRData[6]);
         return PR;
     }
