@@ -254,7 +254,10 @@ public class ManageItem_GUI extends javax.swing.JFrame {
             String data = model.getValueAt(indexRow, i).toString();
             tableData[i]=data;
         }
-        Item item = new Item(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4],tableData[5]);
+        double itemUnitPrice = Double.valueOf(tableData[3]);
+        int itemStock = Integer.valueOf(tableData[4]);
+
+        Item item = new Item(tableData[0],tableData[1],tableData[2],itemUnitPrice,itemStock,tableData[5]);
         saleManager.manageItem("remove", item, item);
         this.removeTableRow();
         this.displayTable();
