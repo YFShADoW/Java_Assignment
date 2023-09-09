@@ -46,6 +46,13 @@ public class Administrator extends User{
         return newUserID;
     }
     
+    public PurchaseRequisition checkPRInfo(String PRID){
+        FileManager file = new FileManager("Purchase_Requisition.txt");
+        String[] PRData = file.searchByPrimaryKey(PRID);
+        PurchaseRequisition PR  = new PurchaseRequisition(PRData[0],PRData[1],PRData[2],PRData[3],PRData[4],PRData[5],PRData[6]);
+        return PR;
+    }
+    
     public String generatestaffID(String userType){
         FileManager file = new FileManager("User.txt");
         ArrayList<String> userData = file.readFile();

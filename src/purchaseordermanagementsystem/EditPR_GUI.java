@@ -8,7 +8,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class EditPR_GUI extends javax.swing.JFrame {
 
+    private Administrator admin;
     private SaleManager saleManager;
+    private PurchaseManager purchaseManager;
     private PurchaseRequisition PR;
     
     public EditPR_GUI(SaleManager saleManager, PurchaseRequisition PR) {
@@ -22,6 +24,56 @@ public class EditPR_GUI extends javax.swing.JFrame {
         requestDateText.setText(PR.getRequestDate());
         displayItemListTable();
         displaySupplierItemTable(PR.getSupplier().getSupplierID());
+    }
+    
+    public EditPR_GUI(Administrator admin, PurchaseRequisition PR) {
+        this.admin = admin;
+        this.PR = PR;
+        setTitle("Admin - View Purchase Requisition");
+        initComponents();
+        setLocationRelativeTo(null);
+        supplierText.setText(PR.getSupplier().getSupplierID());
+        PRIDText.setText(PR.getPurchaseRequisitionID());
+        requestDateText.setText(PR.getRequestDate());
+        displayItemListTable();
+        displaySupplierItemTable(PR.getSupplier().getSupplierID());
+        PRLabel.setText("Item in Purchase Requisition");
+        dateLabel.setVisible(false);
+        requestDateText.setVisible(false);
+        supplierLabel.setVisible(false);
+        supplierItemTable.setVisible(false);
+        quantityLabel.setVisible(false);
+        quantityText.setVisible(false);
+        editButton.setVisible(false);
+        addItemButton.setVisible(false);
+        DeleteLineButton.setVisible(false);
+        jScrollPane3.setVisible(false);
+        saveButton.setVisible(false);
+    }
+    
+    public EditPR_GUI(PurchaseManager purchaseManager, PurchaseRequisition PR) {
+        this.purchaseManager = purchaseManager;
+        this.PR = PR;
+        setTitle("Purchase Manager - View Purchase Requisition");
+        initComponents();
+        setLocationRelativeTo(null);
+        supplierText.setText(PR.getSupplier().getSupplierID());
+        PRIDText.setText(PR.getPurchaseRequisitionID());
+        requestDateText.setText(PR.getRequestDate());
+        displayItemListTable();
+        displaySupplierItemTable(PR.getSupplier().getSupplierID());
+        PRLabel.setText("Item in Purchase Requisition");
+        dateLabel.setVisible(false);
+        requestDateText.setVisible(false);
+        supplierLabel.setVisible(false);
+        supplierItemTable.setVisible(false);
+        quantityLabel.setVisible(false);
+        quantityText.setVisible(false);
+        editButton.setVisible(false);
+        addItemButton.setVisible(false);
+        DeleteLineButton.setVisible(false);
+        jScrollPane3.setVisible(false);
+        saveButton.setVisible(false);
     }
 
     /**
@@ -42,18 +94,18 @@ public class EditPR_GUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         supplierItemTable = new javax.swing.JTable();
         quantityText = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        quantityLabel = new javax.swing.JLabel();
+        supplierLabel = new javax.swing.JLabel();
         supplierText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         PRIDText = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        PRLabel = new javax.swing.JLabel();
         DeleteLineButton = new javax.swing.JButton();
         addItemButton = new javax.swing.JButton();
         requestDateText = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -96,6 +148,7 @@ public class EditPR_GUI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(itemListTable);
 
+        jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel6.setText("Item List in This Purchase Requisition: ");
 
         editButton.setText("Edit");
@@ -123,18 +176,25 @@ public class EditPR_GUI extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(supplierItemTable);
 
-        jLabel3.setText("Enter Item Quantity: ");
+        quantityLabel.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        quantityLabel.setText("Enter Item Quantity: ");
 
-        jLabel5.setText("Select to Add Item from Supplier: ");
+        supplierLabel.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
+        supplierLabel.setText("Select to Add Item from Supplier: ");
 
         supplierText.setEditable(false);
+        supplierText.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
 
+        jLabel4.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel4.setText("Supplier: ");
 
+        jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel7.setText("PR ID:");
 
         PRIDText.setEditable(false);
+        PRIDText.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
 
+        backButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +202,8 @@ public class EditPR_GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Edit Purchase Requisition");
+        PRLabel.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
+        PRLabel.setText("Edit Purchase Requisition");
 
         DeleteLineButton.setText("Delete Line");
         DeleteLineButton.addActionListener(new java.awt.event.ActionListener() {
@@ -159,8 +220,10 @@ public class EditPR_GUI extends javax.swing.JFrame {
         });
 
         requestDateText.setEditable(false);
+        requestDateText.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
 
-        jLabel9.setText("Request Date: ");
+        dateLabel.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
+        dateLabel.setText("Request Date: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,46 +232,49 @@ public class EditPR_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PRIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(supplierText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
+                        .addGap(81, 81, 81)
                         .addComponent(DeleteLineButton)
-                        .addGap(115, 115, 115)
-                        .addComponent(saveButton)))
+                        .addGap(88, 88, 88)
+                        .addComponent(saveButton))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(backButton)
+                            .addGap(39, 39, 39)
+                            .addComponent(PRLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(PRIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(66, 66, 66)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(supplierText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(addItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(quantityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(supplierLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(53, 53, 53)
+                            .addComponent(addItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(43, 43, 43))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap()))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,11 +282,11 @@ public class EditPR_GUI extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
+                        .addComponent(dateLabel)
                         .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(backButton)
-                        .addComponent(jLabel1)))
+                        .addComponent(PRLabel)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -234,18 +300,18 @@ public class EditPR_GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteLineButton)
                             .addComponent(saveButton))
-                        .addContainerGap(17, Short.MAX_VALUE))
+                        .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(supplierLabel)
                         .addGap(23, 23, 23)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(quantityLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(editButton)
@@ -283,9 +349,23 @@ public class EditPR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);
-        managePRGUI.show();
-        dispose();
+        if (admin == null && saleManager != null && purchaseManager == null){
+        
+            ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);
+            managePRGUI.show();
+            dispose();
+        }
+        else if (admin != null && saleManager == null && purchaseManager == null){
+            ManagePR_GUI managePRGUI = new ManagePR_GUI(admin);
+            managePRGUI.show();
+            dispose();
+        }
+        else if (admin == null && saleManager == null && purchaseManager != null){
+            ManagePR_GUI managePRGUI = new ManagePR_GUI(purchaseManager);
+            managePRGUI.show();
+            dispose();
+        
+        }
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void DeleteLineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteLineButtonActionPerformed
@@ -319,20 +399,25 @@ public class EditPR_GUI extends javax.swing.JFrame {
 
     private void addItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemButtonActionPerformed
         if(!quantityText.getText().isBlank()){
-            DefaultTableModel SITmodel = (DefaultTableModel) supplierItemTable.getModel();
-            String SelectedItemID = SITmodel.getValueAt(supplierItemTable.getSelectedRow(), 0).toString();// GUI input
-            Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
-            int itemQuantity = Integer.parseInt(quantityText.getText()); //GUI input
+            if(InputValidation.checkValidQuantity(quantityText.getText())){
+                DefaultTableModel SITmodel = (DefaultTableModel) supplierItemTable.getModel();
+                String SelectedItemID = SITmodel.getValueAt(supplierItemTable.getSelectedRow(), 0).toString();// GUI input
+                Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
+                int itemQuantity = Integer.parseInt(quantityText.getText()); //GUI input
 
-            if(checkDuplicate(SelectedItemID)){
-                JOptionPane.showMessageDialog(null, "Item already add");
+                if(checkDuplicate(SelectedItemID)){
+                    JOptionPane.showMessageDialog(null, "Item already added");
+                }
+                else{
+                    ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
+                    String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
+
+                    DefaultTableModel ILTmodel = (DefaultTableModel) itemListTable.getModel();//GUI control
+                    ILTmodel.addRow(itemRow); // GUI output    
+                }
             }
             else{
-                ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
-                String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
-
-                DefaultTableModel ILTmodel = (DefaultTableModel) itemListTable.getModel();//GUI control
-                ILTmodel.addRow(itemRow); // GUI output    
+                JOptionPane.showMessageDialog(null,"Please Enter Correct Quantity");
             }
         }
         else{
@@ -343,32 +428,36 @@ public class EditPR_GUI extends javax.swing.JFrame {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         if(itemListTable.getSelectedRow()!=-1){
             if(!quantityText.getText().isBlank()){
-                String newQuantity  = quantityText.getText();
+                if(InputValidation.checkValidQuantity(quantityText.getText())){
+                    String newQuantity  = quantityText.getText();
 
-                DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
-                int selectedRowIndex = itemListTable.getSelectedRow();
-                String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
-                ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
+                    DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+                    int selectedRowIndex = itemListTable.getSelectedRow();
+                    String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
+                    ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
 
-                // Get table Data & edit
-                for(int i=0; i< itemListTable.getRowCount();i++){
-                    String ItemID = model.getValueAt(i, 0).toString();
-                    Item item = saleManager.checkItemInfo(ItemID);
-                    String itemQuantity = model.getValueAt(i, 2).toString();
-                    if(item.getItemCode().equals(SelectedItemID)){
-                        itemQuantity = newQuantity;
+                    // Get table Data & edit
+                    for(int i=0; i< itemListTable.getRowCount();i++){
+                        String ItemID = model.getValueAt(i, 0).toString();
+                        Item item = saleManager.checkItemInfo(ItemID);
+                        String itemQuantity = model.getValueAt(i, 2).toString();
+                        if(item.getItemCode().equals(SelectedItemID)){
+                            itemQuantity = newQuantity;
+                        }
+                        ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                        itemList[i]=itemLine;
                     }
-                    ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
-                    itemList[i]=itemLine;
-                }
 
-                // Remove from the itemListTable
-                removeItemListTableRow();
-                for(ItemLine itemData:itemList){
-                    String[] tableRow = itemData.toString().split("\\|");
-                    model.addRow(tableRow);
+                    // Remove from the itemListTable
+                    removeItemListTableRow();
+                    for(ItemLine itemData:itemList){
+                        String[] tableRow = itemData.toString().split("\\|");
+                        model.addRow(tableRow);
+                    }
                 }
-        
+                else{
+                    JOptionPane.showMessageDialog(null, "Invalid Quantity");
+                }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Enter valid Quantity");
@@ -482,24 +571,24 @@ public class EditPR_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteLineButton;
     private javax.swing.JTextField PRIDText;
+    private javax.swing.JLabel PRLabel;
     private javax.swing.JButton addItemButton;
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JButton editButton;
     private javax.swing.JTable itemListTable;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel quantityLabel;
     private javax.swing.JTextField quantityText;
     private javax.swing.JTextField requestDateText;
     private javax.swing.JButton saveButton;
     private javax.swing.JTable supplierItemTable;
+    private javax.swing.JLabel supplierLabel;
     private javax.swing.JTextField supplierText;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,7 @@ public class SaleManager_GUI extends javax.swing.JFrame {
         this.saleManager = saleManager;
         setTitle("Sale Manager Menu");
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(159, 163, 227));
         setLocationRelativeTo(null);
     }
 
@@ -40,7 +41,7 @@ public class SaleManager_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        supplierButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        supplierButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         supplierButton.setText("Supplier List");
         supplierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,15 +49,15 @@ public class SaleManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        itemListButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        itemListButton.setText("Item LIst");
+        itemListButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
+        itemListButton.setText("Item List");
         itemListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemListButtonActionPerformed(evt);
             }
         });
 
-        saleButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        saleButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         saleButton.setText(" Sale List");
         saleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +65,7 @@ public class SaleManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        viewPOButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewPOButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         viewPOButton.setText("View Purchase Order");
         viewPOButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,7 +73,7 @@ public class SaleManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        PRButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PRButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         PRButton.setText("Purchase Requisition");
         PRButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +81,7 @@ public class SaleManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        userAccountButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        userAccountButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         userAccountButton.setText("User Account");
         userAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,8 +89,8 @@ public class SaleManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Sale Manager -- Menu");
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 36)); // NOI18N
+        jLabel1.setText("Sale Manager - Menu");
 
         LogOutButton.setText("Log Out");
         LogOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -117,11 +118,11 @@ public class SaleManager_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(379, 379, 379)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(LogOutButton)))
+                        .addComponent(LogOutButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(336, 336, 336)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

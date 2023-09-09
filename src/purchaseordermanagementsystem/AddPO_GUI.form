@@ -16,6 +16,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Purchase Manager - Add Purchase Order"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -40,8 +41,9 @@
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="viewPRItemButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="approveButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="rejectButton" min="-2" max="-2" attributes="0"/>
@@ -53,7 +55,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="backButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" pref="234" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" pref="242" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
@@ -62,6 +64,8 @@
                               <Component id="jLabel9" min="-2" pref="119" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="orderDateText" min="-2" pref="161" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane2" min="-2" pref="519" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" pref="220" max="-2" attributes="0"/>
@@ -84,18 +88,19 @@
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="orderDateText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="backButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
@@ -103,13 +108,13 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="viewPRItemButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="approveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rejectButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="deletePOButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewPRItemButton" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -171,6 +176,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="approveButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Approve"/>
       </Properties>
       <Events>
@@ -179,6 +187,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="viewPRItemButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="View Item in PR"/>
       </Properties>
       <Events>
@@ -187,11 +198,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Manipulate Purchase Order"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="backButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
@@ -200,6 +217,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="rejectButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Reject"/>
       </Properties>
       <Events>
@@ -208,11 +228,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Purchase Order: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Pending Purchase Requisition: "/>
       </Properties>
     </Component>
@@ -272,6 +298,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="deletePOButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Delete "/>
       </Properties>
       <Events>
@@ -279,10 +308,26 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="orderDateText">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Approve Date: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="15" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="DD-MM-YYYY"/>
       </Properties>
     </Component>
   </SubComponents>

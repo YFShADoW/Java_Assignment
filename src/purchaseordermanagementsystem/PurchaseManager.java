@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author YAO FENG PC
  */
-public class PurchaseManager extends User {
+public class PurchaseManager extends User implements Checker {
     private String PM_ID;
 
     public PurchaseManager(String UserID, String UserName, String UserPassword, String UserEmail, String UserPhone, String Department,String PM_ID) {
@@ -22,9 +22,9 @@ public class PurchaseManager extends User {
         return PM_ID;
     }
 
-//    public void setPM_ID(String PM_ID) {
-//        this.PM_ID = PM_ID;
-//    }
+    public void setPM_ID(String PM_ID) {
+        this.PM_ID = PM_ID;
+    }
     
     public PurchaseRequisition checkPRInfo(String PRID){
         FileManager file = new FileManager("Purchase_Requisition.txt");
@@ -32,6 +32,14 @@ public class PurchaseManager extends User {
         PurchaseRequisition PR  = new PurchaseRequisition(PRData[0],PRData[1],PRData[2],PRData[3],PRData[4],PRData[5],PRData[6]);
         return PR;
     }
+    
+    public PurchaseOrder checkPOInfo(String POID){
+        FileManager file = new FileManager("Purchase_Order.txt");
+        String[] POData = file.searchByPrimaryKey(POID);
+        PurchaseOrder PO  = new PurchaseOrder(POData[0],POData[1],POData[2],POData[3]);
+        return PO;
+    }
+    
     public String generatePOID(){
         FileManager file = new FileManager("Purchase_Order.txt");
         ArrayList<String> POData = file.readFile();

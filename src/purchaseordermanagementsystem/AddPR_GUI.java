@@ -53,11 +53,13 @@ public class AddPR_GUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         requestDateText = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel2.setText("Select Supplier");
 
         ItemTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -90,6 +92,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ItemTable);
 
+        SupplierComboBox.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         SupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         SupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,10 +100,15 @@ public class AddPR_GUI extends javax.swing.JFrame {
             }
         });
 
+        QuantityText.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel3.setText("Enter Item Quantity: ");
 
+        jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel5.setText("Select Item: ");
 
+        addToPRButton.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         addToPRButton.setText("Add into List");
         addToPRButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,8 +148,10 @@ public class AddPR_GUI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ItemListTable);
 
+        jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel6.setText("Item List in This Purchase Requisition: ");
 
+        jLabel7.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
         jLabel7.setText("Add Purchase Requisition");
 
         backButton.setText("Back");
@@ -152,10 +162,18 @@ public class AddPR_GUI extends javax.swing.JFrame {
         });
 
         SelectedItemIDText.setEditable(false);
+        SelectedItemIDText.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
 
+        jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel8.setText("Selected Item ID: ");
 
+        jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel9.setText("Request Date: ");
+
+        requestDateText.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
+        jLabel10.setText("DD-MM-YYYY");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,45 +183,48 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backButton)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(SelectedItemIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(SelectedItemIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(QuantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(33, 33, 33)
+                                .addComponent(addToPRButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(backButton)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(QuantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(33, 33, 33)
-                        .addComponent(addToPRButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(107, 107, 107)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(41, Short.MAX_VALUE))
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel10))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(38, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(saveButton)
@@ -215,39 +236,48 @@ public class AddPR_GUI extends javax.swing.JFrame {
                 .addGap(325, 325, 325)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backButton)
-                    .addComponent(jLabel9)
-                    .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SelectedItemIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(QuantityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(addToPRButton))
-                .addGap(39, 39, 39))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(saveButton)
-                .addGap(27, 27, 27))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(requestDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(backButton))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SelectedItemIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(QuantityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(addToPRButton))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveButton)
+                        .addGap(27, 27, 27))))
         );
 
         pack();
@@ -256,35 +286,42 @@ public class AddPR_GUI extends javax.swing.JFrame {
     
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         if(ItemListTable.getRowCount()>0){
-            DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();
-            ItemLine[] itemList = new ItemLine[ItemListTable.getRowCount()];
-            
-            // Get table Data
-            for(int i=0; i< ItemListTable.getRowCount();i++){
-                String ItemID = model.getValueAt(i, 0).toString();
-                Item item = saleManager.checkItemInfo(ItemID);
-                String itemQuantity = model.getValueAt(i, 2).toString();
-                ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
-                itemList[i]=itemLine;
+            if(requestDateText.getText().isBlank()){
+                JOptionPane.showMessageDialog(null, "Please Enter Date");
             }
-            
-            
-            // Get PR info
-            double grandTotalPrice = ItemLine.calculateGrandTotalPrice(itemList);
-            String supplierID = supplierIDList[SupplierComboBox.getSelectedIndex()];
-            String newPurchaseRequisitionID = saleManager.generatePRID();
-            String requestDate = requestDateText.getText();
-            
-            PurchaseRequisition newPR = new PurchaseRequisition(newPurchaseRequisitionID,saleManager.getSM_ID(),supplierID,requestDate,grandTotalPrice,"Pending",itemList);
-            newPR.addPurchaseRequisition();    
-            
-            removeItemListTableRow();
-            SupplierComboBox.setEnabled(true);
-            
+            else if(!requestDateText.getText().isBlank() && !InputValidation.isValidDate(requestDateText.getText()))
+                JOptionPane.showMessageDialog(null, "Please Enter Correct Date Format");
+            else{
+                DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();
+                ItemLine[] itemList = new ItemLine[ItemListTable.getRowCount()];
+
+                // Get table Data
+                for(int i=0; i< ItemListTable.getRowCount();i++){
+                    String ItemID = model.getValueAt(i, 0).toString();
+                    Item item = saleManager.checkItemInfo(ItemID);
+                    String itemQuantity = model.getValueAt(i, 2).toString();
+                    ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                    itemList[i]=itemLine;
+                }
+
+
+                // Get PR info
+                double grandTotalPrice = ItemLine.calculateGrandTotalPrice(itemList);
+                String supplierID = supplierIDList[SupplierComboBox.getSelectedIndex()];
+                String newPurchaseRequisitionID = saleManager.generatePRID();
+                String requestDate = requestDateText.getText();
+
+                PurchaseRequisition newPR = new PurchaseRequisition(newPurchaseRequisitionID,saleManager.getSM_ID(),supplierID,requestDate,grandTotalPrice,"Pending",itemList);
+                newPR.addPurchaseRequisition();    
+
+                removeItemListTableRow();
+                SupplierComboBox.setEnabled(true);  
+            }        
         }
         else{
-            JOptionPane.showMessageDialog(null, "Please Add Item First");
+                JOptionPane.showMessageDialog(null, "Please Add Item First");
         }
+        
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -311,21 +348,28 @@ public class AddPR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ItemTableMouseClicked
 
     private void addToPRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToPRButtonActionPerformed
-        SupplierComboBox.setEnabled(false);
-        
-        String SelectedItemID = SelectedItemIDText.getText();// GUI input
-        Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
-        int itemQuantity = Integer.parseInt(QuantityText.getText()); //GUI input
-        
-        if(checkDuplicate(SelectedItemID)){
-            JOptionPane.showMessageDialog(null, "Item already add");
+        if(QuantityText.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "Please Enter Quantity");
+        }
+        else if(!QuantityText.getText().isBlank() && !InputValidation.checkValidQuantity(QuantityText.getText())){
+            JOptionPane.showMessageDialog(null, "Invalid Quantity");
         }
         else{
-            ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
-            String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
+            SupplierComboBox.setEnabled(false);  
+            String SelectedItemID = SelectedItemIDText.getText();// GUI input
+            Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
+            int itemQuantity = Integer.parseInt(QuantityText.getText()); //GUI input
 
-            DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();//GUI control
-            model.addRow(itemRow); // GUI output    
+            if(checkDuplicate(SelectedItemID)){
+                JOptionPane.showMessageDialog(null, "Item already added");
+            }
+            else{
+                ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
+                String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
+
+                DefaultTableModel model = (DefaultTableModel) ItemListTable.getModel();//GUI control
+                model.addRow(itemRow); // GUI output    
+            }
         }
     }//GEN-LAST:event_addToPRButtonActionPerformed
 
@@ -446,6 +490,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
     private javax.swing.JButton addToPRButton;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -17,6 +17,7 @@ public class Admin_GUI extends javax.swing.JFrame {
         this.admin = admin;
         setTitle("Administrator Menu");
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(159, 163, 227));
         setLocationRelativeTo(null);
     }
 
@@ -42,7 +43,7 @@ public class Admin_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        viewAccButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewAccButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         viewAccButton.setText("View Personal Account");
         viewAccButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,7 +51,7 @@ public class Admin_GUI extends javax.swing.JFrame {
             }
         });
 
-        RegisterUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        RegisterUser.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         RegisterUser.setText("Register New User");
         RegisterUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,7 +59,7 @@ public class Admin_GUI extends javax.swing.JFrame {
             }
         });
 
-        viewSupplierButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewSupplierButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         viewSupplierButton.setText("View Supplier List");
         viewSupplierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,15 +67,15 @@ public class Admin_GUI extends javax.swing.JFrame {
             }
         });
 
-        viewItemButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        viewItemButton.setText("View Item LIst");
+        viewItemButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
+        viewItemButton.setText("View Item List");
         viewItemButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewItemButtonActionPerformed(evt);
             }
         });
 
-        viewSaleButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewSaleButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         viewSaleButton.setText("View Sale List");
         viewSaleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +83,7 @@ public class Admin_GUI extends javax.swing.JFrame {
             }
         });
 
-        viewPOButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewPOButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         viewPOButton.setText("View Purchase Order");
         viewPOButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +91,7 @@ public class Admin_GUI extends javax.swing.JFrame {
             }
         });
 
-        viewPRButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewPRButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         viewPRButton.setText("View Purchase Requisition");
         viewPRButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +99,7 @@ public class Admin_GUI extends javax.swing.JFrame {
             }
         });
 
-        ManageUserButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ManageUserButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         ManageUserButton.setText("Manage User Account");
         ManageUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,8 +114,8 @@ public class Admin_GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Admin -- Menu");
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 36)); // NOI18N
+        jLabel1.setText("Admin - Menu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,13 +135,13 @@ public class Admin_GUI extends javax.swing.JFrame {
                             .addComponent(RegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ManageUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viewSupplierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viewItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viewSaleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viewPOButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viewPRButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(189, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(viewPRButton, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                            .addComponent(viewPOButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewSaleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewItemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewSupplierButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,9 +168,9 @@ public class Admin_GUI extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(viewSaleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(viewItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(viewSupplierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(viewItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addComponent(viewSupplierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(131, Short.MAX_VALUE))
         );
 

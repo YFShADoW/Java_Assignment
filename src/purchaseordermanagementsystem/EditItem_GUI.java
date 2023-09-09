@@ -74,16 +74,16 @@ public class EditItem_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel3.setText("Category:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel4.setText("Price:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         jLabel5.setText("Edit Item Information");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel11.setText("New Stock:");
 
         jScrollPane1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -111,16 +111,16 @@ public class EditItem_GUI extends javax.swing.JFrame {
 
         newStockText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel6.setText("Stock:");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel7.setText("SupplierID:");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel8.setText("New Name:");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel9.setText("New Price:");
 
         jScrollPane2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -143,13 +143,13 @@ public class EditItem_GUI extends javax.swing.JFrame {
         itemIDText.setEditable(false);
         jScrollPane5.setViewportView(itemIDText);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel1.setText("ItemID:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel2.setText("Name:");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel13.setText("New Category:");
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -201,7 +201,7 @@ public class EditItem_GUI extends javax.swing.JFrame {
                                 .addComponent(newStockText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(categoryComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +258,7 @@ public class EditItem_GUI extends javax.swing.JFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(saveButton)
                             .addComponent(cancelButton))

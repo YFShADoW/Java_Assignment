@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author YAO FENG PC
  */
-public class SaleManager extends User {
+public class SaleManager extends User implements Checker{
     private String SM_ID;
     
     public SaleManager(String UserID, String UserName, String UserPassword, String UserEmail, String UserPhone, String Department,String SM_ID) {
@@ -96,6 +96,12 @@ public class SaleManager extends User {
         return PR;
     }
     
+    public PurchaseOrder checkPOInfo(String POID){
+        FileManager file = new FileManager("Purchase_Order.txt");
+        String[] POData = file.searchByPrimaryKey(POID);
+        PurchaseOrder PO  = new PurchaseOrder(POData[0],POData[1],POData[2],POData[3]);
+        return PO;
+    }
     
     public Item checkItemInfo(String itemCode){
         FileManager file = new FileManager("Item.txt");
@@ -103,26 +109,7 @@ public class SaleManager extends User {
         Item item = new Item(itemData[0],itemData[1],itemData[2],Double.parseDouble(itemData[3]), Integer.parseInt(itemData[4]),itemData[5]);
         return item;
     }
-    
-//    public Supplier checkSupplierInfo(String supplierID){
-//        FileManager file = new FileManager("Supplier.txt");
-//        String[] supplierData = file.searchByPrimaryKey(supplierID);
-//        Supplier supplier = new Supplier(supplierData[0],supplierData[1],supplierData[2],supplierData[3],supplierData[4]);
-//        return supplier;
-//    }
-    
-//     public void editSale(String mode, String[] unedit, String[] edit){
-//         switch(mode){
-//             case "edit":
-//                 FileManager file = new FileManager("Sale.txt");
-//                 file.editFile(unedit, edit);  
-//                 
-//             default:
-//                break;
-//             
-//         }
-//    }
-        
+     
     public void manageItem(String mode, Item item,Item editItem){
         switch(mode){
             case "add":
@@ -193,92 +180,6 @@ public class SaleManager extends User {
         }
     } 
     
-//     public String[] removestock(String [] saledata1){
-//       
-//        String salequantity = saledata1[5];  
-//        String searchitemid = saledata1[2];
-//        FileManager file1 = new FileManager ("Item.txt");
-//        ArrayList<String[]> removestock2= new ArrayList();
-//        ArrayList<String>search = file1.readFile();
-//        ArrayList<String> removestock = new ArrayList<>();
-//        for(int i= 0 ; i<search.size(); i++){
-//            String [] removestock1 = search.get(i).split("\\|");
-//            for (int j = 0; j<removestock1.length;j++){
-//                if(removestock1[j].equals(searchitemid)){
-//                    removestock2.add(removestock1);
-//                    for (String[] array : removestock2) {
-//                         String removestock4 = String.join("|", array);
-//                          removestock.add(removestock4);
-//                    }
-//                          String[] add = removestock.toArray(new String[0]);
-//                          String add1 = String.join("|", add);
-//                          String[] removestock3 = add1.split("\\|");
-//                          int stock = Integer.parseInt(salequantity);
-//                         String quantity = removestock3[4];
-//                          int itemquantity = Integer.parseInt(quantity);
-//                          int total = itemquantity - stock;
-//                           String totalstock = Integer.toString(total);  
-//                        String[] newArray = new String[removestock3.length];
-//                        for (int t = 0; t < removestock3.length; t++) {
-//                            newArray[t] = removestock3[t];
-//                       
-//                        }
-//                         
-//                        newArray[4] = totalstock;
-//                    
-//                     
-//                     FileManager file = new FileManager("Item.txt");
-//                     file.editFile(removestock3, newArray);  
-//                    
-//              
-//                        }
-//            }
-//        }return null;
-//       }
-//
-//    public String[] addstock(String [] saledata2){
-//       
-//        String salequantity = saledata2[5];  
-//        String searchitemid = saledata2[2];
-//        FileManager file1 = new FileManager ("Item.txt");
-//        ArrayList<String[]> addstock2= new ArrayList();
-//        ArrayList<String>search = file1.readFile();
-//        ArrayList<String> addstock = new ArrayList<>();
-//        for(int i= 0 ; i<search.size(); i++){
-//            String [] addstock1 = search.get(i).split("\\|");
-//            for (int j = 0; j<addstock1.length;j++){
-//                if(addstock1[j].equals(searchitemid)){
-//                    addstock2.add(addstock1);
-//                    for (String[] array : addstock2) {
-//                         String addstock4 = String.join("|", array);
-//                          addstock.add(addstock4);
-//                    }
-//                          String[] add = addstock.toArray(new String[0]);
-//                          String add1 = String.join("|", add);
-//                          String[] addstock3 = add1.split("\\|");
-//                          int addquantity = Integer.parseInt(salequantity);
-//                          String quantity = addstock3[4];
-//                          int itemstock = Integer.parseInt(quantity);
-//                          int total = itemstock + addquantity;
-//                           String totalstock = Integer.toString(total);  
-//                        String[] newArray = new String[addstock3.length];
-//                        for (int t = 0; t < addstock3.length; t++) {
-//                            newArray[t] = addstock3[t];
-//                       
-//                        }
-//                         
-//                        newArray[4] = totalstock;
-//                    
-//                     
-//                     FileManager file = new FileManager("Item.txt");
-//                     file.editFile(addstock3, newArray);  
-//                    
-//              
-//                        }
-//            }
-//        }return null;
-//    }
-
     public String toString(){
         return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType()+"|"+this.getSM_ID();
     }

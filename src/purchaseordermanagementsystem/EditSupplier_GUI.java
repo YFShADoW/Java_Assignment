@@ -1,6 +1,7 @@
 
 package purchaseordermanagementsystem;
 
+import javax.swing.JOptionPane;
 
 public class EditSupplier_GUI extends javax.swing.JFrame {
     private SaleManager saleManager;
@@ -59,25 +60,25 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
         jLabel1.setText("Edit Supplier");
 
-        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel2.setText("Supplier ID:");
 
-        jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel3.setText("Supplier Name:");
 
-        jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel4.setText("Supplier Phone:");
 
-        jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel5.setText("Supplier Email:");
 
-        jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel6.setText("Supplier Address:");
 
-        jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel7.setText("Fill in the new information");
 
         SupplierIDText.setEditable(false);
@@ -100,12 +101,16 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
         AddressText.setRows(5);
         jScrollPane1.setViewportView(AddressText);
 
+        jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel8.setText("New Supplier Name:");
 
+        jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel9.setText("New Supplier Phone:");
 
+        jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel10.setText("New Supplier Email:");
 
+        jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel11.setText("New Supplier Address:");
 
         NewAddressText.setColumns(20);
@@ -123,12 +128,6 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,20 +162,55 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton)
-                        .addGap(63, 63, 63)
+                        .addGap(62, 62, 62)
                         .addComponent(SaveButton)
-                        .addGap(282, 282, 282))))
+                        .addGap(283, 283, 283))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(328, 328, 328)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(NewNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(NewPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(NewEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SaveButton)
+                    .addComponent(cancelButton))
+                .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addComponent(jLabel2)
                         .addGap(49, 49, 49)
                         .addComponent(jLabel3)
@@ -188,7 +222,7 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                        .addGap(31, 31, 31)
                         .addComponent(SupplierIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(NameText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,33 +232,7 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
                         .addComponent(EmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 36, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(109, 109, 109)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(NewNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(NewPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(NewEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SaveButton)
-                            .addComponent(cancelButton))
-                        .addGap(25, 25, 25))))
+                        .addGap(0, 23, Short.MAX_VALUE))))
         );
 
         pack();
@@ -232,33 +240,39 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
-        String supplierID = SupplierIDText.getText();
-        
-        String newName = NewNameText.getText();
-        String newPhone = NewPhoneText.getText();
-        String newEmail = NewEmailText.getText();
-        String newAddress = NewAddressText.getText().replace("\n","");
-        
-        if(newName.isBlank()){
-            newName = tableData[1];
+        if(!NewPhoneText.getText().isBlank() && !InputValidation.isValidPhoneNumber(NewPhoneText.getText())){
+            JOptionPane.showMessageDialog(null,"Invalid Phone Number");
         }
-        if(newPhone.isBlank()){
-            newPhone =tableData[2];
+        else if(!NewEmailText.getText().isBlank() && !InputValidation.isValidEmail(NewEmailText.getText())){
+            JOptionPane.showMessageDialog(null,"Invalid Email");
         }
-        if(newEmail.isBlank()){
-            newEmail = tableData[3];
-        }
-        if(newAddress.isBlank()){
-            newAddress = tableData[4];
-        }
-        Supplier oldSupplier  =  new Supplier(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4]);
-        Supplier newSupplier  = new Supplier(supplierID,newName,newPhone,newEmail,newAddress);
-        saleManager.manageSupplier("edit", oldSupplier,newSupplier);
-        
-        ManageSupplier_GUI manageSupplierGUI = new ManageSupplier_GUI(saleManager);
-        manageSupplierGUI.show();
-        dispose();
-            
+        else{
+            String supplierID = SupplierIDText.getText();
+            String newName = NewNameText.getText();
+            String newPhone = NewPhoneText.getText();
+            String newEmail = NewEmailText.getText();
+            String newAddress = NewAddressText.getText().replace("\n","");
+
+            if(newName.isBlank()){
+                newName = tableData[1];
+            }
+            if(newPhone.isBlank()){
+                newPhone =tableData[2];
+            }
+            if(newEmail.isBlank()){
+                newEmail = tableData[3];
+            }
+            if(newAddress.isBlank()){
+                newAddress = tableData[4];
+            }
+            Supplier oldSupplier  =  new Supplier(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4]);
+            Supplier newSupplier  = new Supplier(supplierID,newName,newPhone,newEmail,newAddress);
+            saleManager.manageSupplier("edit", oldSupplier,newSupplier);
+
+            ManageSupplier_GUI manageSupplierGUI = new ManageSupplier_GUI(saleManager);
+            manageSupplierGUI.show();
+            dispose();
+        }        
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

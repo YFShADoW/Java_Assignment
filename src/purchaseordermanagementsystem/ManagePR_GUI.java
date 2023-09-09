@@ -6,6 +6,7 @@ package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,15 +20,12 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     private PurchaseManager purchaseManager;
     private String[] statusSelection = {"All","Pending","Approved","Rejected"};
     
-
-    
     public ManagePR_GUI(SaleManager saleManager) {
         this.saleManager=saleManager;
         setTitle("Sale Manager - Manage Purchase Requisition");
         initComponents();
         setLocationRelativeTo(null);
         displayTable();
-
     }
     
     public ManagePR_GUI(PurchaseManager purchaseManager){
@@ -38,8 +36,8 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         displayTable();
         
         managePRLabel.setText( "View Purchase Requisition");
+        editButton.setText( "View Item in PR");
         addButton.setVisible(false);
-        editButton.setVisible(false);
         removeButton.setVisible(false);
     }
     
@@ -51,8 +49,8 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         displayTable();
         
         managePRLabel.setText( "View Purchase Requisition");
+        editButton.setText( "View Item in PR");
         addButton.setVisible(false);
-        editButton.setVisible(false);
         removeButton.setVisible(false);
     }
     
@@ -114,8 +112,10 @@ public class ManagePR_GUI extends javax.swing.JFrame {
 
         statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Pending", "Approved", "Rejected" }));
 
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel1.setText("Status");
 
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel2.setText("Find");
 
         addButton.setText("Add");
@@ -146,6 +146,7 @@ public class ManagePR_GUI extends javax.swing.JFrame {
             }
         });
 
+        managePRLabel.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         managePRLabel.setText("Manage Purchase Requisition");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,35 +156,34 @@ public class ManagePR_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(BackButton)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(managePRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(67, 67, 67)
-                                        .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(38, 38, 38)
-                                .addComponent(searchButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                                .addComponent(addButton)
-                                .addGap(26, 26, 26)
-                                .addComponent(editButton)
-                                .addGap(27, 27, 27)
-                                .addComponent(removeButton)
-                                .addGap(36, 36, 36))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(506, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(managePRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(searchButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addButton)
+                .addGap(26, 26, 26)
+                .addComponent(editButton)
+                .addGap(27, 27, 27)
+                .addComponent(removeButton)
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,29 +194,28 @@ public class ManagePR_GUI extends javax.swing.JFrame {
                         .addComponent(BackButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
+                        .addComponent(managePRLabel)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(managePRLabel)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(editButton)
                                         .addComponent(removeButton))
-                                    .addComponent(addButton)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addComponent(jLabel1))
-                                    .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(addButton)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(searchButton)))
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(searchButton))))))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -274,16 +273,39 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-
         DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
         int selectedRowIndex = PRTable.getSelectedRow();
         String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
-
-        PurchaseRequisition PR = saleManager.checkPRInfo(SelectedPRID);
         
-        EditPR_GUI editPRGUI = new EditPR_GUI(saleManager,PR);
-        editPRGUI.show();
-        dispose();
+        if (admin == null && saleManager != null && purchaseManager == null){
+
+            PurchaseRequisition PR = saleManager.checkPRInfo(SelectedPRID);
+            if(PR.getPurchaseRequisitionStatus().equals("Pending")){
+                EditPR_GUI editPRGUI = new EditPR_GUI(saleManager,PR);
+                editPRGUI.show();
+                dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Approved and Rejected PR cannot be edit");
+            }
+        }
+        else if(admin != null && saleManager == null && purchaseManager == null){
+ 
+            PurchaseRequisition PR = admin.checkPRInfo(SelectedPRID);
+
+            EditPR_GUI editPRGUI = new EditPR_GUI(admin,PR);
+            editPRGUI.show();
+            dispose();
+
+        }
+        else if(admin == null && saleManager == null && purchaseManager != null){
+ 
+            PurchaseRequisition PR = purchaseManager.checkPRInfo(SelectedPRID);
+
+            EditPR_GUI editPRGUI = new EditPR_GUI(purchaseManager,PR);
+            editPRGUI.show();
+            dispose();
+        }
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
@@ -292,10 +314,14 @@ public class ManagePR_GUI extends javax.swing.JFrame {
             int selectedRowIndex = PRTable.getSelectedRow();
             String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
             PurchaseRequisition PR = saleManager.checkPRInfo(SelectedPRID);
-
-            RemovePR_GUI removePRGUI = new RemovePR_GUI(saleManager,PR);
-            removePRGUI.show();
-            dispose();    
+            if(PR.getPurchaseRequisitionStatus().equals("Pending")){
+                RemovePR_GUI removePRGUI = new RemovePR_GUI(saleManager,PR);
+                removePRGUI.show();
+                dispose();   
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Approved and Rejected PR cannot be removed");
+            } 
         }
     }//GEN-LAST:event_removeButtonActionPerformed
 
@@ -374,12 +400,10 @@ public class ManagePR_GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        SaleManager salem = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagePR_GUI(salem).setVisible(true);
-                
+               // new ManagePR_GUI().setVisible(true);
             }
         });
     }

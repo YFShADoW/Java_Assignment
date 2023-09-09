@@ -46,7 +46,7 @@
                           <Group type="102" attributes="0">
                               <Component id="backButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                              <Component id="SupplierLabel" min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="SupplierLabel" min="-2" pref="233" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="684" max="-2" attributes="0"/>
                       </Group>
@@ -70,7 +70,7 @@
                   <Component id="backButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="SupplierLabel" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="searchText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -177,6 +177,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="SupplierLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bodoni MT" size="24" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Manage Supplier"/>
       </Properties>
     </Component>

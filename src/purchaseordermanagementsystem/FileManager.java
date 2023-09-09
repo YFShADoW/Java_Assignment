@@ -104,17 +104,16 @@ public class FileManager {
             }   
         }
         if(count >1){
-            System.out.println("Not a PK");
-            // Change to JOptionPane
+            JOptionPane.showMessageDialog(null, "Not a PK");
         }
         return result;
     }
     
     public void editFile(String[] targetLine, String[] newLine) {
-        System.out.println(Arrays.toString(targetLine));
-        System.out.println(Arrays.toString(newLine));
+
         ArrayList<String[]> dataLines = this.saveTo2DArrayList();
         for(int i =0 ; i <dataLines.size();i++){
+
             if(Arrays.equals(dataLines.get(i) ,targetLine)){
                 dataLines.set(i, newLine);
             }
@@ -151,13 +150,4 @@ public class FileManager {
         }
         return object;
     }
-//    public static void main(String[] args){
-//        FileManager file = new FileManager("User.txt");
-////        file.removeLineFromFile("U00001");
-//        String[] targetLine = "U00002|YF|YF0322|0189796991|YF@gmail.com|Admin|A00002".split("\\|");
-//        String[] newLine = "U00002|YF|YF0322|0189796991|YaoFeng@gmail.com|Admin|A00002".split("\\|");
-//        file.editFile(targetLine, newLine);
-//// U00001|admin01|admin1234|admin01@gmail.com|0123456789|Admin|A00001
-//// U00002|YF|YF0322|0189796991|YF@gmail.com|Admin|A00002
-//    }
 }

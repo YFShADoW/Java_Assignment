@@ -4,11 +4,7 @@
  */
 package purchaseordermanagementsystem;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,17 +14,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Register_GUI extends javax.swing.JFrame {
     private Administrator admin;
-    private InputValidation inputValidation;
-    /**
-     * Creates new form Register_GUI
-     */
     private String[] userTypeSelection = {"Admin","SaleManager","PurchaseManager"};
     
     
     public Register_GUI(Administrator admin) {
         this.admin = admin;
-        setTitle("Administrator - Register User");
-        InputValidation inputValidation = new InputValidation();
         initComponents();
         setLocationRelativeTo(null);
         displayTable();
@@ -68,41 +58,24 @@ public class Register_GUI extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administrator - Register User");
 
-        Label_Name.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_Name.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         Label_Name.setText("Name:");
 
-        Label_Password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_Password.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         Label_Password.setText("Password:");
 
-        Label_Email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_Email.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         Label_Email.setText("Email:");
 
-        Label_Phone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_Phone.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         Label_Phone.setText("Phone:");
 
-        Text_Name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_NameActionPerformed(evt);
-            }
-        });
-
-        Text_Password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_PasswordActionPerformed(evt);
-            }
-        });
-
-        Text_Email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_EmailActionPerformed(evt);
-            }
-        });
-
-        jLabel_UserType.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel_UserType.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         jLabel_UserType.setText("User Type:");
 
-        ComboBox_UserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Sale Manger", "Purchase Manager" }));
+        ComboBox_UserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Sale Manager", "Purchase Manager" }));
 
         UserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,7 +116,7 @@ public class Register_GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         jLabel1.setText("Register User");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,9 +125,6 @@ public class Register_GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,11 +146,15 @@ public class Register_GUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel_UserType, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)
-                                .addComponent(ComboBox_UserType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backButton)
-                                .addGap(185, 185, 185)
-                                .addComponent(Button_Save)))))
+                                .addComponent(ComboBox_UserType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(backButton)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(Button_Save)))
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -188,8 +162,13 @@ public class Register_GUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(backButton)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,11 +192,9 @@ public class Register_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_UserType, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ComboBox_UserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Button_Save)
-                    .addComponent(backButton))
-                .addGap(50, 50, 50))
+                .addGap(49, 49, 49)
+                .addComponent(Button_Save)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,59 +204,55 @@ public class Register_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Text_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_NameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_NameActionPerformed
-
-    private void Text_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_PasswordActionPerformed
-
     private void Button_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SaveActionPerformed
         if(Text_Name.getText().isEmpty()||Text_Password.getText().isEmpty()||Text_Email.getText().isEmpty()||Text_Phone.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter all the fields!!");
         }
-        else{     
-            //Get input
-            String userID = admin.generateUserID();
-            String name = Text_Name.getText().trim();
-            String password = Text_Password.getText().trim();
-            String email = Text_Email.getText().trim(); 
-            String phone = Text_Phone.getText().trim();
-            int comboBoxIndex = ComboBox_UserType.getSelectedIndex();
-            System.out.println(comboBoxIndex);
-            String userType = userTypeSelection[comboBoxIndex];
-            String staffID = admin.generatestaffID(userType);
-            //||!inputValidation.checkValidPhoneNumber(phone)
-
-
-            //Save 
-                if(userType.equals("Admin")){
-                    Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
-                    admin.registerUser(newAdmin);
-                    System.out.println("1");
-                }
-                else if(userType.equals("SaleManager")){
-                    SaleManager newSM = new SaleManager(userID,name,password,email,phone,userType,staffID);            
-                    admin.registerUser(newSM);
-                    System.out.println("2");
-                }
-                else if (userType.equals("PurchaseManager")){
-                    PurchaseManager newPM = new PurchaseManager(userID,name,password,email,phone,userType,staffID);            
-                    admin.registerUser(newPM);
-                    System.out.println("3");
-                
+        else{
+            if(!InputValidation.isValidEmail(Text_Email.getText())){
+                JOptionPane.showMessageDialog(null, "Invalid Email");
             }
-            
-            // Clean all the text field
-            Text_Name.setText("");
-            Text_Password.setText("");
-            Text_Email.setText("");
-            Text_Phone.setText("");
-            
-            // refresh the table
-            removeTableRow();
-            displayTable();   
+            else if(!InputValidation.isValidPhoneNumber(Text_Phone.getText())){
+                JOptionPane.showMessageDialog(null, "Invalid Phone");
+            }
+            else{
+                //Get input
+                String userID = admin.generateUserID();
+                String name = Text_Name.getText().trim();
+                String password = Text_Password.getText().trim();
+                String email = Text_Email.getText().trim(); 
+                String phone = Text_Phone.getText().trim();
+                int comboBoxIndex = ComboBox_UserType.getSelectedIndex();
+                System.out.println(comboBoxIndex);
+                String userType = userTypeSelection[comboBoxIndex];
+                String staffID = admin.generatestaffID(userType);
+
+                //Save 
+                    if(userType.equals("Admin")){
+                        Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
+                        admin.registerUser(newAdmin);
+                    }
+                    else if(userType.equals("SaleManager")){
+                        SaleManager newSM = new SaleManager(userID,name,password,email,phone,userType,staffID);            
+                        admin.registerUser(newSM);
+                    }
+                    else if (userType.equals("PurchaseManager")){
+                        PurchaseManager newPM = new PurchaseManager(userID,name,password,email,phone,userType,staffID);            
+                        admin.registerUser(newPM);
+
+                    }
+
+                // Clean all the text field
+                Text_Name.setText("");
+                Text_Password.setText("");
+                Text_Email.setText("");
+                Text_Phone.setText("");
+
+                // refresh the table
+                removeTableRow();
+                displayTable();  
+            }
+             
         }   
     }//GEN-LAST:event_Button_SaveActionPerformed
 
@@ -302,10 +275,6 @@ public class Register_GUI extends javax.swing.JFrame {
     }
     
     
-    private void Text_EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_EmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_EmailActionPerformed
-
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         Admin_GUI adminGUI = new Admin_GUI(admin);
         adminGUI.show();

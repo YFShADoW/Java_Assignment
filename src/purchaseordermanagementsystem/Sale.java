@@ -37,25 +37,25 @@ public class Sale {
         return saleDate;
     }
 
-//    public void setSaleDate(String saleDate) {
-//        this.saleDate = saleDate;
-//    }
+    public void setSaleDate(String saleDate) {
+        this.saleDate = saleDate;
+    }
 
     public String getSaleID() {
         return saleID;
     }
 
-//    public void setSaleID(String saleID) {
-//        this.saleID = saleID;
-//    }
+    public void setSaleID(String saleID) {
+        this.saleID = saleID;
+    }
 
     public ItemLine getItemLine() {
         return itemLine;
     }
 
-//    public void setItemLine(ItemLine itemLine) {
-//        this.itemLine = itemLine;
-//    }
+    public void setItemLine(ItemLine itemLine) {
+        this.itemLine = itemLine;
+    }
 
     public void addSale(){
         
@@ -63,7 +63,6 @@ public class Sale {
         String itemName = this.getItemLine().getItem().getItemName();
         String quantity = Integer.toString(this.getItemLine().getQuantity());
         String unitPrice = Double.toString(this.getItemLine().getItem().getItemUnitPrice());
-        //double unitPrice2 = this.getItemLine().getItem().getItemUnitPrice();
         String totalPrice = Double.toString(this.getItemLine().getTotalPrice());
         String[] newSale = {this.getSaleID(),this.getSaleDate(),itemID,itemName,quantity,unitPrice,totalPrice};
         FileManager saleFile = new FileManager("Sale.txt");
@@ -74,14 +73,9 @@ public class Sale {
         String itemCategory = this.getItemLine().getItem().getItemCategory();
         String supplierID = this.getItemLine().getItem().getSupplier().getSupplierID();
         String oldItemStock = Integer.toString(this.getItemLine().getItem().getItemStock());
-        //int oldItemStock2 =  this.getItemLine().getItem().getItemStock();
         String newStock = Integer.toString(this.getItemLine().getItem().getItemStock() - this.getItemLine().getQuantity());
-        //int newStock2 = this.getItemLine().getItem().getItemStock() - this.getItemLine().getQuantity();
-        System.out.println(oldItemStock+","+newStock);
         String[] oldItemData = {itemID, itemName, itemCategory, unitPrice, oldItemStock, supplierID};
         String[] newItemData = {itemID, itemName, itemCategory, unitPrice, newStock, supplierID};
-        System.out.println(Arrays.toString(oldItemData));
-        System.out.println(Arrays.toString(newItemData));
         itemFile.editFile(oldItemData, newItemData);
 
     }
@@ -90,20 +84,17 @@ public class Sale {
         FileManager file = new FileManager("Sale.txt");
         file.removeLineFromFile(this.getSaleID());
         
+        //Update to Item Stock
         FileManager itemFile = new FileManager("Item.txt");
         String itemID = this.getItemLine().getItem().getItemCode();
         String itemName = this.getItemLine().getItem().getItemName();
-        String quantity = Integer.toString(this.getItemLine().getQuantity());
         String unitPrice = Double.toString(this.getItemLine().getItem().getItemUnitPrice());
         String itemCategory = this.getItemLine().getItem().getItemCategory();
         String supplierID = this.getItemLine().getItem().getSupplier().getSupplierID();
         String oldItemStock = Integer.toString(this.getItemLine().getItem().getItemStock());
         String newStock = Integer.toString(this.getItemLine().getItem().getItemStock() + this.getItemLine().getQuantity());
-        System.out.println(oldItemStock+","+newStock);
         String[] oldItemData = {itemID, itemName, itemCategory, unitPrice, oldItemStock, supplierID};
         String[] newItemData = {itemID, itemName, itemCategory, unitPrice, newStock, supplierID};
-        System.out.println(Arrays.toString(oldItemData));
-        System.out.println(Arrays.toString(newItemData));
         itemFile.editFile(oldItemData, newItemData);
     }
     

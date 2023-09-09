@@ -4,10 +4,6 @@
  */
 package purchaseordermanagementsystem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-
 public class PurchaseRequisition {
     private String PurchaseRequisitionID;
     private String PurchaseRequisitionStatus;

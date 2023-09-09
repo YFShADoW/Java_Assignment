@@ -4,7 +4,6 @@
  */
 package purchaseordermanagementsystem;
 
-
 public class ItemLine{
     
     private int quantity;
@@ -42,7 +41,7 @@ public class ItemLine{
     public double getTotalPrice(){
         
         return this.quantity*item.getItemUnitPrice();
-        // remember change the data type from String to double
+        
     }
     public static double calculateGrandTotalPrice(ItemLine[] itemList) {
         double grandTotal = 0.0;

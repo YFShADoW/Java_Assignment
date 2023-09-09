@@ -6,6 +6,7 @@ package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -24,6 +25,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
         this.saleManager = saleManager;
         setTitle("Sale Manager - Manage Supplier");
         initComponents();
+        setLocationRelativeTo(null);
         displayTable();      
     }
     
@@ -154,6 +156,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(supplierTable);
 
+        SupplierLabel.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         SupplierLabel.setText("Manage Supplier");
 
         searchButton.setText("Search");
@@ -182,7 +185,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backButton)
                                 .addGap(55, 55, 55)
-                                .addComponent(SupplierLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SupplierLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(78, 78, 78)
@@ -198,7 +201,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
                     .addComponent(SupplierLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
@@ -241,7 +244,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        // TODO add your handling code here:
+
         // get selected index 
         int indexRow = supplierTable.getSelectedRow();
         // define a model to modify table
@@ -254,10 +257,14 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
             tableData[i]=data;
         }
         Supplier supplier = new Supplier(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4]);
-        saleManager.manageSupplier("remove", supplier,null);
-        
-        this.removeTableRow();
-        this.displayTable();
+        if(InputValidation.checkSupplierItemExist(supplier.getSupplierID())){
+            JOptionPane.showMessageDialog(null, "Supplier Cannot be removed");
+        }
+        else{
+            saleManager.manageSupplier("remove", supplier,null);
+            this.removeTableRow();
+            this.displayTable();
+        }
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
@@ -285,7 +292,6 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
             String data = model.getValueAt(indexRow, i).toString();
             tableData[i]=data;
         }
-        System.out.println(Arrays.toString(tableData));
         EditSupplier_GUI editSupplierGUI = new EditSupplier_GUI(saleManager,tableData);
         editSupplierGUI.show();
         dispose();
@@ -295,7 +301,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        SaleManager saleManager = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -323,7 +329,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageSupplier_GUI(saleManager).setVisible(true);
+                //new ManageSupplier_GUI().setVisible(true);
             }
         });
     }

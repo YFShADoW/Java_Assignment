@@ -11,13 +11,11 @@ package purchaseordermanagementsystem;
 public class PurchaseManager_GUI extends javax.swing.JFrame {
     private PurchaseManager purchaseManager;
 
-    /**
-     * Creates new form PurchaseManager_GUI
-     */
     public PurchaseManager_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager=purchaseManager;
         setTitle("Purchase Manager Menu");
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(159, 163, 227));
         setLocationRelativeTo(null);
     }
 
@@ -40,7 +38,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        viewSupplierButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewSupplierButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         viewSupplierButton.setText("View Supplier List");
         viewSupplierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,15 +46,15 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        viewItemListButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        viewItemListButton.setText("View Item LIst");
+        viewItemListButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
+        viewItemListButton.setText("View Item List");
         viewItemListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewItemListButtonActionPerformed(evt);
             }
         });
 
-        POButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        POButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         POButton.setText("Purchase Order");
         POButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +62,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        viewPRButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewPRButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         viewPRButton.setText("View Purchase Requisition");
         viewPRButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,7 +70,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        userAccountButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        userAccountButton.setFont(new java.awt.Font("Bodoni MT", 0, 16)); // NOI18N
         userAccountButton.setText("User Account");
         userAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,8 +85,8 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Purchase Manager -- Menu");
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 36)); // NOI18N
+        jLabel1.setText("Purchase Manager - Menu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,11 +98,11 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
                     .addComponent(userAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(POButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewSupplierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewItemListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewPRButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(240, 240, 240))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(viewPRButton, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(viewItemListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewSupplierButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(179, 179, 179))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -129,14 +127,14 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(userAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
-                .addComponent(viewItemListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(viewItemListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addComponent(viewSupplierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(84, 84, 84)
                         .addComponent(POButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(143, Short.MAX_VALUE))
         );
@@ -185,7 +183,6 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        PurchaseManager purchaseManager = new PurchaseManager("U00003","PM01","PM1234","PM01@gmail.com","0124567890","PurchaseManager","P00001");
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -213,7 +210,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PurchaseManager_GUI(purchaseManager).setVisible(true);
+                //new PurchaseManager_GUI().setVisible(true);
             }
         });
     }

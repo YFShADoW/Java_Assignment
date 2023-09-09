@@ -39,16 +39,16 @@
                           <Component id="ManageUserButton" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="viewSupplierButton" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="viewItemButton" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="viewSaleButton" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="viewPOButton" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="viewPRButton" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="viewPRButton" alignment="0" pref="254" max="32767" attributes="0"/>
+                          <Component id="viewPOButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="viewSaleButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="viewItemButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="viewSupplierButton" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="189" max="32767" attributes="0"/>
+              <EmptySpace pref="135" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,10 +82,10 @@
                       <Component id="viewSaleButton" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="viewItemButton" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="viewSupplierButton" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="viewSupplierButton" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace pref="131" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -95,7 +95,7 @@
     <Component class="javax.swing.JButton" name="viewAccButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
+          <Font name="Bodoni MT" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="View Personal Account"/>
       </Properties>
@@ -106,7 +106,7 @@
     <Component class="javax.swing.JButton" name="RegisterUser">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
+          <Font name="Bodoni MT" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Register New User"/>
       </Properties>
@@ -117,7 +117,7 @@
     <Component class="javax.swing.JButton" name="viewSupplierButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
+          <Font name="Bodoni MT" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="View Supplier List"/>
       </Properties>
@@ -128,9 +128,9 @@
     <Component class="javax.swing.JButton" name="viewItemButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
+          <Font name="Bodoni MT" size="16" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="View Item LIst"/>
+        <Property name="text" type="java.lang.String" value="View Item List"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewItemButtonActionPerformed"/>
@@ -139,7 +139,7 @@
     <Component class="javax.swing.JButton" name="viewSaleButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
+          <Font name="Bodoni MT" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="View Sale List"/>
       </Properties>
@@ -150,7 +150,7 @@
     <Component class="javax.swing.JButton" name="viewPOButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
+          <Font name="Bodoni MT" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="View Purchase Order"/>
       </Properties>
@@ -161,7 +161,7 @@
     <Component class="javax.swing.JButton" name="viewPRButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
+          <Font name="Bodoni MT" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="View Purchase Requisition"/>
       </Properties>
@@ -172,7 +172,7 @@
     <Component class="javax.swing.JButton" name="ManageUserButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
+          <Font name="Bodoni MT" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Manage User Account"/>
       </Properties>
@@ -191,9 +191,9 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="24" style="0"/>
+          <Font name="Bodoni MT" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Admin -- Menu"/>
+        <Property name="text" type="java.lang.String" value="Admin - Menu"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -51,12 +51,15 @@ public class ManageUser_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel1.setText("User Type");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel2.setText("Find");
 
+        searchText.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
+
+        searchButton.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,14 +92,10 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(UserTable);
 
+        UserTypeComboBox.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         UserTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Admin", "Sale Manager", "Purchase Manager" }));
-        UserTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserTypeComboBoxActionPerformed(evt);
-            }
-        });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         jLabel3.setText("Manage User");
 
         adminBackButton.setText("Back");
@@ -126,10 +125,10 @@ public class ManageUser_GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121))
+                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -171,17 +170,13 @@ public class ManageUser_GUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DeleteButton)
-                    .addComponent(EditButton))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(EditButton)
+                    .addComponent(DeleteButton))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void UserTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserTypeComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UserTypeComboBoxActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         // TODO add your handling code here:
@@ -197,7 +192,6 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         this.removeTableRow();
         this.displayTable();
         
-//        System.out.println(Arrays.toString(tableData));
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
@@ -228,7 +222,6 @@ public class ManageUser_GUI extends javax.swing.JFrame {
             displayTable();
         }
         else if(searchTarget.isBlank() && UserTypeComboBox.getSelectedIndex()!=0){
-//          filterTarget = statusSelection[UserTypeComboBox.getSelectedIndex()];
             FileManager file = new FileManager("User.txt");
             ArrayList<String[]> searchList = file.filterData(5, filterTarget);
             removeTableRow();
@@ -291,8 +284,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Administrator admin = new Administrator("U00001","admin01","admin1234","admin01@gmail.com","0123456789","Admin","A00001");
-        
+       
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -320,7 +312,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new ManageUser_GUI(admin).setVisible(true);
+               //new ManageUser_GUI().setVisible(true);
             }
         });
     }

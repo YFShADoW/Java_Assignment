@@ -4,14 +4,8 @@
  */
 package purchaseordermanagementsystem;
 
-/**
- *
- * @author weily
- */
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -104,6 +98,11 @@ public class InputValidation {
             }
         }
         return resultList.size()>0;
+    }
+    public static boolean checkSupplierItemExist(String SupplierID){
+        FileManager file = new FileManager("Item.txt");
+        ArrayList<String[]> filterList = file.filterData(5, SupplierID);
+        return filterList.size()>0;
     }
 }
 

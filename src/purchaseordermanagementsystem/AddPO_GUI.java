@@ -11,7 +11,6 @@ public class AddPO_GUI extends javax.swing.JFrame {
 
     public AddPO_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager=purchaseManager;
-        setTitle("Purchase Manager - Add Purchase Order");
         initComponents();
         setLocationRelativeTo(null);
         displayPRTable();
@@ -43,10 +42,12 @@ public class AddPO_GUI extends javax.swing.JFrame {
         deletePOButton = new javax.swing.JButton();
         orderDateText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         jScrollPane3.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Purchase Manager - Add Purchase Order");
 
         POTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -66,6 +67,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(POTable);
 
+        approveButton.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         approveButton.setText("Approve");
         approveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +75,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
             }
         });
 
+        viewPRItemButton.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         viewPRItemButton.setText("View Item in PR");
         viewPRItemButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,8 +83,10 @@ public class AddPO_GUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
         jLabel1.setText("Manipulate Purchase Order");
 
+        backButton.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,6 +94,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
             }
         });
 
+        rejectButton.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         rejectButton.setText("Reject");
         rejectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,8 +102,10 @@ public class AddPO_GUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel2.setText("Purchase Order: ");
 
+        jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel3.setText("Pending Purchase Requisition: ");
 
         PRTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -125,6 +133,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(PRTable);
 
+        deletePOButton.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         deletePOButton.setText("Delete ");
         deletePOButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +141,13 @@ public class AddPO_GUI extends javax.swing.JFrame {
             }
         });
 
+        orderDateText.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
         jLabel9.setText("Approve Date: ");
+
+        jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 15)); // NOI18N
+        jLabel10.setText("DD-MM-YYYY");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,8 +157,9 @@ public class AddPO_GUI extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addComponent(viewPRItemButton)
-                        .addGap(81, 81, 81)
+                        .addGap(50, 50, 50)
                         .addComponent(approveButton)
                         .addGap(59, 59, 59)
                         .addComponent(rejectButton))
@@ -154,13 +170,15 @@ public class AddPO_GUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backButton)
                                 .addGap(29, 29, 29)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(orderDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(orderDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel10))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -175,26 +193,27 @@ public class AddPO_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(orderDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(orderDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(backButton)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(viewPRItemButton)
                         .addComponent(approveButton)
                         .addComponent(rejectButton))
-                    .addComponent(deletePOButton))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(deletePOButton)
+                    .addComponent(viewPRItemButton))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -204,6 +223,8 @@ public class AddPO_GUI extends javax.swing.JFrame {
         if(orderDateText.getText().isBlank()){
             JOptionPane.showMessageDialog(null, "Please Enter Date");
         }
+        else if(!orderDateText.getText().isBlank() && !InputValidation.isValidDate(orderDateText.getText()))
+            JOptionPane.showMessageDialog(null, "Please Enter correct Date");
         else{
             DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
             int selectedRowIndex = PRTable.getSelectedRow();
@@ -242,8 +263,8 @@ public class AddPO_GUI extends javax.swing.JFrame {
         int selectedRowIndex = PRTable.getSelectedRow();
         String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
         PurchaseRequisition PR = purchaseManager.checkPRInfo(SelectedPRID);
-        ViewPRItem_GUI viewPRItemGUI  = new ViewPRItem_GUI(PR,purchaseManager);
-        viewPRItemGUI.show();
+        EditPR_GUI editPRGUI = new EditPR_GUI(purchaseManager,PR);
+        editPRGUI.show();
         dispose();
     }//GEN-LAST:event_viewPRItemButtonActionPerformed
 
@@ -254,7 +275,11 @@ public class AddPO_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void deletePOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePOButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) POTable.getModel();
+        int selectedRowIndex = POTable.getSelectedRow();
+        String SelectedPOID = model.getValueAt(selectedRowIndex, 0).toString();
+        PurchaseOrder PO = purchaseManager.checkPOInfo(SelectedPOID);
+        PO.removePurchaseOrder();
     }//GEN-LAST:event_deletePOButtonActionPerformed
     
     public void displayPRTable(){
@@ -339,6 +364,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JButton deletePOButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
