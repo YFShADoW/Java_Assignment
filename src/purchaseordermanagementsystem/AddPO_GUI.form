@@ -66,8 +66,7 @@
                           <Component id="jScrollPane2" min="-2" pref="519" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" pref="220" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="viewPOItemButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="242" max="-2" attributes="0"/>
                               <Component id="deletePOButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -108,7 +107,6 @@
                       <Component id="approveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rejectButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="viewPOItemButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="deletePOButton" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="33" max="32767" attributes="0"/>
@@ -276,11 +274,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete "/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="viewPOItemButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="View Item in PO"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deletePOButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="orderDateText">
     </Component>

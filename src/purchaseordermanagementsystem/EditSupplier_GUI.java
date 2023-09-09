@@ -22,6 +22,7 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
         this.saleManager = saleManager;
         this.tableData=tableData;
         initComponents();
+        setLocationRelativeTo(null);
         SupplierIDText.setText(tableData[0]);
         NameText.setText(tableData[1]);
         PhoneText.setText(tableData[2]);
@@ -260,7 +261,7 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
         }
         Supplier oldSupplier  =  new Supplier(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4]);
         Supplier newSupplier  = new Supplier(supplierID,newName,newPhone,newEmail,newAddress);
-        saleManager.manageSupplier("edit", oldSupplier,newSupplier );
+        saleManager.manageSupplier("edit", oldSupplier,newSupplier);
         
         ManageSupplier_GUI manageSupplierGUI = new ManageSupplier_GUI(saleManager);
         manageSupplierGUI.show();

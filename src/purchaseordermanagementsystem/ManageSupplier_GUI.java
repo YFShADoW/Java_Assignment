@@ -16,18 +16,30 @@ import javax.swing.table.TableModel;
 public class ManageSupplier_GUI extends javax.swing.JFrame {
     SaleManager saleManager;
     PurchaseManager purchaseManager;
+    private Administrator admin;
     /**
      * Creates new form ViewSupplier_GUI
      */
     public ManageSupplier_GUI(SaleManager saleManager) {
         this.saleManager = saleManager;
         initComponents();
-        displayTable();
-        
+        displayTable();      
     }
     
     public ManageSupplier_GUI(PurchaseManager purchaseManager){
         this.purchaseManager = purchaseManager;
+        initComponents();                
+        setLocationRelativeTo(null);
+        displayTable();
+        
+        AddButton.setVisible(false);
+        EditButton.setVisible(false);
+        DeleteButton.setVisible(false);
+        SupplierLabel.setText("View Supplier");
+    }
+    
+    public ManageSupplier_GUI(Administrator admin){
+        this.admin = admin;
         initComponents();                
         setLocationRelativeTo(null);
         displayTable();
@@ -208,14 +220,19 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        if (purchaseManager !=null && saleManager == null){
-            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
-            purchaseManagerGUI.show();
+        if (admin != null && saleManager == null && purchaseManager == null){
+            Admin_GUI adminGUI = new Admin_GUI(admin);
+            adminGUI.show();
             dispose();
         }
-        else if (purchaseManager ==null && saleManager != null){
-            SaleManager_GUI smGUI = new SaleManager_GUI(saleManager);
-            smGUI.show();
+        else if (admin == null && saleManager != null && purchaseManager == null){
+            SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
+            saleManagerGUI.show();
+            dispose();
+        }
+        else if (admin == null && saleManager == null && purchaseManager != null){
+            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+            purchaseManagerGUI.show();
             dispose();
         }
     }//GEN-LAST:event_backButtonActionPerformed

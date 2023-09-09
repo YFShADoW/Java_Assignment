@@ -49,7 +49,6 @@ public class AddPO_GUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         PRTable = new javax.swing.JTable();
         deletePOButton = new javax.swing.JButton();
-        viewPOItemButton = new javax.swing.JButton();
         orderDateText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
@@ -135,8 +134,11 @@ public class AddPO_GUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(PRTable);
 
         deletePOButton.setText("Delete ");
-
-        viewPOItemButton.setText("View Item in PO");
+        deletePOButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePOButtonActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Approve Date: ");
 
@@ -170,8 +172,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(viewPOItemButton)
-                                .addGap(124, 124, 124)
+                                .addGap(242, 242, 242)
                                 .addComponent(deletePOButton)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -200,7 +201,6 @@ public class AddPO_GUI extends javax.swing.JFrame {
                         .addComponent(viewPRItemButton)
                         .addComponent(approveButton)
                         .addComponent(rejectButton))
-                    .addComponent(viewPOItemButton)
                     .addComponent(deletePOButton))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -260,6 +260,10 @@ public class AddPO_GUI extends javax.swing.JFrame {
         purchaseManagerGUI.show();
         dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void deletePOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePOButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deletePOButtonActionPerformed
     
     public void displayPRTable(){
         DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
@@ -353,7 +357,6 @@ public class AddPO_GUI extends javax.swing.JFrame {
     private javax.swing.JTree jTree1;
     private javax.swing.JTextField orderDateText;
     private javax.swing.JButton rejectButton;
-    private javax.swing.JButton viewPOItemButton;
     private javax.swing.JButton viewPRItemButton;
     // End of variables declaration//GEN-END:variables
 }

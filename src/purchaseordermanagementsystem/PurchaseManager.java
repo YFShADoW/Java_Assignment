@@ -58,6 +58,5 @@ public class PurchaseManager extends User {
     
     public String toString(){
         return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType()+"|"+this.getPM_ID();
-    }
-    
+    }    
 }

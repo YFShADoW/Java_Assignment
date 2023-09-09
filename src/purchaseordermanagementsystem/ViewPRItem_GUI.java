@@ -20,6 +20,7 @@ public class ViewPRItem_GUI extends javax.swing.JFrame {
         this.PR = PR;
         this.purchaseManager = purchaseManager;
         initComponents();
+        setLocationRelativeTo(null);
         PRIDText.setText(PR.getPurchaseRequisitionID());
         supplierText.setText(PR.getSupplier().getSupplierID());
         displayTable();

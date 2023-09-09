@@ -29,6 +29,7 @@ public class Register_GUI extends javax.swing.JFrame {
         this.admin = admin;
         InputValidation inputValidation = new InputValidation();
         initComponents();
+        setLocationRelativeTo(null);
         displayTable();
     }
 
