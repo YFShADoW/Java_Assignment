@@ -6,6 +6,7 @@ package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,7 +22,8 @@ public class AddPO_GUI extends javax.swing.JFrame {
         this.purchaseManager=purchaseManager;
         initComponents();
         setLocationRelativeTo(null);
-        displayTable();
+        displayPRTable();
+        displayPOTable();
     }
 
     /**
@@ -81,10 +83,20 @@ public class AddPO_GUI extends javax.swing.JFrame {
         });
 
         viewPRItemButton.setText("View Item in PR");
+        viewPRItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPRItemButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Manipulate Purchase Order");
 
         backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         rejectButton.setText("Reject");
         rejectButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,11 +130,6 @@ public class AddPO_GUI extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        PRTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PRTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(PRTable);
@@ -202,29 +209,59 @@ public class AddPO_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
-        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
-        int selectedRowIndex = PRTable.getSelectedRow();
-        String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
-//        System.out.println(SelectedPRID);
-        
-        FileManager searchPR = new FileManager("Purchase_Requisition.txt");
-        ArrayList<String[]> PRList = searchPR.searchData(SelectedPRID); 
- 
-        String[] SelectedPRData = PRList.get(0);
-        
-        
+        if(orderDateText.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "Please Enter Date");
+        }
+        else{
+            DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+            int selectedRowIndex = PRTable.getSelectedRow();
+            String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
+            PurchaseRequisition PR = purchaseManager.checkPRInfo(SelectedPRID);
+            purchaseManager.changePRStatus(PR,"Approved");  
+            
+            String POID = purchaseManager.generatePOID();
+            String orderDate = orderDateText.getText();
+            
+            PurchaseOrder PO = new PurchaseOrder(POID,PR,purchaseManager,orderDate);
+            PO.addPurchaseOrder();
+            
+            removePRTableRow();
+            removePOTableRow();
+            
+            displayPOTable();
+            displayPRTable();    
+        }
     }//GEN-LAST:event_approveButtonActionPerformed
-
-    private void PRTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PRTableMouseClicked
-
-    }//GEN-LAST:event_PRTableMouseClicked
 
     private void rejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectButtonActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+        int selectedRowIndex = PRTable.getSelectedRow();
+        String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
+        PurchaseRequisition PR = purchaseManager.checkPRInfo(SelectedPRID);
+        purchaseManager.changePRStatus(PR,"Rejected");    
+        
+        removePRTableRow();
+        displayPRTable();
     }//GEN-LAST:event_rejectButtonActionPerformed
+
+    private void viewPRItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPRItemButtonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+        int selectedRowIndex = PRTable.getSelectedRow();
+        String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
+        PurchaseRequisition PR = purchaseManager.checkPRInfo(SelectedPRID);
+        ViewPRItem_GUI viewPRItemGUI  = new ViewPRItem_GUI(PR,purchaseManager);
+        viewPRItemGUI.show();
+        dispose();
+    }//GEN-LAST:event_viewPRItemButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+        purchaseManagerGUI.show();
+        dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
     
-    
-    public void displayTable(){
+    public void displayPRTable(){
         DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
         FileManager getrow = new FileManager("Purchase_Requisition.txt");
         ArrayList<String[]> PendingPR = getrow.searchData("Pending");
@@ -233,7 +270,34 @@ public class AddPO_GUI extends javax.swing.JFrame {
             model.addRow(PendingPRData);
         }
     }
+    public void displayPOTable(){
+        DefaultTableModel model = (DefaultTableModel) POTable.getModel();
+        FileManager getrow = new FileManager("Purchase_Order.txt");
+        ArrayList<String> POline = getrow.readFile();
+        for(int i =0;i<POline.size();i++){
+            String[] POData = POline.get(i).split("\\|");
+            PurchaseOrder PO = new PurchaseOrder(POData[0],POData[1],POData[2],POData[3]);
+            String[] rowData = {PO.getPurchaseOrderID(),PO.getPurchaseRequisition().getPurchaseRequisitionID(),PO.getPurchaseRequisition().getSupplier().getSupplierID(),PO.getOrderDate(),Double.toString(PO.getPurchaseRequisition().getGrandTotalPrice())};
+            model.addRow(rowData);
+        }
+    }
     
+    
+    public void removePRTableRow(){
+        DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
+        int count = model.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
+    
+    public void removePOTableRow(){
+        DefaultTableModel model = (DefaultTableModel) POTable.getModel();
+        int count = model.getRowCount();
+        for (int i = count - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
     
     
     /**

@@ -4,6 +4,8 @@
  */
 package purchaseordermanagementsystem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author YAO FENG PC
@@ -24,9 +26,34 @@ public class PurchaseManager extends User {
         this.PM_ID = PM_ID;
     }
     
-    public void changePRStatus( String[] unedit, String[] edit){
-            FileManager file = new FileManager("Purchase_Requisition.txt");
-            file.editFile(unedit, edit);  
+    public PurchaseRequisition checkPRInfo(String PRID){
+        FileManager file = new FileManager("Purchase_Requisition.txt");
+        String[] PRData = file.searchByPrimaryKey(PRID);
+        PurchaseRequisition PR  = new PurchaseRequisition(PRData[0],PRData[1],PRData[2],PRData[3],PRData[4],PRData[5],PRData[6]);
+        return PR;
+    }
+    public String generatePOID(){
+        FileManager file = new FileManager("Purchase_Order.txt");
+        ArrayList<String> POData = file.readFile();
+        int newNo=0;
+        if(POData.size() ==0){
+            newNo=1;
+        }
+        else{
+            String lastRow = POData.get(POData.size()-1);
+            String[] data = lastRow.trim().split("\\|");
+            String lastPOID = data[0];
+            newNo = Integer.parseInt(lastPOID.substring(2))+1;
+        }        
+        String newPOID = "PO" + String.format("%05d", newNo);  
+        return newPOID;
+    }
+    
+    
+    public void changePRStatus(PurchaseRequisition PR,String Status){
+        PurchaseRequisition newPR =new PurchaseRequisition(PR.getPurchaseRequisitionID(),PR.getSaleManager(),PR.getSupplier().getSupplierID(),PR.getRequestDate(),PR.getGrandTotalPrice(),PR.getPurchaseRequisitionStatus(),PR.getItemList());
+        newPR.setPurchaseRequisitionStatus(Status);
+        PR.editPurchaseRequisition(newPR);
     }
     
     public String toString(){

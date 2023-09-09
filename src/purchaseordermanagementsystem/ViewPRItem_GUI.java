@@ -4,17 +4,25 @@
  */
 package purchaseordermanagementsystem;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author weily
  */
 public class ViewPRItem_GUI extends javax.swing.JFrame {
-
+    PurchaseRequisition PR;
+    PurchaseManager purchaseManager;
     /**
      * Creates new form ViewPRItem_GUI
      */
-    public ViewPRItem_GUI() {
+    public ViewPRItem_GUI(PurchaseRequisition PR,PurchaseManager purchaseManager) {
+        this.PR = PR;
+        this.purchaseManager = purchaseManager;
         initComponents();
+        PRIDText.setText(PR.getPurchaseRequisitionID());
+        supplierText.setText(PR.getSupplier().getSupplierID());
+        displayTable();
     }
 
     /**
@@ -138,13 +146,23 @@ public class ViewPRItem_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-
+        AddPO_GUI addPOGUI = new AddPO_GUI(purchaseManager);
+        addPOGUI.show();
+        dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void supplierTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_supplierTextActionPerformed
-
+    public void displayTable(){
+        DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+        ItemLine[] itemList = PR.getItemList();
+        for(ItemLine itemData:itemList){
+            String[] tableRow = itemData.toString().split("\\|");
+            model.addRow(tableRow);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -175,7 +193,7 @@ public class ViewPRItem_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewPRItem_GUI().setVisible(true);
+                //new ViewPRItem_GUI().setVisible(true);
             }
         });
     }

@@ -42,7 +42,7 @@ public class PurchaseRequisition {
         this.itemList = itemList;
     }
 
-    // Construct with String SupplierID and String ItemLine
+    // Construct with all String
     public PurchaseRequisition(String PurchaseRequisitionID, String saleManager, String supplierID, String requestDate, String grandTotalPrice, String PurchaseRequisitionStatus, String itemLines) {
         this.PurchaseRequisitionID = PurchaseRequisitionID;
         this.saleManager = saleManager;
@@ -165,5 +165,15 @@ public class PurchaseRequisition {
         // Write to File
         FileManager PRFile = new FileManager("Purchase_Requisition.txt");
         PRFile.editFile(oldPR, editPR);
+    }
+//    PR00004|S00001|SR00001|10-9-2023|170.0|Pending|I0001;50,I0004;40
+    public String toString(){
+        String line = "";
+        for(ItemLine item: this.itemList){
+            String ItemIDQuantity = String.join(";",item.getItem().getItemCode(),Integer.toString(item.getQuantity()));
+            line = String.join(",", line,ItemIDQuantity);
+        }
+        line = line.substring(1);
+        return this.getPurchaseRequisitionID()+"|"+this.getSaleManager()+"|"+this.getSupplier().getSupplierID()+"|"+this.getRequestDate()+"|"+Double.toString(this.getGrandTotalPrice())+"|"+this.getPurchaseRequisitionStatus()+"|"+line;
     }
 }
