@@ -27,6 +27,7 @@ public class Register_GUI extends javax.swing.JFrame {
     
     public Register_GUI(Administrator admin) {
         this.admin = admin;
+        setTitle("Administrator - Register User");
         InputValidation inputValidation = new InputValidation();
         initComponents();
         setLocationRelativeTo(null);

@@ -21,6 +21,7 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
     public EditSupplier_GUI(SaleManager saleManager,String[] tableData) {
         this.saleManager = saleManager;
         this.tableData=tableData;
+        setTitle("Sale Manager - Edit Supplier");
         initComponents();
         setLocationRelativeTo(null);
         SupplierIDText.setText(tableData[0]);

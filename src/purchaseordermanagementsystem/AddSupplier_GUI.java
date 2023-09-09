@@ -23,6 +23,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
      */
     public AddSupplier_GUI(SaleManager saleManager) {
         this.saleManager = saleManager;
+        setTitle("Sale Manager - Add Supplier");
         initComponents();
         setLocationRelativeTo(null);
         displayTable();

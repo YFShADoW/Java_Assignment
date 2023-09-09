@@ -22,12 +22,14 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
      */
     public ManageSupplier_GUI(SaleManager saleManager) {
         this.saleManager = saleManager;
+        setTitle("Sale Manager - Manage Supplier");
         initComponents();
         displayTable();      
     }
     
     public ManageSupplier_GUI(PurchaseManager purchaseManager){
         this.purchaseManager = purchaseManager;
+        setTitle("Purchase Manager - View Supplier");
         initComponents();                
         setLocationRelativeTo(null);
         displayTable();
@@ -40,6 +42,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
     
     public ManageSupplier_GUI(Administrator admin){
         this.admin = admin;
+        setTitle("Administrator - View Supplier");
         initComponents();                
         setLocationRelativeTo(null);
         displayTable();

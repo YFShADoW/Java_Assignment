@@ -16,6 +16,7 @@ public class PurchaseManager_GUI extends javax.swing.JFrame {
      */
     public PurchaseManager_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager=purchaseManager;
+        setTitle("Purchase Manager Menu");
         initComponents();
         setLocationRelativeTo(null);
     }

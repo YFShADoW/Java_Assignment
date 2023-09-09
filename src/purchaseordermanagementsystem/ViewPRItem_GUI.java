@@ -19,6 +19,7 @@ public class ViewPRItem_GUI extends javax.swing.JFrame {
     public ViewPRItem_GUI(PurchaseRequisition PR,PurchaseManager purchaseManager) {
         this.PR = PR;
         this.purchaseManager = purchaseManager;
+        setTitle("Purchase Manager - View Item in PR");
         initComponents();
         setLocationRelativeTo(null);
         PRIDText.setText(PR.getPurchaseRequisitionID());

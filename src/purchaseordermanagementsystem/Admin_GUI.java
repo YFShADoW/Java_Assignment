@@ -15,6 +15,7 @@ public class Admin_GUI extends javax.swing.JFrame {
      */
     public Admin_GUI(Administrator admin) {
         this.admin = admin;
+        setTitle("Administrator Menu");
         initComponents();
         setLocationRelativeTo(null);
     }

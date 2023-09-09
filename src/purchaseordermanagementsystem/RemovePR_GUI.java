@@ -18,6 +18,7 @@ public class RemovePR_GUI extends javax.swing.JFrame {
     public RemovePR_GUI(SaleManager saleManager,PurchaseRequisition PR) {
         this.saleManager=saleManager;
         this.PR = PR;
+        setTitle("Sale Manager - Remove Purchase Requisition");
         initComponents();
         setLocationRelativeTo(null);
         displayTable();

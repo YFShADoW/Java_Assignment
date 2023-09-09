@@ -19,6 +19,7 @@ public class ViewSales_GUI extends javax.swing.JFrame {
      */
     public ViewSales_GUI(Administrator admin) {
         this.admin = admin;
+        setTitle("Administrator - View Sales");
         initComponents();
         setLocationRelativeTo(null);
         displaySalesTable();

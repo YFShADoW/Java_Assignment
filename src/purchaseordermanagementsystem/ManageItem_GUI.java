@@ -28,6 +28,7 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     //Constructor overloading
     public ManageItem_GUI(SaleManager saleManager) {
         this.saleManager  = saleManager;
+        setTitle("Sale Manager - Manage Item");
         initComponents();
         setLocationRelativeTo(null);
         supplierIDList[0] = "All";
@@ -38,6 +39,7 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     
     public ManageItem_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager  = purchaseManager;
+        setTitle("Purchase Manager - View Item");
         initComponents();
         setLocationRelativeTo(null);
         supplierIDList[0] = "All";
@@ -53,6 +55,7 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     
     public ManageItem_GUI(Administrator admin) {
         this.admin = admin;
+        setTitle("Administrator - View Item");
         initComponents();
         setLocationRelativeTo(null);
         supplierIDList[0] = "All";

@@ -17,6 +17,7 @@ public class EditUser_GUI extends javax.swing.JFrame {
      * Creates new form EditUser
      */
     public EditUser_GUI(Administrator admin,String[] tableData) {
+        setTitle("Administrator - Edit User");
         initComponents();
         oldTableData=tableData;
         this.admin =admin;
@@ -35,6 +36,7 @@ public class EditUser_GUI extends javax.swing.JFrame {
     }
     
     public EditUser_GUI(Administrator admin){
+        setTitle("Administrator - View User Information");
         this.admin =admin;
         initComponents();
         setLocationRelativeTo(null);
@@ -63,6 +65,7 @@ public class EditUser_GUI extends javax.swing.JFrame {
     
     public EditUser_GUI(SaleManager saleManager){
         this.saleManager = saleManager;
+        setTitle("Sale Manager - View User Information");
         initComponents();
         setLocationRelativeTo(null);
         
@@ -90,6 +93,7 @@ public class EditUser_GUI extends javax.swing.JFrame {
     
     public EditUser_GUI(PurchaseManager purchaseManager){
         this.purchaseManager = purchaseManager;
+        setTitle("Purchase Manager - View User Information");
         initComponents();
         setLocationRelativeTo(null);
         

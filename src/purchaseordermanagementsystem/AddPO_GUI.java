@@ -20,6 +20,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
      */
     public AddPO_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager=purchaseManager;
+        setTitle("Purchase Manager - Add Purchase Order");
         initComponents();
         setLocationRelativeTo(null);
         displayPRTable();

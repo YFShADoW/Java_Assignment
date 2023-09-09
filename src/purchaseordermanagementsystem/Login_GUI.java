@@ -127,40 +127,40 @@ public class Login_GUI extends javax.swing.JFrame {
     private void Text_UserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_UserIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Text_UserIDActionPerformed
-    
+
     private void Button_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_LoginActionPerformed
         // TODO add your handling code here:
         String userID = Text_UserID.getText();
         String password = Text_Password.getText();
         User userLogin = new User();
-        String[] savedData = userLogin.loginAccess(userID,password);
-        switch(savedData[5]){
+        String[] savedData = userLogin.loginAccess(userID, password);
+        switch (savedData[5]) {
             case "Admin":
-                Administrator admin = new Administrator(savedData[0],savedData[1],savedData[2],savedData[3],savedData[4],savedData[5],savedData[6]);
+                Administrator admin = new Administrator(savedData[0], savedData[1], savedData[2], savedData[3], savedData[4], savedData[5], savedData[6]);
                 Admin_GUI adminGUI = new Admin_GUI(admin);
                 adminGUI.show();
                 dispose();
                 break;
             case "SaleManager":
-                SaleManager saleManager = new SaleManager(savedData[0],savedData[1],savedData[2],savedData[3],savedData[4],savedData[5],savedData[6]);
-                SaleManager_GUI saleManagerGUI =new SaleManager_GUI(saleManager);
+                SaleManager saleManager = new SaleManager(savedData[0], savedData[1], savedData[2], savedData[3], savedData[4], savedData[5], savedData[6]);
+                SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
                 saleManagerGUI.show();
                 dispose();
                 break;
-                
+
             case "PurchaseManager":
-                PurchaseManager purchaseManager = new PurchaseManager(savedData[0],savedData[1],savedData[2],savedData[3],savedData[4],savedData[5],savedData[6]);
+                PurchaseManager purchaseManager = new PurchaseManager(savedData[0], savedData[1], savedData[2], savedData[3], savedData[4], savedData[5], savedData[6]);
                 PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
                 purchaseManagerGUI.show();
                 dispose();
                 break;
-                
+
             case "fail":
                 JOptionPane.showMessageDialog(null, "Login Failed");
                 break;
-            
+
             default:
-                JOptionPane.showMessageDialog(null,"User Not Found");
+                JOptionPane.showMessageDialog(null, "User Not Found");
                 break;
         }
     }//GEN-LAST:event_Button_LoginActionPerformed
@@ -202,7 +202,7 @@ public class Login_GUI extends javax.swing.JFrame {
 
 //U00001|admin01|admin1234|admin01@gmail.com|0123456789|Admin|A00001
 //U00002|YF|YF0322|0189796991|YF@gmail.com|Admin|A00002
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Login;
     private javax.swing.JPasswordField Text_Password;

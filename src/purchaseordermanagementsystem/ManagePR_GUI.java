@@ -23,6 +23,7 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     
     public ManagePR_GUI(SaleManager saleManager) {
         this.saleManager=saleManager;
+        setTitle("Sale Manager - Manage Purchase Requisition");
         initComponents();
         setLocationRelativeTo(null);
         displayTable();
@@ -31,6 +32,7 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     
     public ManagePR_GUI(PurchaseManager purchaseManager){
         this.purchaseManager = purchaseManager;
+        setTitle("Purchase Manager - View Purchase Requisition");
         initComponents();                
         setLocationRelativeTo(null);
         displayTable();
@@ -43,6 +45,7 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     
     public ManagePR_GUI(Administrator admin){
         this.admin = admin;
+        setTitle("Administrator - View Purchase Requisition");
         initComponents();                
         setLocationRelativeTo(null);
         displayTable();

@@ -22,6 +22,7 @@ public class ManageUser_GUI extends javax.swing.JFrame {
      */
     public ManageUser_GUI(Administrator admin){
         this.admin=admin;
+        setTitle("Administrator - Manage User");
         initComponents();                
         setLocationRelativeTo(null);
         displayTable();

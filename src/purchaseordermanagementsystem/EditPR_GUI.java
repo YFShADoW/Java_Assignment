@@ -21,6 +21,7 @@ public class EditPR_GUI extends javax.swing.JFrame {
     public EditPR_GUI(SaleManager saleManager, PurchaseRequisition PR) {
         this.saleManager=saleManager;
         this.PR = PR;
+        setTitle("Sale Manager - Edit Purchase Requisition");
         initComponents();
         setLocationRelativeTo(null);
         supplierText.setText(PR.getSupplier().getSupplierID());

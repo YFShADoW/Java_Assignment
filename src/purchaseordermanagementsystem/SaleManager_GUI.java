@@ -15,6 +15,7 @@ public class SaleManager_GUI extends javax.swing.JFrame {
      */
     public SaleManager_GUI(SaleManager saleManager) {
         this.saleManager = saleManager;
+        setTitle("Sale Manager Menu");
         initComponents();
         setLocationRelativeTo(null);
     }

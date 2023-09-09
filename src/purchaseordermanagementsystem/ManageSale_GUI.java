@@ -22,6 +22,7 @@ public class ManageSale_GUI extends javax.swing.JFrame {
     
     public ManageSale_GUI(SaleManager saleManager) {
         this.saleManager=saleManager;
+        setTitle("Sale Manager - Manage Sale");
         initComponents();
         setLocationRelativeTo(null);
         displaySalesTable();

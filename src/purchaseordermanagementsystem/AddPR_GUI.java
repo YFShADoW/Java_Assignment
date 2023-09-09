@@ -24,6 +24,7 @@ public class AddPR_GUI extends javax.swing.JFrame {
     public AddPR_GUI(SaleManager saleManager) {
         
         this.saleManager=saleManager;
+        setTitle("Sale Manager - Add Purchase Requisition");
         initComponents();
         setLocationRelativeTo(null);
         SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));

@@ -25,6 +25,7 @@ public class AddItem_GUI extends javax.swing.JFrame {
      */
     public AddItem_GUI(SaleManager saleManager) {
         this.saleManager = saleManager;
+        setTitle("Sale Manager - Add Item");
         initComponents();
         setLocationRelativeTo(null);
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
