@@ -4,6 +4,8 @@
  */
 package purchaseordermanagementsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author YAO FENG PC
@@ -397,34 +399,41 @@ public class EditUser_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        if(!newPhoneText.getText().isBlank() && !InputValidation.isValidPhoneNumber(newPhoneText.getText())){
+            JOptionPane.showMessageDialog(null,"Invalid Phone Number");
+        }
+        else if(!newEmailText.getText().isBlank() && !InputValidation.isValidEmail(newEmailText.getText())){
+            JOptionPane.showMessageDialog(null,"Invalid Email");
+        }
+        else{
+            String userID = UserIDTextPane.getText();
+            String department = deptTextPane.getText();
+            String staffID = staffIDTextPane.getText();
 
-        String userID = UserIDTextPane.getText();
-        String department = deptTextPane.getText();
-        String staffID = staffIDTextPane.getText();
-        
-        String newName = newNameText.getText();
-        String newPassword = newPasswordText.getText();
-        String newEmail = newEmailText.getText();
-        String newPhone = newPhoneText.getText();
-        
-        if(newName.isBlank()){
-            newName = oldTableData[1];
+            String newName = newNameText.getText();
+            String newPassword = newPasswordText.getText();
+            String newEmail = newEmailText.getText();
+            String newPhone = newPhoneText.getText();
+
+            if(newName.isBlank()){
+                newName = oldTableData[1];
+            }
+            if(newPassword.isBlank()){
+                newPassword =oldTableData[2];
+            }
+            if(newEmail.isBlank()){
+                newEmail = oldTableData[3];
+            }
+            if(newPhone.isBlank()){
+                newPhone =oldTableData[4];
+            }
+            String[] newData  = {userID,newName,newPassword,newEmail,newPhone,department,staffID};
+            admin.manageUser("edit", oldTableData, newData);
+
+            ManageUser_GUI manageUserGUI = new ManageUser_GUI(admin);
+            manageUserGUI.show();
+            dispose();    
         }
-        if(newPassword.isBlank()){
-            newPassword =oldTableData[2];
-        }
-        if(newEmail.isBlank()){
-            newEmail = oldTableData[3];
-        }
-        if(newPhone.isBlank()){
-            newPhone =oldTableData[4];
-        }
-        String[] newData  = {userID,newName,newPassword,newEmail,newPhone,department,staffID};
-        admin.manageUser("edit", oldTableData, newData);
-        
-        ManageUser_GUI manageUserGUI = new ManageUser_GUI(admin);
-        manageUserGUI.show();
-        dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

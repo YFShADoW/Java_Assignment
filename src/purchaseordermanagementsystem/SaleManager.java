@@ -16,7 +16,7 @@ import java.util.Arrays;
  *
  * @author YAO FENG PC
  */
-public class SaleManager extends User {
+public class SaleManager extends User implements Checker{
     private String SM_ID;
     
     public SaleManager(String UserID, String UserName, String UserPassword, String UserEmail, String UserPhone, String Department,String SM_ID) {
@@ -104,6 +104,12 @@ public class SaleManager extends User {
         String[] PRData = file.searchByPrimaryKey(PRID);
         PurchaseRequisition PR  = new PurchaseRequisition(PRData[0],PRData[1],PRData[2],PRData[3],PRData[4],PRData[5],PRData[6]);
         return PR;
+    }
+    public PurchaseOrder checkPOInfo(String POID){
+        FileManager file = new FileManager("Purchase_Order.txt");
+        String[] POData = file.searchByPrimaryKey(POID);
+        PurchaseOrder PO  = new PurchaseOrder(POData[0],POData[1],POData[2],POData[3]);
+        return PO;
     }
     
     

@@ -4,6 +4,7 @@
  */
 package purchaseordermanagementsystem;
 
+import java.text.DecimalFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 

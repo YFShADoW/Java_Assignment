@@ -111,10 +111,12 @@ public class FileManager {
     }
     
     public void editFile(String[] targetLine, String[] newLine) {
-        System.out.println(Arrays.toString(targetLine));
-        System.out.println(Arrays.toString(newLine));
+//        System.out.println(Arrays.toString(targetLine));
+//        System.out.println(Arrays.toString(newLine));
         ArrayList<String[]> dataLines = this.saveTo2DArrayList();
         for(int i =0 ; i <dataLines.size();i++){
+            System.out.println(Arrays.toString(targetLine));
+            System.out.println(Arrays.toString(dataLines.get(i)));
             if(Arrays.equals(dataLines.get(i) ,targetLine)){
                 dataLines.set(i, newLine);
             }

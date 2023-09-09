@@ -6,6 +6,7 @@ package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -271,16 +272,21 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-
+        
         DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
         int selectedRowIndex = PRTable.getSelectedRow();
         String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
 
         PurchaseRequisition PR = saleManager.checkPRInfo(SelectedPRID);
+        if(PR.getPurchaseRequisitionStatus().equals("Pending")){
+            EditPR_GUI editPRGUI = new EditPR_GUI(saleManager,PR);
+            editPRGUI.show();
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Approved and Rejected PR cannot be edit");
+        }
         
-        EditPR_GUI editPRGUI = new EditPR_GUI(saleManager,PR);
-        editPRGUI.show();
-        dispose();
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
@@ -289,10 +295,14 @@ public class ManagePR_GUI extends javax.swing.JFrame {
             int selectedRowIndex = PRTable.getSelectedRow();
             String SelectedPRID = model.getValueAt(selectedRowIndex, 0).toString();
             PurchaseRequisition PR = saleManager.checkPRInfo(SelectedPRID);
-
-            RemovePR_GUI removePRGUI = new RemovePR_GUI(saleManager,PR);
-            removePRGUI.show();
-            dispose();    
+            if(PR.getPurchaseRequisitionStatus().equals("Pending")){
+                RemovePR_GUI removePRGUI = new RemovePR_GUI(saleManager,PR);
+                removePRGUI.show();
+                dispose();   
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Approved and Rejected PR cannot be removed");
+            } 
         }
     }//GEN-LAST:event_removeButtonActionPerformed
 

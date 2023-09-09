@@ -178,14 +178,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Text_Name">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Text_NameActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="Text_Password">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Text_PasswordActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="Text_Email">
       <Events>

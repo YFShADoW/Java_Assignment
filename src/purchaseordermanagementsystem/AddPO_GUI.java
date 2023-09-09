@@ -212,6 +212,8 @@ public class AddPO_GUI extends javax.swing.JFrame {
         if(orderDateText.getText().isBlank()){
             JOptionPane.showMessageDialog(null, "Please Enter Date");
         }
+        else if(!orderDateText.getText().isBlank() && !InputValidation.isValidDate(orderDateText.getText()))
+            JOptionPane.showMessageDialog(null, "Please Enter correct Date");
         else{
             DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
             int selectedRowIndex = PRTable.getSelectedRow();
@@ -262,7 +264,11 @@ public class AddPO_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void deletePOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePOButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) POTable.getModel();
+        int selectedRowIndex = POTable.getSelectedRow();
+        String SelectedPOID = model.getValueAt(selectedRowIndex, 0).toString();
+        PurchaseOrder PO = purchaseManager.checkPOInfo(SelectedPOID);
+        PO.removePurchaseOrder();
     }//GEN-LAST:event_deletePOButtonActionPerformed
     
     public void displayPRTable(){

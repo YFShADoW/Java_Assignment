@@ -105,5 +105,10 @@ public class InputValidation {
         }
         return resultList.size()>0;
     }
+    public static boolean checkSupplierItemExist(String SupplierID){
+        FileManager file = new FileManager("Item.txt");
+        ArrayList<String[]> filterList = file.filterData(5, SupplierID);
+        return filterList.size()>0;
+    }
 }
 

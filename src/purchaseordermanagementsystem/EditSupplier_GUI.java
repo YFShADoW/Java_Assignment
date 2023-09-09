@@ -5,6 +5,7 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -240,33 +241,39 @@ public class EditSupplier_GUI extends javax.swing.JFrame {
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
-        String supplierID = SupplierIDText.getText();
-        
-        String newName = NewNameText.getText();
-        String newPhone = NewPhoneText.getText();
-        String newEmail = NewEmailText.getText();
-        String newAddress = NewAddressText.getText().replace("\n","");
-        
-        if(newName.isBlank()){
-            newName = tableData[1];
+        if(!NewPhoneText.getText().isBlank() && !InputValidation.isValidPhoneNumber(NewPhoneText.getText())){
+            JOptionPane.showMessageDialog(null,"Invalid Phone Number");
         }
-        if(newPhone.isBlank()){
-            newPhone =tableData[2];
+        else if(!NewEmailText.getText().isBlank() && !InputValidation.isValidEmail(NewEmailText.getText())){
+            JOptionPane.showMessageDialog(null,"Invalid Email");
         }
-        if(newEmail.isBlank()){
-            newEmail = tableData[3];
-        }
-        if(newAddress.isBlank()){
-            newAddress = tableData[4];
-        }
-        Supplier oldSupplier  =  new Supplier(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4]);
-        Supplier newSupplier  = new Supplier(supplierID,newName,newPhone,newEmail,newAddress);
-        saleManager.manageSupplier("edit", oldSupplier,newSupplier);
-        
-        ManageSupplier_GUI manageSupplierGUI = new ManageSupplier_GUI(saleManager);
-        manageSupplierGUI.show();
-        dispose();
-            
+        else{
+            String supplierID = SupplierIDText.getText();
+            String newName = NewNameText.getText();
+            String newPhone = NewPhoneText.getText();
+            String newEmail = NewEmailText.getText();
+            String newAddress = NewAddressText.getText().replace("\n","");
+
+            if(newName.isBlank()){
+                newName = tableData[1];
+            }
+            if(newPhone.isBlank()){
+                newPhone =tableData[2];
+            }
+            if(newEmail.isBlank()){
+                newEmail = tableData[3];
+            }
+            if(newAddress.isBlank()){
+                newAddress = tableData[4];
+            }
+            Supplier oldSupplier  =  new Supplier(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4]);
+            Supplier newSupplier  = new Supplier(supplierID,newName,newPhone,newEmail,newAddress);
+            saleManager.manageSupplier("edit", oldSupplier,newSupplier);
+
+            ManageSupplier_GUI manageSupplierGUI = new ManageSupplier_GUI(saleManager);
+            manageSupplierGUI.show();
+            dispose();
+        }        
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

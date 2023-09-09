@@ -18,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Register_GUI extends javax.swing.JFrame {
     Administrator admin;
-    InputValidation inputValidation;
     /**
      * Creates new form Register_GUI
      */
@@ -27,7 +26,6 @@ public class Register_GUI extends javax.swing.JFrame {
     
     public Register_GUI(Administrator admin) {
         this.admin = admin;
-        InputValidation inputValidation = new InputValidation();
         initComponents();
         setLocationRelativeTo(null);
         displayTable();
@@ -79,18 +77,6 @@ public class Register_GUI extends javax.swing.JFrame {
 
         Label_Phone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Label_Phone.setText("Phone:");
-
-        Text_Name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_NameActionPerformed(evt);
-            }
-        });
-
-        Text_Password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_PasswordActionPerformed(evt);
-            }
-        });
 
         Text_Email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,59 +212,57 @@ public class Register_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Text_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_NameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_NameActionPerformed
-
-    private void Text_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_PasswordActionPerformed
-
     private void Button_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SaveActionPerformed
         if(Text_Name.getText().isEmpty()||Text_Password.getText().isEmpty()||Text_Email.getText().isEmpty()||Text_Phone.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter all the fields!!");
         }
-        else{     
-            //Get input
-            String userID = admin.generateUserID();
-            String name = Text_Name.getText().trim();
-            String password = Text_Password.getText().trim();
-            String email = Text_Email.getText().trim(); 
-            String phone = Text_Phone.getText().trim();
-            int comboBoxIndex = ComboBox_UserType.getSelectedIndex();
-            System.out.println(comboBoxIndex);
-            String userType = userTypeSelection[comboBoxIndex];
-            String staffID = admin.generatestaffID(userType);
-            //||!inputValidation.checkValidPhoneNumber(phone)
-
-
-            //Save 
-                if(userType.equals("Admin")){
-                    Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
-                    admin.registerUser(newAdmin);
-                    System.out.println("1");
-                }
-                else if(userType.equals("SaleManager")){
-                    SaleManager newSM = new SaleManager(userID,name,password,email,phone,userType,staffID);            
-                    admin.registerUser(newSM);
-                    System.out.println("2");
-                }
-                else if (userType.equals("PurchaseManager")){
-                    PurchaseManager newPM = new PurchaseManager(userID,name,password,email,phone,userType,staffID);            
-                    admin.registerUser(newPM);
-                    System.out.println("3");
-                
+        else{
+            if(!InputValidation.isValidEmail(Text_Email.getText())){
+                JOptionPane.showMessageDialog(null, "Invalid Email");
             }
-            
-            // Clean all the text field
-            Text_Name.setText("");
-            Text_Password.setText("");
-            Text_Email.setText("");
-            Text_Phone.setText("");
-            
-            // refresh the table
-            removeTableRow();
-            displayTable();   
+            else if(!InputValidation.isValidPhoneNumber(Text_Phone.getText())){
+                JOptionPane.showMessageDialog(null, "Invalid Phone");
+            }
+            else{
+                //Get input
+                String userID = admin.generateUserID();
+                String name = Text_Name.getText().trim();
+                String password = Text_Password.getText().trim();
+                String email = Text_Email.getText().trim(); 
+                String phone = Text_Phone.getText().trim();
+                int comboBoxIndex = ComboBox_UserType.getSelectedIndex();
+                System.out.println(comboBoxIndex);
+                String userType = userTypeSelection[comboBoxIndex];
+                String staffID = admin.generatestaffID(userType);
+                //||!inputValidation.checkValidPhoneNumber(phone)
+
+
+                //Save 
+                    if(userType.equals("Admin")){
+                        Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
+                        admin.registerUser(newAdmin);
+                    }
+                    else if(userType.equals("SaleManager")){
+                        SaleManager newSM = new SaleManager(userID,name,password,email,phone,userType,staffID);            
+                        admin.registerUser(newSM);
+                    }
+                    else if (userType.equals("PurchaseManager")){
+                        PurchaseManager newPM = new PurchaseManager(userID,name,password,email,phone,userType,staffID);            
+                        admin.registerUser(newPM);
+
+                    }
+
+                // Clean all the text field
+                Text_Name.setText("");
+                Text_Password.setText("");
+                Text_Email.setText("");
+                Text_Phone.setText("");
+
+                // refresh the table
+                removeTableRow();
+                displayTable();  
+            }
+             
         }   
     }//GEN-LAST:event_Button_SaveActionPerformed
 

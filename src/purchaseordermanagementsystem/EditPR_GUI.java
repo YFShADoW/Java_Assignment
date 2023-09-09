@@ -353,20 +353,25 @@ public class EditPR_GUI extends javax.swing.JFrame {
 
     private void addItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemButtonActionPerformed
         if(!quantityText.getText().isBlank()){
-            DefaultTableModel SITmodel = (DefaultTableModel) supplierItemTable.getModel();
-            String SelectedItemID = SITmodel.getValueAt(supplierItemTable.getSelectedRow(), 0).toString();// GUI input
-            Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
-            int itemQuantity = Integer.parseInt(quantityText.getText()); //GUI input
+            if(InputValidation.checkValidQuantity(quantityText.getText())){
+                DefaultTableModel SITmodel = (DefaultTableModel) supplierItemTable.getModel();
+                String SelectedItemID = SITmodel.getValueAt(supplierItemTable.getSelectedRow(), 0).toString();// GUI input
+                Item selectedItem = saleManager.checkItemInfo(SelectedItemID); // check database
+                int itemQuantity = Integer.parseInt(quantityText.getText()); //GUI input
 
-            if(checkDuplicate(SelectedItemID)){
-                JOptionPane.showMessageDialog(null, "Item already add");
+                if(checkDuplicate(SelectedItemID)){
+                    JOptionPane.showMessageDialog(null, "Item already add");
+                }
+                else{
+                    ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
+                    String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
+
+                    DefaultTableModel ILTmodel = (DefaultTableModel) itemListTable.getModel();//GUI control
+                    ILTmodel.addRow(itemRow); // GUI output    
+                }
             }
             else{
-                ItemLine itemLine =  new ItemLine(itemQuantity,selectedItem);
-                String[] itemRow = itemLine.toString().split("\\|"); // converter& calculation
-
-                DefaultTableModel ILTmodel = (DefaultTableModel) itemListTable.getModel();//GUI control
-                ILTmodel.addRow(itemRow); // GUI output    
+                JOptionPane.showMessageDialog(null,"Please Enter Correct Quantity");
             }
         }
         else{
@@ -377,32 +382,36 @@ public class EditPR_GUI extends javax.swing.JFrame {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         if(itemListTable.getSelectedRow()!=-1){
             if(!quantityText.getText().isBlank()){
-                String newQuantity  = quantityText.getText();
+                if(InputValidation.checkValidQuantity(quantityText.getText())){
+                    String newQuantity  = quantityText.getText();
 
-                DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
-                int selectedRowIndex = itemListTable.getSelectedRow();
-                String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
-                ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
+                    DefaultTableModel model = (DefaultTableModel) itemListTable.getModel();
+                    int selectedRowIndex = itemListTable.getSelectedRow();
+                    String SelectedItemID = model.getValueAt(selectedRowIndex, 0).toString();
+                    ItemLine[] itemList = new ItemLine[itemListTable.getRowCount()];
 
-                // Get table Data & edit
-                for(int i=0; i< itemListTable.getRowCount();i++){
-                    String ItemID = model.getValueAt(i, 0).toString();
-                    Item item = saleManager.checkItemInfo(ItemID);
-                    String itemQuantity = model.getValueAt(i, 2).toString();
-                    if(item.getItemCode().equals(SelectedItemID)){
-                        itemQuantity = newQuantity;
+                    // Get table Data & edit
+                    for(int i=0; i< itemListTable.getRowCount();i++){
+                        String ItemID = model.getValueAt(i, 0).toString();
+                        Item item = saleManager.checkItemInfo(ItemID);
+                        String itemQuantity = model.getValueAt(i, 2).toString();
+                        if(item.getItemCode().equals(SelectedItemID)){
+                            itemQuantity = newQuantity;
+                        }
+                        ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
+                        itemList[i]=itemLine;
                     }
-                    ItemLine itemLine = new ItemLine(Integer.parseInt(itemQuantity),item);
-                    itemList[i]=itemLine;
-                }
 
-                // Remove from the itemListTable
-                removeItemListTableRow();
-                for(ItemLine itemData:itemList){
-                    String[] tableRow = itemData.toString().split("\\|");
-                    model.addRow(tableRow);
+                    // Remove from the itemListTable
+                    removeItemListTableRow();
+                    for(ItemLine itemData:itemList){
+                        String[] tableRow = itemData.toString().split("\\|");
+                        model.addRow(tableRow);
+                    }
                 }
-        
+                else{
+                    JOptionPane.showMessageDialog(null, "Invalid Quantity");
+                }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Enter valid Quantity");

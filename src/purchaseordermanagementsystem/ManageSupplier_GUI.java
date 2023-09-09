@@ -6,6 +6,7 @@ package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -238,7 +239,7 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        // TODO add your handling code here:
+
         // get selected index 
         int indexRow = supplierTable.getSelectedRow();
         // define a model to modify table
@@ -251,10 +252,14 @@ public class ManageSupplier_GUI extends javax.swing.JFrame {
             tableData[i]=data;
         }
         Supplier supplier = new Supplier(tableData[0],tableData[1],tableData[2],tableData[3],tableData[4]);
-        saleManager.manageSupplier("remove", supplier,null);
-        
-        this.removeTableRow();
-        this.displayTable();
+        if(InputValidation.checkSupplierItemExist(supplier.getSupplierID())){
+            JOptionPane.showMessageDialog(null, "Supplier Cannot be removed");
+        }
+        else{
+            saleManager.manageSupplier("remove", supplier,null);
+            this.removeTableRow();
+            this.displayTable();
+        }
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed

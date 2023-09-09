@@ -225,25 +225,33 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         if(Text_SupplierName.getText().isEmpty()||Text_SupplierPhone.getText().isEmpty()||Text_SupplierEmail.getText().isEmpty()||Text_SupplierAddress.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter all the fields!!");
         }
-        else{            
-            String supplierID = saleManager.generateSupplierID();
-            String name = Text_SupplierName.getText().trim();
-            String phone = Text_SupplierPhone.getText().trim();
-            String email = Text_SupplierEmail.getText().trim();
-            String address = Text_SupplierAddress.getText().replace("\n","");
-            
-            Supplier newSupplier = new Supplier(supplierID,name,phone, email,address);
-            saleManager.manageSupplier("add",newSupplier,null);
-            
-            // Clean all the text field
-            Text_SupplierName.setText("");
-            Text_SupplierPhone.setText("");
-            Text_SupplierEmail.setText("");
-            Text_SupplierAddress.setText("");
-            
-            // refresh the table
-            removeTableRow();
-            displayTable();   
+        else{
+            if(!InputValidation.isValidPhoneNumber(Text_SupplierPhone.getText())){
+                JOptionPane.showMessageDialog(null, "Invalid Phone Number");
+            }
+            else if(!InputValidation.isValidEmail(Text_SupplierEmail.getText().trim())){
+                JOptionPane.showMessageDialog(null, "Invalid Email");
+            }
+            else{
+                String supplierID = saleManager.generateSupplierID();
+                String name = Text_SupplierName.getText().trim();
+                String phone = Text_SupplierPhone.getText().trim();
+                String email = Text_SupplierEmail.getText().trim();
+                String address = Text_SupplierAddress.getText().replace("\n","");
+
+                Supplier newSupplier = new Supplier(supplierID,name,phone, email,address);
+                saleManager.manageSupplier("add",newSupplier,null);
+
+                // Clean all the text field
+                Text_SupplierName.setText("");
+                Text_SupplierPhone.setText("");
+                Text_SupplierEmail.setText("");
+                Text_SupplierAddress.setText("");
+
+                // refresh the table
+                removeTableRow();
+                displayTable();     
+            }  
         }       
     }//GEN-LAST:event_addButtonActionPerformed
 
