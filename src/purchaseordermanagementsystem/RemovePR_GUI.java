@@ -19,6 +19,7 @@ public class RemovePR_GUI extends javax.swing.JFrame {
         this.saleManager=saleManager;
         this.PR = PR;
         initComponents();
+        setLocationRelativeTo(null);
         displayTable();
         
         PRIDText.setText(PR.getPurchaseRequisitionID());

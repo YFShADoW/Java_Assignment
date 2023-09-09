@@ -15,6 +15,7 @@ public class ViewPRItem_GUI extends javax.swing.JFrame {
      */
     public ViewPRItem_GUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

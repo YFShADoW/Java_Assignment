@@ -4,93 +4,112 @@
  */
 package purchaseordermanagementsystem;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Shu Qin
  */
 public class Sale {
     
-    private String saleDate, saleID, saleItemCode, saleItemName, saleItemCategory, saleItemQuantity, saleItemUnitPrice, saleItemTotalPrice;
+    private String saleDate, saleID;
+    private ItemLine itemLine;
     
-    public Sale (String saleID, String saleDate, String saleItemCode, String saleItemName, String saleItemCategory, String saleItemQuantity, String saleItemUnitPrice, String saleItemTotalPrice){
+    public Sale (String saleID, String saleDate, ItemLine itemLine){
         this.saleDate = saleDate;
         this.saleID = saleID;
-        this.saleItemCode = saleItemCode;
-        this.saleItemName = saleItemName;
-        this.saleItemCategory = saleItemCategory;
-        this.saleItemQuantity = saleItemQuantity;
-        this.saleItemUnitPrice = saleItemUnitPrice;
-        this.saleItemTotalPrice = saleItemTotalPrice;
-}
+        this.itemLine = itemLine;
+    }
 
+    public Sale(String saleID, String saleDate, String itemID, String quantity) {
+        this.saleDate = saleDate;
+        this.saleID = saleID;
+        
+        FileManager file = new FileManager("Item.txt");
+        String[] itemData = file.searchByPrimaryKey(itemID);        
+        
+        
+        Item item = new Item(itemData[0], itemData[1], itemData[2], Double.parseDouble(itemData[3]), Integer.parseInt(itemData[4]), itemData[5]);
+        this.itemLine = new ItemLine(Integer.parseInt(quantity), item);
+    }
+    
     public String getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleID(String saleDate) {
+    public void setSaleDate(String saleDate) {
         this.saleDate = saleDate;
-    }
-
-    public String getSaleItemCode() {
-        return saleItemCode;
-    }
-
-    public void setSaleItemCode(String saleItemCode) {
-        this.saleItemCode = saleItemCode;
-    }
-
-    public String getSaleItemName() {
-        return saleItemName;
-    }
-
-    public void setSaleItemName(String saleItemName) {
-        this.saleItemName = saleItemName;
-    }
-
-    public String getSaleItemCategory() {
-        return saleItemCategory;
-    }
-
-    public void setSaleItemCategory(String saleItemCategory) {
-        this.saleItemCategory = saleItemCategory;
-    }
-
-    public String getSaleItemUnitPrice() {
-        return saleItemUnitPrice;
-    }
-
-    public void setSaleItemUnitPrice(String saleItemUnitPrice) {
-        this.saleItemUnitPrice = saleItemUnitPrice;
-    }
-
-    public String getSaleItemTotalPrice() {
-        return saleItemTotalPrice;
-    }
-
-    public void setSaleItemTotalPrice(String saleItemTotalPrice) {
-        this.saleItemTotalPrice = saleItemTotalPrice;
-    }
-
-    public String getSaleItemQuantity() {
-        return saleItemQuantity;
-    }
-
-    public void setSaleItemQuantity(String saleItemQuantity) {
-        this.saleItemQuantity = saleItemQuantity;
     }
 
     public String getSaleID() {
         return saleID;
     }
 
-    public void setSaleDate(String saleDate) {
-        this.saleDate = saleDate;
+    public void setSaleID(String saleID) {
+        this.saleID = saleID;
     }
-    
+
+    public ItemLine getItemLine() {
+        return itemLine;
+    }
+
+    public void setItemLine(ItemLine itemLine) {
+        this.itemLine = itemLine;
+    }
+
     public void addSale(){
-        String[] newSale = {this.getSaleID(),this.getSaleDate(),this.getSaleItemCode(),this.getSaleItemName(),this.getSaleItemCategory(),this.getSaleItemQuantity(),this.getSaleItemUnitPrice(), this.getSaleItemTotalPrice()};
-        FileManager file = new FileManager("Sale.txt");
-        file.addToFile(newSale);
+        
+        String itemID = this.getItemLine().getItem().getItemCode();
+        String itemName = this.getItemLine().getItem().getItemName();
+        String quantity = Integer.toString(this.getItemLine().getQuantity());
+        String unitPrice = Double.toString(this.getItemLine().getItem().getItemUnitPrice());
+        //double unitPrice2 = this.getItemLine().getItem().getItemUnitPrice();
+        String totalPrice = Double.toString(this.getItemLine().getTotalPrice());
+        String[] newSale = {this.getSaleID(),this.getSaleDate(),itemID,itemName,quantity,unitPrice,totalPrice};
+        FileManager saleFile = new FileManager("Sale.txt");
+        saleFile.addToFile(newSale);
+        
+        //Update to Item Stock
+        FileManager itemFile = new FileManager("Item.txt");
+        String itemCategory = this.getItemLine().getItem().getItemCategory();
+        String supplierID = this.getItemLine().getItem().getSupplier().getSupplierID();
+        String oldItemStock = Integer.toString(this.getItemLine().getItem().getItemStock());
+        //int oldItemStock2 =  this.getItemLine().getItem().getItemStock();
+        String newStock = Integer.toString(this.getItemLine().getItem().getItemStock() - this.getItemLine().getQuantity());
+        //int newStock2 = this.getItemLine().getItem().getItemStock() - this.getItemLine().getQuantity();
+        System.out.println(oldItemStock+","+newStock);
+        String[] oldItemData = {itemID, itemName, itemCategory, unitPrice, oldItemStock, supplierID};
+        String[] newItemData = {itemID, itemName, itemCategory, unitPrice, newStock, supplierID};
+        System.out.println(Arrays.toString(oldItemData));
+        System.out.println(Arrays.toString(newItemData));
+        itemFile.editFile(oldItemData, newItemData);
+
     }
     
+    public void removeSale(){
+        FileManager file = new FileManager("Sale.txt");
+        file.removeLineFromFile(this.getSaleID());
+        
+        FileManager itemFile = new FileManager("Item.txt");
+        String itemID = this.getItemLine().getItem().getItemCode();
+        String itemName = this.getItemLine().getItem().getItemName();
+        String quantity = Integer.toString(this.getItemLine().getQuantity());
+        String unitPrice = Double.toString(this.getItemLine().getItem().getItemUnitPrice());
+        String itemCategory = this.getItemLine().getItem().getItemCategory();
+        String supplierID = this.getItemLine().getItem().getSupplier().getSupplierID();
+        String oldItemStock = Integer.toString(this.getItemLine().getItem().getItemStock());
+        String newStock = Integer.toString(this.getItemLine().getItem().getItemStock() + this.getItemLine().getQuantity());
+        System.out.println(oldItemStock+","+newStock);
+        String[] oldItemData = {itemID, itemName, itemCategory, unitPrice, oldItemStock, supplierID};
+        String[] newItemData = {itemID, itemName, itemCategory, unitPrice, newStock, supplierID};
+        System.out.println(Arrays.toString(oldItemData));
+        System.out.println(Arrays.toString(newItemData));
+        itemFile.editFile(oldItemData, newItemData);
+    }
+    
+    public String toString(){
+        return this.getSaleID()+"|"+this.getSaleDate()+"|"+this.getItemLine().getItem().getItemCode()+
+                "|"+this.getItemLine().getItem().getItemName()+"|"+this.getItemLine().getQuantity()+
+                "|"+this.getItemLine().getItem().getItemUnitPrice()+"|"+this.getItemLine().getTotalPrice();
+    }
 }

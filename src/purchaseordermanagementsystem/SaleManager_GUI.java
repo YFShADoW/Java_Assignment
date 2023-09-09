@@ -16,6 +16,7 @@ public class SaleManager_GUI extends javax.swing.JFrame {
     public SaleManager_GUI(SaleManager saleManager) {
         this.saleManager = saleManager;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -146,7 +147,9 @@ public class SaleManager_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saleButtonActionPerformed
-        // TODO add your handling code here:
+        ManageSale_GUI manageSaleGUI = new ManageSale_GUI(saleManager);
+        manageSaleGUI.show();
+        dispose();
     }//GEN-LAST:event_saleButtonActionPerformed
 
     private void userAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userAccountButtonActionPerformed
@@ -156,7 +159,6 @@ public class SaleManager_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_userAccountButtonActionPerformed
 
     private void supplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierButtonActionPerformed
-        // TODO add your handling code here:
         ManageSupplier_GUI manageSupplierGUI = new ManageSupplier_GUI(saleManager);
         manageSupplierGUI.show();
         dispose();
@@ -169,14 +171,13 @@ public class SaleManager_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LogOutButtonActionPerformed
 
     private void itemListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemListButtonActionPerformed
-        // TODO add your handling code here:
         ManageItem_GUI manageItemGUI = new ManageItem_GUI(saleManager);
         manageItemGUI.show();
         dispose();
     }//GEN-LAST:event_itemListButtonActionPerformed
 
     private void viewPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPOButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_viewPOButtonActionPerformed
 
     /**

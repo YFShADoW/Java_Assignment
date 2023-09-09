@@ -26,6 +26,7 @@ public class RemoveSale_GUI extends javax.swing.JFrame {
         this.saleManager = saleManager;
         displayTable();
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

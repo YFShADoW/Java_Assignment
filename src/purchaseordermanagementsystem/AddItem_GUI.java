@@ -25,6 +25,7 @@ public class AddItem_GUI extends javax.swing.JFrame {
     public AddItem_GUI(SaleManager saleManager) {
         this.saleManager = saleManager;
         initComponents();
+        setLocationRelativeTo(null);
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         supplierIDComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
         displayTable();
@@ -194,7 +195,7 @@ public class AddItem_GUI extends javax.swing.JFrame {
                             .addComponent(Text_ItemStock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(supplierIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(supplierIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(114, 114, 114)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -249,7 +250,7 @@ public class AddItem_GUI extends javax.swing.JFrame {
         supplierIDList[0] = null;
         for(int i=0 ; i< rows.size();i++){
             String line = rows.get(i).toString();
-            String[] data = line.split("|");
+            String[] data = line.split("\\|");
             supplierIDList[i+1]=data[0];
         }
         return supplierIDList;

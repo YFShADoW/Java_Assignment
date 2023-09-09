@@ -21,6 +21,7 @@ public class EditItem_GUI extends javax.swing.JFrame {
         this.saleManager=saleManager;
         this.tableData = tableData;
         initComponents();
+        setLocationRelativeTo(null);
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         
         itemIDText.setText(tableData[0]);

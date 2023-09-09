@@ -21,6 +21,7 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     private String[] supplierIDList = getSupplierIDFromFile();
     private SaleManager saleManager;
     private PurchaseManager purchaseManager;
+    private Administrator admin;
     /**
      * Creates new form ViewItem_GUI
      */
@@ -28,14 +29,17 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     public ManageItem_GUI(SaleManager saleManager) {
         this.saleManager  = saleManager;
         initComponents();
+        setLocationRelativeTo(null);
         supplierIDList[0] = "All";
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
         displayTable();
     }
+    
     public ManageItem_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager  = purchaseManager;
         initComponents();
+        setLocationRelativeTo(null);
         supplierIDList[0] = "All";
         categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
         SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
@@ -45,9 +49,23 @@ public class ManageItem_GUI extends javax.swing.JFrame {
         editButton.setVisible(false);
         removeButton.setVisible(false);
         manageItemLabel.setText("View Item");
-        
     }
-
+    
+    public ManageItem_GUI(Administrator admin) {
+        this.admin = admin;
+        initComponents();
+        setLocationRelativeTo(null);
+        supplierIDList[0] = "All";
+        categoryComboBox.setModel(new DefaultComboBoxModel<>(itemCategories));
+        SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
+        displayTable();
+        
+        addButton.setVisible(false);
+        editButton.setVisible(false);
+        removeButton.setVisible(false);
+        manageItemLabel.setText("View Item");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -217,14 +235,19 @@ public class ManageItem_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        if (purchaseManager !=null && saleManager == null){
-            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
-            purchaseManagerGUI.show();
+        if (admin != null && saleManager == null && purchaseManager == null){
+            Admin_GUI adminGUI = new Admin_GUI(admin);
+            adminGUI.show();
             dispose();
         }
-        else if (purchaseManager ==null && saleManager != null){
-            SaleManager_GUI smGUI = new SaleManager_GUI(saleManager);
-            smGUI.show();
+        else if (admin == null && saleManager != null && purchaseManager == null){
+            SaleManager_GUI saleManagerGUI = new SaleManager_GUI(saleManager);
+            saleManagerGUI.show();
+            dispose();
+        }
+        else if (admin == null && saleManager == null && purchaseManager != null){
+            PurchaseManager_GUI purchaseManagerGUI = new PurchaseManager_GUI(purchaseManager);
+            purchaseManagerGUI.show();
             dispose();
         }
     }//GEN-LAST:event_backButtonActionPerformed
