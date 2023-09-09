@@ -29,4 +29,8 @@ public class PurchaseManager extends User {
             file.editFile(unedit, edit);  
     }
     
+    public String toString(){
+        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType()+"|"+this.getPM_ID();
+    }
+    
 }

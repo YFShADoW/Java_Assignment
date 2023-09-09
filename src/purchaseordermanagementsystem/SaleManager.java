@@ -279,5 +279,9 @@ public class SaleManager extends User {
             }
         }return null;
     }
+
+    public String toString(){
+        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType()+"|"+this.getSM_ID();
+    }
 }
 

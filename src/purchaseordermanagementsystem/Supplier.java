@@ -70,4 +70,8 @@ public class Supplier {
         String[] newData = {newSupplier.supplierID,newSupplier.supplierName,newSupplier.supplierPhone,newSupplier.supplierEmail,newSupplier.supplierAddress};
         file.editFile(oldData, newData);
     }   
+    
+    public String toString(){
+        return this.getSupplierID()+"|"+this.getSupplierName()+"|"+this.getSupplierPhone()+"|"+this.getSupplierEmail()+"|"+this.getSupplierAddress();
+    }
 }

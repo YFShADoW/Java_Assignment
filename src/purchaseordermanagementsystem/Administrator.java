@@ -130,7 +130,6 @@ public class Administrator extends User{
         FileManager file = new FileManager("User.txt");
         file.addToFile(newUser);
     }
-    
 
     public void manageUser(String mode,String[] oldData,String[] newData){
         User user = new User();
@@ -147,6 +146,11 @@ public class Administrator extends User{
                 break;
         }
     }
+    
+    public String toString(){
+        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType()+"|"+this.getAdmin_ID();
+    }
+    
 //    public ArrayList<String[]> searchFilterUser(String searchTarget,String filterTarget){
 //        FileManager file = new FileManager("User.txt");
 //        ArrayList<String[]> result= new ArrayList();
@@ -196,10 +200,7 @@ public class Administrator extends User{
 //    public void View_Sale_Info(){
 //        
 //    }
-    public static void main(String[] args){
-        Administrator test = new Administrator ("U00001","admin01","admin1234","admin01@gmail.com","0123456789","Admin","A00001");
-    }
-    
+
 }
 
 /*

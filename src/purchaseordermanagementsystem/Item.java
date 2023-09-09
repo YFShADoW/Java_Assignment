@@ -114,7 +114,8 @@ public class Item {
 //        System.out.println(Arrays.toString(newData));
         file.editFile(oldData, newData);
     }
+    
     public String toString(){
-        return this.itemCode+"|"+this.itemName+"|"+this.itemCategory+"|"+this.itemUnitPrice+"|"+this.itemStock+"|"+this.supplier.getSupplierID();
+        return this.getItemCode()+"|"+this.getItemName()+"|"+this.getItemCategory()+"|"+this.getItemUnitPrice()+"|"+this.getItemStock()+"|"+this.getSupplier().getSupplierID();
     }
 }
