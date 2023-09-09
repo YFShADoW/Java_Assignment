@@ -436,10 +436,10 @@ public class AddPR_GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        SaleManager salem = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
+        SaleManager sale = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPR_GUI(salem).setVisible(true);
+                new AddPR_GUI(sale).setVisible(true);
             }
         });
     }

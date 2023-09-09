@@ -121,8 +121,6 @@ public class User {
             savedData[5] = "fail";
             return savedData;
         }
-        
-
     }
     
     public void viewItemInfo(){

@@ -289,38 +289,44 @@ public class EditItem_GUI extends javax.swing.JFrame {
         }
         else{
             newCategory = itemCategories[categoryComboBox.getSelectedIndex()];
-        }
-        if(!InputValidation.checkValidPrice(newPriceText.getText())){
+        } 
+        double newPrice=0;
+        int newStock =0;
+        if(!newPriceText.getText().isBlank() && !InputValidation.checkValidPrice(newPriceText.getText())){
             JOptionPane.showMessageDialog(null, "Invalid Price");
         }
-        else if(!InputValidation.checkValidQuantity(newStockText.getText())){
+        else if(!newStockText.getText().isBlank() && !InputValidation.checkValidQuantity(newStockText.getText())){
             JOptionPane.showMessageDialog(null, "Invalid Quantity");
-
         }
         else{
-            double newPrice = Double.parseDouble(newPriceText.getText());
-            int newStock = Integer.parseInt(newStockText.getText());
             if(newName.isBlank()){
-            newName = oldTableData[1];
-            }
+                newName = oldTableData[1];
+                }
             if(newCategory == null){
                 newCategory = oldTableData[2];
             }
             if(newPriceText.getText().isBlank()){
                 newPrice = Double.parseDouble(oldTableData[3]);
             }
+            else{
+                newPrice = Double.parseDouble(newPriceText.getText());
+            }
             if(newStockText.getText().isBlank()){
                 newStock = Integer.parseInt(oldTableData[4]);
             }
+            else{
+                newStock = Integer.parseInt(newStockText.getText());
+            }
             Item oldItem = new Item(tableData[0],tableData[1],tableData[2],Double.parseDouble(tableData[3]),Integer.parseInt(tableData[4]),supplierID);
             Item newItem = new Item(itemID,newName,newCategory,newPrice,newStock,supplierID);
-        
-            
+
+
             saleManager.manageItem("edit", oldItem, newItem);
 
             ManageItem_GUI manageItemGUI = new ManageItem_GUI(saleManager);
             manageItemGUI.show();
             dispose();
+
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 

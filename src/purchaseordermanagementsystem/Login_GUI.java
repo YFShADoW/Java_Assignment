@@ -58,12 +58,6 @@ public class Login_GUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Password   :");
 
-        Text_UserID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_UserIDActionPerformed(evt);
-            }
-        });
-
         Button_Login.setText("Login");
         Button_Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,10 +117,6 @@ public class Login_GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Text_UserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_UserIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_UserIDActionPerformed
     
     private void Button_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_LoginActionPerformed
         // TODO add your handling code here:
