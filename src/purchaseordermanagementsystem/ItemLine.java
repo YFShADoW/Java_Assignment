@@ -51,14 +51,9 @@ public class ItemLine{
         }
         return grandTotal;
     }
-    
-    
+
     public String toString(){
         return item.getItemCode()+"|"+item.getItemName()+"|"+quantity+"|"+item.getItemUnitPrice()+"|"+this.getTotalPrice();
-    }
-    
-    public void addItemLine(){
-
     }
     
 }

@@ -24,6 +24,7 @@ public class ViewSales_GUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         displaySalesTable();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

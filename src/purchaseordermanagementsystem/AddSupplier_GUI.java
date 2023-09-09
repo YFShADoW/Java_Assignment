@@ -5,19 +5,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author Shu Qin
- */
 public class AddSupplier_GUI extends javax.swing.JFrame {
     private DefaultTableModel model = new DefaultTableModel();
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
-    SaleManager saleManager;
+    private SaleManager saleManager;
     /**
      * Creates new form AddSupplier_GUI
      */
@@ -269,14 +260,13 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         for (int i = count - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-    
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        SaleManager saleManager = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -303,7 +293,7 @@ public class AddSupplier_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddSupplier_GUI(saleManager).setVisible(true);
+                //new AddSupplier_GUI().setVisible(true);
             }
         });
     }

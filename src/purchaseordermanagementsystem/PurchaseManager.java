@@ -22,9 +22,9 @@ public class PurchaseManager extends User {
         return PM_ID;
     }
 
-    public void setPM_ID(String PM_ID) {
-        this.PM_ID = PM_ID;
-    }
+//    public void setPM_ID(String PM_ID) {
+//        this.PM_ID = PM_ID;
+//    }
     
     public PurchaseRequisition checkPRInfo(String PRID){
         FileManager file = new FileManager("Purchase_Requisition.txt");

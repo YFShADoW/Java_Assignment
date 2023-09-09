@@ -1,19 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package purchaseordermanagementsystem;
 
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Shu Qin
- */
 public class EditSupplier_GUI extends javax.swing.JFrame {
-    SaleManager saleManager;
-    String [] tableData;
+    private SaleManager saleManager;
+    private String[] tableData;
 
     /**
      * Creates new form EditSupplier_GUI

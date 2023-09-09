@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
@@ -9,10 +5,7 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author weily
- */
+
 public class EditPR_GUI extends javax.swing.JFrame {
 
     private SaleManager saleManager;
@@ -130,33 +123,17 @@ public class EditPR_GUI extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(supplierItemTable);
 
-        quantityText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantityTextActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Enter Item Quantity: ");
 
         jLabel5.setText("Select to Add Item from Supplier: ");
 
         supplierText.setEditable(false);
-        supplierText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supplierTextActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Supplier: ");
 
         jLabel7.setText("PR ID:");
 
         PRIDText.setEditable(false);
-        PRIDText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PRIDTextActionPerformed(evt);
-            }
-        });
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -304,18 +281,6 @@ public class EditPR_GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Edit item list cannot be empty");
         }
     }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void quantityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextActionPerformed
-
-    private void supplierTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supplierTextActionPerformed
-
-    private void PRIDTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRIDTextActionPerformed
-        
-    }//GEN-LAST:event_PRIDTextActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);

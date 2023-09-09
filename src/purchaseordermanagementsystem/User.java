@@ -5,12 +5,7 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author YAO FENG PC
- */
 public class User {
     private String UserID;
     private String UserName;
@@ -94,7 +89,7 @@ public class User {
     
     
     // User function
-    public String[] loginAccess(String loginUserID,String loginPassword){
+    public static String[] loginAccess(String loginUserID,String loginPassword){
         FileManager file = new FileManager("User.txt");
         ArrayList<String> userData = file.readFile();
         String[] savedData = new String[7];
@@ -121,24 +116,6 @@ public class User {
             savedData[5] = "fail";
             return savedData;
         }
-        
-
-    }
-    
-    public void viewItemInfo(){
-        
-    }
-    
-    public void viewSupplierInfo(){
-        
-    } 
-    
-    public void viewPurchaseRequisition(){
-        
-    }
-    
-    public void viewPurchaseOrder(){
-        
     }
     
     public String toString(){

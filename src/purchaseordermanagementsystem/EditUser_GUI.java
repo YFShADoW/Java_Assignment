@@ -1,18 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package purchaseordermanagementsystem;
 
-/**
- *
- * @author YAO FENG PC
- */
 public class EditUser_GUI extends javax.swing.JFrame {
-    String[] oldTableData;
-    Administrator admin;
-    SaleManager saleManager;
-    PurchaseManager purchaseManager;
+    private String[] oldTableData;
+    private Administrator admin;
+    private SaleManager saleManager;
+    private PurchaseManager purchaseManager;
     /**
      * Creates new form EditUser
      */

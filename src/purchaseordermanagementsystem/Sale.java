@@ -37,25 +37,25 @@ public class Sale {
         return saleDate;
     }
 
-    public void setSaleDate(String saleDate) {
-        this.saleDate = saleDate;
-    }
+//    public void setSaleDate(String saleDate) {
+//        this.saleDate = saleDate;
+//    }
 
     public String getSaleID() {
         return saleID;
     }
 
-    public void setSaleID(String saleID) {
-        this.saleID = saleID;
-    }
+//    public void setSaleID(String saleID) {
+//        this.saleID = saleID;
+//    }
 
     public ItemLine getItemLine() {
         return itemLine;
     }
 
-    public void setItemLine(ItemLine itemLine) {
-        this.itemLine = itemLine;
-    }
+//    public void setItemLine(ItemLine itemLine) {
+//        this.itemLine = itemLine;
+//    }
 
     public void addSale(){
         

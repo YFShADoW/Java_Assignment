@@ -1,7 +1,6 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /*
@@ -9,10 +8,6 @@ import javax.swing.table.DefaultTableModel;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-/**
- *
- * @author Shu Qin
- */
 public class AddItem_GUI extends javax.swing.JFrame {
     private DefaultTableModel itemtable = new DefaultTableModel();
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
@@ -248,15 +243,10 @@ public class AddItem_GUI extends javax.swing.JFrame {
                     displayTable();
                 }  
             }
-
-            
-
-            
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        // TODO add your handling code here:
         ManageItem_GUI manageItemGUI = new ManageItem_GUI(saleManager);
         manageItemGUI.show();
         dispose();
@@ -292,11 +282,8 @@ public class AddItem_GUI extends javax.swing.JFrame {
         }
     }
         
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        SaleManager saleManager = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
+       
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -321,10 +308,10 @@ public class AddItem_GUI extends javax.swing.JFrame {
         //</editor-fold>
 
        // * Create and display the form */
-       java.awt.EventQueue.invokeLater(new Runnable() {
-          public void run() {
-              new AddItem_GUI(saleManager).setVisible(true);
-         }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                //new AddItem_GUI().setVisible(true);
+            }
         });
     }
 

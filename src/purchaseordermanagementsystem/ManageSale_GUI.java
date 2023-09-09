@@ -18,13 +18,14 @@ import javax.swing.table.TableModel;
 public class ManageSale_GUI extends javax.swing.JFrame {
         
     private SaleManager saleManager;
-    String[] supplierIDList = getSupplierIDList();
+    private String[] supplierIDList = getSupplierIDList();
     
     public ManageSale_GUI(SaleManager saleManager) {
         this.saleManager=saleManager;
         setTitle("Sale Manager - Manage Sale");
         initComponents();
         setLocationRelativeTo(null);
+        displayItemTable();
         displaySalesTable();
         SupplierComboBox.setModel(new DefaultComboBoxModel<>(supplierIDList));
     }
@@ -299,7 +300,8 @@ public class ManageSale_GUI extends javax.swing.JFrame {
             
             removeSalesTableRow();
             displaySalesTable();
-
+            removeItemTableRow();
+            displayItemTable();
 //        }
     }//GEN-LAST:event_addSalesButtonActionPerformed
 
@@ -335,6 +337,8 @@ public class ManageSale_GUI extends javax.swing.JFrame {
         
         removeSalesTableRow();
         displaySalesTable();
+        removeItemTableRow();
+        displayItemTable();
     }//GEN-LAST:event_removeSaleButtonActionPerformed
    
     ///// Custom Code

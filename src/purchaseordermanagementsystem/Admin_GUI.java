@@ -219,7 +219,9 @@ public class Admin_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_viewPRButtonActionPerformed
 
     private void viewPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPOButtonActionPerformed
-        // TODO add your handling code here:
+        ViewPO_GUI viewPOGUI = new ViewPO_GUI(admin);
+        viewPOGUI.show();
+        dispose();
     }//GEN-LAST:event_viewPOButtonActionPerformed
 
     private void viewSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSupplierButtonActionPerformed
@@ -259,7 +261,7 @@ public class Admin_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new Admin_GUI(adminDefault).setVisible(true);
+                //new Admin_GUI().setVisible(true);
             }
         });
     }

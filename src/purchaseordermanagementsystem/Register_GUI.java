@@ -17,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  * @author YAO FENG PC
  */
 public class Register_GUI extends javax.swing.JFrame {
-    Administrator admin;
-    InputValidation inputValidation;
+    private Administrator admin;
+    private InputValidation inputValidation;
     /**
      * Creates new form Register_GUI
      */
-    String[] userTypeSelection = {"Admin","SaleManager","PurchaseManager"};
+    private String[] userTypeSelection = {"Admin","SaleManager","PurchaseManager"};
     
     
     public Register_GUI(Administrator admin) {
@@ -251,10 +251,8 @@ public class Register_GUI extends javax.swing.JFrame {
             String userType = userTypeSelection[comboBoxIndex];
             String staffID = admin.generatestaffID(userType);
             //||!inputValidation.checkValidPhoneNumber(phone)
-            if(inputValidation.checkValidEmail(email)){
-                JOptionPane.showMessageDialog(null, "Invalid Input");
-            }
-            else{
+
+
             //Save 
                 if(userType.equals("Admin")){
                     Administrator newAdmin = new Administrator(userID,name,password,email,phone,userType,staffID);            
@@ -270,7 +268,7 @@ public class Register_GUI extends javax.swing.JFrame {
                     PurchaseManager newPM = new PurchaseManager(userID,name,password,email,phone,userType,staffID);            
                     admin.registerUser(newPM);
                     System.out.println("3");
-                }
+                
             }
             
             // Clean all the text field

@@ -4,13 +4,7 @@
  */
 package purchaseordermanagementsystem;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -95,10 +89,6 @@ public class SaleManager extends User {
         }
     }
     
-    public void generatePurchaseRequisition(){
-        
-    }
-    
     public PurchaseRequisition checkPRInfo(String PRID){
         FileManager file = new FileManager("Purchase_Requisition.txt");
         String[] PRData = file.searchByPrimaryKey(PRID);
@@ -132,8 +122,7 @@ public class SaleManager extends User {
 //             
 //         }
 //    }
-    
-    
+        
     public void manageItem(String mode, Item item,Item editItem){
         switch(mode){
             case "add":

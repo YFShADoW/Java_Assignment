@@ -124,9 +124,6 @@ public class PurchaseRequisition {
     }
     
     
-    public void createPurchaseRequisition(){
-        
-    }
     public void removePurchaseRequisition(){
         FileManager file = new FileManager("Purchase_Requisition.txt");
         file.removeLineFromFile(this.getPurchaseRequisitionID());

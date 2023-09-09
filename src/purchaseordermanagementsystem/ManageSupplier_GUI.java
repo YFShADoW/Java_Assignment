@@ -14,8 +14,8 @@ import javax.swing.table.TableModel;
  * @author YAO FENG PC
  */
 public class ManageSupplier_GUI extends javax.swing.JFrame {
-    SaleManager saleManager;
-    PurchaseManager purchaseManager;
+    private SaleManager saleManager;
+    private PurchaseManager purchaseManager;
     private Administrator admin;
     /**
      * Creates new form ViewSupplier_GUI

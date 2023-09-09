@@ -11,8 +11,8 @@ import javax.swing.table.DefaultTableModel;
  * @author weily
  */
 public class ViewPRItem_GUI extends javax.swing.JFrame {
-    PurchaseRequisition PR;
-    PurchaseManager purchaseManager;
+    private PurchaseRequisition PR;
+    private PurchaseManager purchaseManager;
     /**
      * Creates new form ViewPRItem_GUI
      */

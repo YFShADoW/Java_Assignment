@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
@@ -9,15 +6,9 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author weily
- */
 public class AddPO_GUI extends javax.swing.JFrame {
     private PurchaseManager purchaseManager;
-    /**
-     * Creates new form AddPO_GUI
-     */
+
     public AddPO_GUI(PurchaseManager purchaseManager) {
         this.purchaseManager=purchaseManager;
         setTitle("Purchase Manager - Add Purchase Order");
@@ -333,11 +324,10 @@ public class AddPO_GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        PurchaseManager purchaseManager = new PurchaseManager("U00003","PM01","PM1234","PM01@gmail.com","0124567890","PurchaseManager","P00001");
-        
+            
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPO_GUI(purchaseManager).setVisible(true);
+                //new AddPO_GUI().setVisible(true);
             }
         });
     }

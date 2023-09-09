@@ -6,20 +6,14 @@ package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author weily
- */
 public class AddPR_GUI extends javax.swing.JFrame {
     
     private SaleManager saleManager;
-    String[] supplierIDList = getSupplierIDList();
+    private String[] supplierIDList = getSupplierIDList();
     
     public AddPR_GUI(SaleManager saleManager) {
         
@@ -358,8 +352,6 @@ public class AddPR_GUI extends javax.swing.JFrame {
         return false;
     }
     
-    
-    
     private String[] getSupplierIDList(){
         FileManager getrow = new FileManager("Supplier.txt");
         ArrayList<String> rows =  getrow.readFile();
@@ -437,10 +429,10 @@ public class AddPR_GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        SaleManager salem = new SaleManager("U00002","SM01","SM1234","SM01@gmail.com","0134567890","SaleManager","S00001");
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPR_GUI(salem).setVisible(true);
+                //new AddPR_GUI().setVisible(true);
             }
         });
     }

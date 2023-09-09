@@ -4,9 +4,6 @@
  */
 package purchaseordermanagementsystem;
 
-import java.util.Arrays;
-
-
 public class Item {
     private String itemCode, itemCategory, itemName;
     private Supplier supplier;
@@ -81,9 +78,6 @@ public class Item {
     public void setItemStock(int itemStock) {
         this.itemStock = itemStock;
     }
-    public void addToItemLine(){
-        
-    }
 
     public void addItem(){
         String itemUnitPrice = Double.toString(this.getItemUnitPrice());
@@ -99,6 +93,7 @@ public class Item {
         FileManager file = new FileManager("Item.txt");
         file.removeLineFromFile(this.getItemCode());
     }
+    
     public void editItem(Item newItem){
         String itemUnitPrice = Double.toString(this.getItemUnitPrice());
         String itemStock = Integer.toString(this.getItemStock());
@@ -110,8 +105,6 @@ public class Item {
         FileManager file = new FileManager("Item.txt");
         String[] oldData = {this.getItemCode(),this.getItemName(),this.getItemCategory(),itemUnitPrice,itemStock,this.getSupplier().getSupplierID()};
         String[] newData = {newItem.getItemCode(),newItem.getItemName(),newItem.getItemCategory(),newItemUnitPrice,newItemStock,newItem.getSupplier().getSupplierID()};
-//        System.out.println(Arrays.toString(oldData));
-//        System.out.println(Arrays.toString(newData));
         file.editFile(oldData, newData);
     }
 

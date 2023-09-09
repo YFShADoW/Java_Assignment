@@ -17,7 +17,7 @@ public class ManagePR_GUI extends javax.swing.JFrame {
     private Administrator admin;
     private SaleManager saleManager;
     private PurchaseManager purchaseManager;
-    String[] statusSelection = {"All","Pending","Approved","Rejected"};
+    private String[] statusSelection = {"All","Pending","Approved","Rejected"};
     
 
     

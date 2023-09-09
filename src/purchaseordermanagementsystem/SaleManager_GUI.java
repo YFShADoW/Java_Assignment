@@ -74,6 +74,11 @@ public class SaleManager_GUI extends javax.swing.JFrame {
 
         PRButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PRButton.setText("Purchase Requisition");
+        PRButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PRButtonActionPerformed(evt);
+            }
+        });
 
         userAccountButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userAccountButton.setText("User Account");
@@ -178,8 +183,16 @@ public class SaleManager_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_itemListButtonActionPerformed
 
     private void viewPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPOButtonActionPerformed
-        
+        ViewPO_GUI viewPOGUI = new ViewPO_GUI(saleManager);
+        viewPOGUI.show();
+        dispose();
     }//GEN-LAST:event_viewPOButtonActionPerformed
+
+    private void PRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRButtonActionPerformed
+        ManagePR_GUI managePRGUI = new ManagePR_GUI(saleManager);
+        managePRGUI.show();
+        dispose();
+    }//GEN-LAST:event_PRButtonActionPerformed
 
     /**
      * @param args the command line arguments

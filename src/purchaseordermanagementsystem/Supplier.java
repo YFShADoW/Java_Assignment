@@ -8,8 +8,6 @@ package purchaseordermanagementsystem;
 public class Supplier {
     private String supplierID, supplierName, supplierAddress, supplierEmail,supplierPhone;
     
-    
-    
     public Supplier(String supplierID, String supplierName,String supplierPhone,String supplierEmail,String supplierAddress){
         this.supplierID = supplierID;
         this.supplierName = supplierName;
@@ -53,6 +51,7 @@ public class Supplier {
     public void setSupplierPhone(String supplierPhone) {
         this.supplierPhone = supplierPhone;
     }  
+    
     public void addSupplier(){
         String[] newSupplier = {this.getSupplierID(),this.getSupplierName(),this.getSupplierPhone(),this.getSupplierEmail(),this.getSupplierAddress()};
         FileManager file = new FileManager("Supplier.txt");

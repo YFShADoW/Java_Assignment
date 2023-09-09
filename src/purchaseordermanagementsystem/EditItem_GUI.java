@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author YAO FENG PC
  */
 public class EditItem_GUI extends javax.swing.JFrame {
-    SaleManager saleManager;
+    private SaleManager saleManager;
     private String[] itemCategories = {null,"Vegetable","Fruit","Meat","Dairy","Snacks","Beverages","Others"};
     private String[] tableData;
     /**
