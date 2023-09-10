@@ -353,7 +353,7 @@ public class ManageSale_GUI extends javax.swing.JFrame {
         }
 
         Sale sales = new Sale(tableData[0],tableData[1],tableData[2],tableData[4]);
-        saleManager.manageSale("remove", sales, null);
+        saleManager.manageSale("remove", sales);
         
         removeSalesTableRow();
         displaySalesTable();

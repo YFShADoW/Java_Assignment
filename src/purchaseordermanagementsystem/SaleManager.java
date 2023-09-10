@@ -71,16 +71,6 @@ public class SaleManager extends User implements Checker{
     
     }
     
-     public void manageSale(String mode,Sale sale){
-        switch(mode){
-            case "add":
-                sale.addSale(); 
-         
-            default:
-                break;
-        }
-    }
-    
     public PurchaseRequisition checkPRInfo(String PRID){
         FileManager file = new FileManager("Purchase_Requisition.txt");
         String[] PRData = file.searchByPrimaryKey(PRID);
@@ -121,7 +111,7 @@ public class SaleManager extends User implements Checker{
         }
    
     }
-    public void manageSale(String mode, Sale sale,Sale editSale){
+    public void manageSale(String mode, Sale sale){
         switch(mode){
             case "add":
                 sale.addSale();
