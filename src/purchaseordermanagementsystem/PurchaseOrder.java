@@ -54,10 +54,8 @@ public class PurchaseOrder {
         file.removeLineFromFile(this.getPurchaseOrderID());
     }
     
-    
     public String toString(){
         return "";
     }
 
-    
 }

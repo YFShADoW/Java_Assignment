@@ -163,7 +163,8 @@ public class SaleManager extends User implements Checker{
     } 
     
     public String toString(){
-        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType()+"|"+this.getSM_ID();
+        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+
+                this.getUserPhone()+"|"+this.getUserType()+"|"+this.getSM_ID();
     }
 }
 

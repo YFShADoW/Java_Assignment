@@ -96,7 +96,7 @@
                           <Group type="102" attributes="0">
                               <Component id="backButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="addSalesLabel" min="-2" pref="208" max="-2" attributes="0"/>
+                              <Component id="addSalesLabel" min="-2" pref="227" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -275,7 +275,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Bodoni MT" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Add Daily Sales"/>
+        <Property name="text" type="java.lang.String" value="Manage Daily Sales"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="SupplierComboBox">

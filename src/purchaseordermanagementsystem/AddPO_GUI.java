@@ -279,6 +279,8 @@ public class AddPO_GUI extends javax.swing.JFrame {
         String SelectedPOID = model.getValueAt(selectedRowIndex, 0).toString();
         PurchaseOrder PO = purchaseManager.checkPOInfo(SelectedPOID);
         PO.removePurchaseOrder();
+        removePOTableRow();
+        displayPOTable();
     }//GEN-LAST:event_deletePOButtonActionPerformed
     
     public void displayPRTable(){
@@ -301,8 +303,7 @@ public class AddPO_GUI extends javax.swing.JFrame {
             model.addRow(rowData);
         }
     }
-    
-    
+
     public void removePRTableRow(){
         DefaultTableModel model = (DefaultTableModel) PRTable.getModel();
         int count = model.getRowCount();

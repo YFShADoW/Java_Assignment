@@ -57,6 +57,7 @@ public class PurchaseManager extends User implements Checker {
     }
     
     public String toString(){
-        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType()+"|"+this.getPM_ID();
+        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+
+                this.getUserPhone()+"|"+this.getUserType()+"|"+this.getPM_ID();
     }    
 }

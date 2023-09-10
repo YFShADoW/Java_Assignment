@@ -82,8 +82,7 @@ public class User {
         FileManager file = new FileManager("User.txt");
         file.removeLineFromFile(userID);
     }
-    
-    
+  
     // User function
     public static String[] loginAccess(String loginUserID,String loginPassword){
         FileManager file = new FileManager("User.txt");
@@ -115,7 +114,8 @@ public class User {
     }
     
     public String toString(){
-        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"+this.getUserPhone()+"|"+this.getUserType();
+        return this.getUserID()+"|"+this.getUserName()+"|"+this.getUserPassword()+"|"+this.getUserEmail()+"|"
+                +this.getUserPhone()+"|"+this.getUserType();
     }
     
 }

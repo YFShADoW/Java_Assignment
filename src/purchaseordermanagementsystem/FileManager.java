@@ -35,8 +35,7 @@ public class FileManager {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-
-    
+   
     public void removeLineFromFile(String primaryKey){
         ArrayList<String[]> dataLines = this.saveTo2DArrayList();
         try{

@@ -115,7 +115,6 @@ public class PurchaseRequisition {
         this.supplier = supplier;
     }
     
-    
     public void removePurchaseRequisition(){
         FileManager file = new FileManager("Purchase_Requisition.txt");
         file.removeLineFromFile(this.getPurchaseRequisitionID());
@@ -132,6 +131,7 @@ public class PurchaseRequisition {
         FileManager PRFile = new FileManager("Purchase_Requisition.txt");
         PRFile.addToFile(newPR);
     }
+    
     public void editPurchaseRequisition(PurchaseRequisition newPR){
         // Get old itemList
         String oldLine="";
@@ -155,7 +155,7 @@ public class PurchaseRequisition {
         FileManager PRFile = new FileManager("Purchase_Requisition.txt");
         PRFile.editFile(oldPR, editPR);
     }
-//    PR00004|S00001|SR00001|10-9-2023|170.0|Pending|I0001;50,I0004;40
+
     public String toString(){
         String line = "";
         for(ItemLine item: this.itemList){
