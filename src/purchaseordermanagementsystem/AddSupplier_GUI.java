@@ -1,7 +1,6 @@
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package purchaseordermanagementsystem;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author YAO FENG PC
- */
 public class Login_GUI extends javax.swing.JFrame {
 
     /**

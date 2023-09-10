@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
@@ -10,10 +6,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-/**
- *
- * @author YAO FENG PC
- */
 public class ManageItem_GUI extends javax.swing.JFrame {
     private DefaultTableModel itemtable = new DefaultTableModel();
     private String [] itemColumn = {"Item Code","Item Name","Item Category","Item Unit Price","Quantity","Item Supplier ID"};

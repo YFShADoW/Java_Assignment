@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author YAO FENG PC
- */
 public class Register_GUI extends javax.swing.JFrame {
     private Administrator admin;
     private String[] userTypeSelection = {"Admin","SaleManager","PurchaseManager"};

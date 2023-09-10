@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package purchaseordermanagementsystem;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author YAO FENG PC
- */
 public class SaleManager extends User implements Checker{
     private String SM_ID;
     

@@ -3,10 +3,6 @@ package purchaseordermanagementsystem;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 public class AddItem_GUI extends javax.swing.JFrame {
     private DefaultTableModel itemtable = new DefaultTableModel();
