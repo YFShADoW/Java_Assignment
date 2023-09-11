@@ -340,6 +340,10 @@ public class ManageSale_GUI extends javax.swing.JFrame {
             removeItemTableRow();
             displayItemTable(SupplierItem);
         }
+        else {
+            removeItemTableRow();
+            displayItemTable();
+        }
     }//GEN-LAST:event_SupplierComboBoxActionPerformed
 
     private void removeSaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeSaleButtonActionPerformed
