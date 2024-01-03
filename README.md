@@ -1,13 +1,13 @@
 # Sigma SDN BHD PURCHASE ORDER MANAGEMENT SYSTEM (POM)
-This is a purchase order management system which developed with Java Programming and applied OOP-concept.
+This is a purchase order management system developed with Java Programming and applied OOP concepts.
 
-Group Member : Yao Feng, wlynnn, shuqin218 
+Group Member : <a href="https://github.com/YFShADoW">**Yao Feng**</a>, <a href="https://github.com/wlynnn">**Wei Lyn**</a> , <a href="https://github.com/shuqin218">**Shu Qin**</a> 
 
 
 ## Object Oriented Development with Java
 - Developed a GUI Purchase Order Management System with keys feature for Admin, Sale Manager and Purchase Manager.
 - Applied Unified Modeling Language (UML) to represent the structure of the system.
-- Applied Object-oriented programming (OOP)concept to build the system with Java programming.
+- Applied Object-oriented programming (OOP) concept to build the system with Java programming.
 - Construct a File Manager for File I/O.
 
 
@@ -18,10 +18,10 @@ of everyday groceries, fresh produce and fresh foods to various retailers of Mal
 business grows, they need to automate the process of Purchase Orders to maintain the
 purchases more effectively. The actual flow starts from Purchase Requisition (PR) by Sales
 Managers (SM). A PR typically contains the item-code, quantity needed and date by when it
-is required to TSB. After reviving the PR the Purchase Manager (PM) generates a Purchase
+is required to SSB. After reviving the PR the Purchase Manager (PM) generates a Purchase
 Order (PO). A PO is an authorised document used by organisations for placing orders with
 their suppliers for procurement of goods. Develop an application in Java applying the OOP
-techniques you learned to achieve the following functionalities:
+techniques you learned to achieve the following functionalities: 
 </div>
 
 - Login access
@@ -37,7 +37,7 @@ techniques you learned to achieve the following functionalities:
 ---
 
 ## Role
-You program should have three types of access rights such as Sales Manager, Purchase Manager and Administrator.
+Our program consists of three types of access rights: Sales Manager, Purchase Manager, and Administrator.
 
 <ins>**Sales Manager**</ins>
 - Item Entry (Add/Save/Delete/Edit)
@@ -57,7 +57,7 @@ You program should have three types of access rights such as Sales Manager, Purc
 
 <ins>**Administrator**</ins>
 
-Administrator should have the rights to access and update all the application functionalities and data. They are the authorized personnel to create the above mentioned three types of users involved in the POM system.
+Administrator have the rights to access and update all the application functionalities and data. They are the authorized personnel to create the above mentioned three types of users involved in the POM system.
 
 ---
 
